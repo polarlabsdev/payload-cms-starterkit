@@ -1,0 +1,32 @@
+image: node:21
+
+definitions:
+  steps:
+    # placeholder until we decide how we want to test
+    - step: &run-tests
+        name: Run Tests
+        caches:
+          - node
+        script:
+          - echo 'Tests will go here...'
+
+pipelines:
+  branches:
+    main:
+      - step: *run-tests
+      - step:
+          name: Mirror to GitHub
+          deployment: github
+          script:
+            # bitbucket options will fetch just the current branch, so it is required to fetch all:
+            - git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+            # fetch all branches:
+            - git fetch --all
+            # track all branches but HEAD and the current one, which is already being tracked:
+            - for i in $(git branch -a | grep remotes | grep -v "HEAD" | grep -v "$(git rev-parse --abbrev-ref HEAD)"); do git branch --track ${i#remotes/origin/} $i; done
+            # publish the current working copy to gtithub
+            - git push --mirror $GITHUB_REPO_URL
+
+  pull-requests:
+    "**":
+      - step: *run-tests

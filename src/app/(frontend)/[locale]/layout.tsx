@@ -7,6 +7,7 @@ import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { routing, isRtlLocale } from '@/i18n/routing';
 import { ThemeToggle } from '@/components/ThemeToggle';
+import { TooltipProvider } from '@/components/ui/tooltip';
 import { Header } from '@/globals/Header';
 import { Theme } from '@/providers/ThemeProvider/types';
 import { Footer } from '@/globals/Footer';
@@ -39,16 +40,18 @@ const Layout: React.FC<LayoutProps> = async ({ children, params }) => {
         <NextIntlClientProvider>
           <DirectionProvider dir={dir}>
             <ThemeProvider defaultTheme={defaultTheme}>
-              <CollectionProvider>
-                <Header />
-                <main>
-                  <div className="fixed bottom-4 right-4">
-                    <ThemeToggle />
-                  </div>
-                  {children}
-                </main>
-                <Footer />
-              </CollectionProvider>
+              <TooltipProvider>
+                <CollectionProvider>
+                  <Header />
+                  <main>
+                    <div className="fixed bottom-4 right-4">
+                      <ThemeToggle />
+                    </div>
+                    {children}
+                  </main>
+                  <Footer />
+                </CollectionProvider>
+              </TooltipProvider>
             </ThemeProvider>
           </DirectionProvider>
         </NextIntlClientProvider>

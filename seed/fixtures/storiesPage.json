@@ -1,0 +1,15 @@
+{
+  "id": 1,
+  "allStoriesLabel": "All Stories",
+  "defaultDescription": "Discover inspiring stories from our community",
+
+  "meta": {
+    "title": "Rainbow Railroad News & Stories",
+    "image": 13,
+    "description": "Meta description goes here"
+  },
+  "_status": "published",
+  "updatedAt": "2025-10-12T02:39:34.953Z",
+  "createdAt": "2025-10-12T02:39:02.835Z",
+  "globalType": "stories-page"
+}

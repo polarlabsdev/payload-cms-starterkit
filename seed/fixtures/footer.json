@@ -1,0 +1,433 @@
+{
+  "id": 1,
+
+  "logo": {
+    "light": 1,
+    "dark": 2
+  },
+
+  "socialLinks": [
+    {
+      "id": "68c7a3ffebfd91bb7265f258",
+      "iconName": "instagram-line",
+
+      "link": {
+        "linkType": "manual",
+        "url": "https://www.instagram.com/rainbowrailroad/?hl=en",
+        "buttonType": "link",
+        "buttonColor": "Teal",
+        "textColor": "White",
+        "newTab": true
+      }
+    },
+
+    {
+      "id": "68c7a406ebfd91bb7265f25a",
+      "iconName": "facebook-box-line",
+
+      "link": {
+        "linkType": "manual",
+        "url": "https://www.facebook.com/rainbowrailroad",
+        "buttonType": "link",
+        "buttonColor": "Teal",
+        "textColor": "White",
+        "newTab": true
+      }
+    },
+
+    {
+      "id": "68c7a40bebfd91bb7265f25c",
+      "iconName": "youtube-line",
+
+      "link": {
+        "linkType": "manual",
+        "url": "https://www.youtube.com/channel/UCzVCjX6OU_3fQNyanAUNhEA",
+        "buttonType": "link",
+        "buttonColor": "Teal",
+        "textColor": "White",
+        "newTab": true
+      }
+    },
+
+    {
+      "id": "68c7a40febfd91bb7265f25e",
+      "iconName": "linkedin-fill",
+
+      "link": {
+        "linkType": "manual",
+        "url": "https://www.linkedin.com/company/rainbowrailroad/?originalSubdomain=ca",
+        "buttonType": "link",
+        "buttonColor": "Teal",
+        "textColor": "White",
+        "newTab": true
+      }
+    }
+  ],
+
+  "navButtons": [
+    {
+      "id": "68c7a414ebfd91bb7265f260",
+
+      "link": {
+        "linkType": "manual",
+        "url": "/donate",
+        "label": "Donate",
+        "buttonType": "secondary",
+        "buttonColor": "Teal",
+        "textColor": "White",
+        "newTab": false
+      }
+    },
+
+    {
+      "id": "68c7a41cebfd91bb7265f262",
+
+      "link": {
+        "linkType": "manual",
+        "url": "help",
+        "label": "Request Help",
+        "buttonType": "default",
+        "buttonColor": "Teal",
+        "textColor": "White",
+        "newTab": false
+      }
+    }
+  ],
+
+  "navGroups": [
+    {
+      "id": "68c7a424ebfd91bb7265f264",
+
+      "navItems": [
+        {
+          "id": "68c7a428ebfd91bb7265f266",
+
+          "link": {
+            "linkType": "manual",
+            "url": "/about",
+            "label": "What we do",
+            "buttonType": "link",
+            "buttonColor": "Teal",
+            "textColor": "White",
+            "newTab": false
+          }
+        },
+
+        {
+          "id": "68c7a43febfd91bb7265f268",
+
+          "link": {
+            "linkType": "manual",
+            "url": "/about",
+            "label": "History",
+            "buttonType": "link",
+            "buttonColor": "Teal",
+            "textColor": "White",
+            "newTab": false
+          }
+        },
+
+        {
+          "id": "68c7a442ebfd91bb7265f26a",
+
+          "link": {
+            "linkType": "manual",
+            "url": "/about",
+            "label": "How we work",
+            "buttonType": "link",
+            "buttonColor": "Teal",
+            "textColor": "White",
+            "newTab": false
+          }
+        },
+
+        {
+          "id": "68c7a445ebfd91bb7265f26c",
+
+          "link": {
+            "linkType": "manual",
+            "url": "/about",
+            "label": "Where we work",
+            "buttonType": "link",
+            "buttonColor": "Teal",
+            "textColor": "White",
+            "newTab": false
+          }
+        },
+
+        {
+          "id": "68c7a447ebfd91bb7265f26e",
+
+          "link": {
+            "linkType": "manual",
+            "url": "/about",
+            "label": "Leadership",
+            "buttonType": "link",
+            "buttonColor": "Teal",
+            "textColor": "White",
+            "newTab": false
+          }
+        }
+      ],
+      "label": "About"
+    },
+
+    {
+      "id": "68c7a45febfd91bb7265f270",
+
+      "navItems": [
+        {
+          "id": "68c7a466ebfd91bb7265f272",
+
+          "link": {
+            "linkType": "manual",
+            "url": "/news",
+            "label": "Issues",
+            "buttonType": "link",
+            "buttonColor": "Teal",
+            "textColor": "White",
+            "newTab": false
+          }
+        },
+
+        {
+          "id": "68c7a470ebfd91bb7265f274",
+
+          "link": {
+            "linkType": "manual",
+            "url": "/news",
+            "label": "Profiles",
+            "buttonType": "link",
+            "buttonColor": "Teal",
+            "textColor": "White",
+            "newTab": false
+          }
+        },
+
+        {
+          "id": "68c7a471ebfd91bb7265f276",
+
+          "link": {
+            "linkType": "manual",
+            "url": "/news",
+            "label": "News",
+            "buttonType": "link",
+            "buttonColor": "Teal",
+            "textColor": "White",
+            "newTab": false
+          }
+        },
+
+        {
+          "id": "68c7a473ebfd91bb7265f278",
+
+          "link": {
+            "linkType": "manual",
+            "url": "/news",
+            "label": "Events",
+            "buttonType": "link",
+            "buttonColor": "Teal",
+            "textColor": "White",
+            "newTab": false
+          }
+        }
+      ],
+      "label": "The Latest"
+    },
+
+    {
+      "id": "68c7a48debfd91bb7265f27a",
+
+      "navItems": [
+        {
+          "id": "68c7a49aebfd91bb7265f27c",
+
+          "link": {
+            "linkType": "manual",
+            "url": "/take-action",
+            "label": "Take Action",
+            "buttonType": "link",
+            "buttonColor": "Teal",
+            "textColor": "White",
+            "newTab": false
+          }
+        },
+
+        {
+          "id": "68c7a49debfd91bb7265f27e",
+
+          "link": {
+            "linkType": "manual",
+            "url": "/take-action",
+            "label": "Corporate Partnerships",
+            "buttonType": "link",
+            "buttonColor": "Teal",
+            "textColor": "White",
+            "newTab": false
+          }
+        },
+
+        {
+          "id": "68c7a49febfd91bb7265f280",
+
+          "link": {
+            "linkType": "manual",
+            "url": "/take-action",
+            "label": "Fundraise",
+            "buttonType": "link",
+            "buttonColor": "Teal",
+            "textColor": "White",
+            "newTab": false
+          }
+        },
+
+        {
+          "id": "68c7a4a1ebfd91bb7265f282",
+
+          "link": {
+            "linkType": "manual",
+            "url": "/take-action",
+            "label": "Other ways to give",
+            "buttonType": "link",
+            "buttonColor": "Teal",
+            "textColor": "White",
+            "newTab": false
+          }
+        }
+      ],
+      "label": "Take Action"
+    },
+
+    {
+      "id": "68c7a4d9ebfd91bb7265f286",
+
+      "navItems": [
+        {
+          "id": "68c7a4e1ebfd91bb7265f288",
+
+          "link": {
+            "linkType": "manual",
+            "url": "/help",
+            "label": "Request Help",
+            "buttonType": "link",
+            "buttonColor": "Teal",
+            "textColor": "White",
+            "newTab": false
+          }
+        },
+
+        {
+          "id": "68c7a4e5ebfd91bb7265f28a",
+
+          "link": {
+            "linkType": "manual",
+            "url": "/contact",
+            "label": "Contact Us",
+            "buttonType": "link",
+            "buttonColor": "Teal",
+            "textColor": "White",
+            "newTab": false
+          }
+        }
+      ],
+      "label": "Get Help"
+    }
+  ],
+
+  "footerText": {
+    "root": {
+      "type": "root",
+      "format": "",
+      "indent": 0,
+      "version": 1,
+
+      "children": [
+        {
+          "type": "paragraph",
+          "format": "",
+          "indent": 0,
+          "version": 1,
+
+          "children": [
+            {
+              "mode": "normal",
+              "text": "Canadian Charitable Registration No. 827142530RR0001",
+              "type": "text",
+              "style": "",
+              "detail": 0,
+              "format": 0,
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "textStyle": "",
+          "textFormat": 0
+        },
+
+        {
+          "type": "paragraph",
+          "format": "",
+          "indent": 0,
+          "version": 1,
+
+          "children": [
+            {
+              "mode": "normal",
+              "text": "Registered US 501(c) (3) EIN47-4896980",
+              "type": "text",
+              "style": "",
+              "detail": 0,
+              "format": 0,
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "textStyle": "",
+          "textFormat": 0
+        },
+
+        {
+          "type": "paragraph",
+          "format": "",
+          "indent": 0,
+          "version": 1,
+
+          "children": [
+            {
+              "id": "68d84af3ee12387a2d943b91",
+              "type": "link",
+
+              "fields": {
+                "url": "privacy"
+              },
+              "format": "",
+              "indent": 0,
+              "version": 3,
+
+              "children": [
+                {
+                  "mode": "normal",
+                  "text": "Privacy Policy",
+                  "type": "text",
+                  "style": "",
+                  "detail": 0,
+                  "format": 0,
+                  "version": 1
+                }
+              ],
+              "direction": null
+            }
+          ],
+          "direction": null,
+          "textStyle": "",
+          "textFormat": 0
+        }
+      ],
+      "direction": null
+    }
+  },
+  "_status": "published",
+  "updatedAt": "2025-09-27T20:37:21.876Z",
+  "createdAt": "2025-09-15T05:33:09.254Z",
+  "globalType": "footer"
+}

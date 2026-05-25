@@ -1,0 +1,57 @@
+[
+  {
+    "id": 7,
+    "name": { "en": "Issues" },
+    "description": { "en": null },
+    "slug": "issues",
+    "iconName": "article-fill",
+    "color": "Red",
+    "textColor": "White",
+    "updatedAt": "2025-10-12T00:06:45.002Z",
+    "createdAt": "2025-10-11T23:02:47.859Z"
+  },
+  {
+    "id": 8,
+    "name": { "en": "Publications" },
+    "description": { "en": null },
+    "slug": "publications",
+    "iconName": "book-read-fill",
+    "color": "Pink",
+    "textColor": "White",
+    "updatedAt": "2025-10-12T00:06:58.292Z",
+    "createdAt": "2025-10-11T23:03:02.557Z"
+  },
+  {
+    "id": 9,
+    "name": { "en": "Events" },
+    "description": { "en": null },
+    "slug": "events",
+    "iconName": "calendar-event-fill",
+    "color": "Blue",
+    "textColor": "White",
+    "updatedAt": "2025-10-12T00:07:10.429Z",
+    "createdAt": "2025-10-11T23:03:15.859Z"
+  },
+  {
+    "id": 10,
+    "name": { "en": "Press" },
+    "description": { "en": null },
+    "slug": "press",
+    "iconName": "mic-ai-fill",
+    "color": "Teal",
+    "textColor": "White",
+    "updatedAt": "2025-10-12T00:07:32.809Z",
+    "createdAt": "2025-10-11T23:03:40.829Z"
+  },
+  {
+    "id": 11,
+    "name": { "en": "News" },
+    "description": { "en": "Rainbow Railroad in the news!" },
+    "slug": "news",
+    "iconName": "newspaper-fill",
+    "color": "Purple",
+    "textColor": "White",
+    "updatedAt": "2025-10-12T01:57:26.771Z",
+    "createdAt": "2025-10-11T23:03:57.120Z"
+  }
+]

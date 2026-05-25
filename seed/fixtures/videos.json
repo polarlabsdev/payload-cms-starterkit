@@ -1,0 +1,36 @@
+[
+  {
+    "id": 2,
+    "alt": {
+      "en": "One min"
+    },
+    "updatedAt": "2026-01-09T03:10:40.245Z",
+    "createdAt": "2026-01-09T03:10:40.245Z",
+    "url": "/api/videos/file/YTDown.com_YouTube_Imagine-for-1-Minute_Media_XALBGkjkUPQ_002_720p.mp4",
+    "thumbnailURL": null,
+    "filename": "YTDown.com_YouTube_Imagine-for-1-Minute_Media_XALBGkjkUPQ_002_720p.mp4",
+    "mimeType": "video/mp4",
+    "filesize": 14371112,
+    "width": null,
+    "height": null,
+    "focalX": null,
+    "focalY": null
+  },
+  {
+    "id": 1,
+    "alt": {
+      "en": "Birds"
+    },
+    "updatedAt": "2026-01-09T02:57:21.513Z",
+    "createdAt": "2026-01-09T02:57:21.513Z",
+    "url": "/api/videos/file/15040781_960_540_60fps.mp4",
+    "thumbnailURL": null,
+    "filename": "15040781_960_540_60fps.mp4",
+    "mimeType": "video/mp4",
+    "filesize": 2660158,
+    "width": null,
+    "height": null,
+    "focalX": null,
+    "focalY": null
+  }
+]

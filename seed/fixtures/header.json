@@ -1,0 +1,164 @@
+{
+  "logo": {
+    "light": 1,
+    "dark": 2
+  },
+
+  "navItems": [
+    {
+      "type": "dropdown",
+      "dropdownLabel": "About Us",
+      "hasDropdownLabelLink": true,
+      "dropdownLabelLink": {
+        "linkType": "manual",
+        "url": "/about",
+        "label": "About Us",
+        "newTab": false
+      },
+      "dropdownLinks": [
+        {
+          "isFeatured": false,
+          "link": {
+            "linkType": "manual",
+            "url": "/about#our-mission",
+            "label": "Our Mission",
+            "newTab": false
+          }
+        },
+        {
+          "isFeatured": false,
+          "link": {
+            "linkType": "manual",
+            "url": "/about#our-impact",
+            "label": "Our Impact",
+            "newTab": false
+          }
+        },
+        {
+          "isFeatured": false,
+          "link": {
+            "linkType": "manual",
+            "url": "/about#our-team",
+            "label": "Our Team",
+            "newTab": false
+          }
+        }
+      ]
+    },
+    {
+      "type": "dropdown",
+      "dropdownLabel": "Stories",
+      "hasDropdownLabelLink": true,
+      "dropdownLabelLink": {
+        "linkType": "manual",
+        "url": "/stories",
+        "label": "All Stories",
+        "newTab": false
+      },
+      "dropdownLinks": [
+        {
+          "isFeatured": true,
+          "featuredImage": 18,
+          "link": {
+            "linkType": "manual",
+            "url": "/stories/global-partnerships-working-together-to-expand-lgbtqi-protection-pathways",
+            "label": "Featured Story",
+            "newTab": false
+          },
+          "description": "Read our latest featured story."
+        },
+        {
+          "isFeatured": false,
+          "link": {
+            "linkType": "manual",
+            "url": "/stories?category=news",
+            "label": "News",
+            "newTab": false
+          }
+        },
+        {
+          "isFeatured": false,
+          "link": {
+            "linkType": "manual",
+            "url": "/stories?category=press-releases",
+            "label": "Press Releases",
+            "newTab": false
+          }
+        }
+      ]
+    },
+    {
+      "type": "dropdown",
+      "dropdownLabel": "Get Involved",
+      "dropdownLinks": [
+        {
+          "isFeatured": false,
+          "link": {
+            "linkType": "manual",
+            "url": "/donate",
+            "label": "Donate",
+            "newTab": false
+          },
+          "description": "Support our work and make a difference."
+        },
+        {
+          "isFeatured": false,
+          "link": {
+            "linkType": "manual",
+            "url": "/volunteer",
+            "label": "Volunteer",
+            "newTab": false
+          },
+          "description": "Join our community of volunteers."
+        }
+      ]
+    },
+    {
+      "type": "link",
+      "linkConfig": {
+        "linkType": "manual",
+        "url": "/contact",
+        "label": "Contact",
+        "newTab": false
+      }
+    },
+    {
+      "type": "link",
+      "linkConfig": {
+        "linkType": "manual",
+        "url": "/portal-login",
+        "label": "Portal Login",
+        "newTab": false
+      }
+    },
+    {
+      "type": "link",
+      "linkConfig": {
+        "linkType": "manual",
+        "url": "/partner-login",
+        "label": "Partner Login",
+        "newTab": false
+      }
+    }
+  ],
+  "navButtons": [
+    {
+      "link": {
+        "linkType": "manual",
+        "url": "/donate",
+        "label": "Donate",
+        "buttonType": "secondary",
+        "newTab": false
+      }
+    },
+    {
+      "link": {
+        "linkType": "manual",
+        "url": "/help",
+        "label": "Request Help",
+        "buttonType": "default",
+        "newTab": false
+      }
+    }
+  ]
+}

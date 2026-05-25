@@ -7,10 +7,10 @@ import config from '@/payload.config';
 import { NextMetadataFunc, NextPageProps } from '@/lib/sharedTypes';
 import { generateMeta } from '@/lib/seoMetadata';
 import { draftMode } from 'next/headers';
-import { autoClassName } from '@/lib/utils';
-import { HEADER_NEGATIVE_MARGIN_CLASS } from '@/globals/Header/Header';
-import { CurrentCollectionHelper } from '@/components/CurrentCollectionHelper';
-import { LivePreviewListener } from '@/components/LivePreviewListener';
+import { cn } from '@/lib/utils';
+import { HEADER_NEGATIVE_MARGIN_CLASS } from '@/globals/Header/components/Navigation';
+import { CurrentCollectionHelper } from '@/components/admin/CurrentCollectionHelper';
+import { LivePreviewListener } from '@/components/admin/LivePreviewListener';
 
 // Utility function to fetch page data by slug
 const getPageDataBySlug = async (slug: string, isDraftMode: boolean): Promise<Page | null> => {
@@ -43,7 +43,7 @@ const PageComponent: React.FC<NextPageProps<{ slug: string }>> = async ({ params
     // Use CurrentCollectionHelper to set the global context for the current collection
     // This is used so things like the AdminBar can tell what collection is currently being viewed
     <CurrentCollectionHelper collectionSlug="pages" collectionObject={pageData}>
-      <article className={autoClassName(pageData.pullBehindNav && HEADER_NEGATIVE_MARGIN_CLASS)}>
+      <article className={cn(pageData.pullBehindNav && HEADER_NEGATIVE_MARGIN_CLASS)}>
         {isDraftMode && <LivePreviewListener />}
         <RenderBlocks blocks={pageData.layout} />
       </article>

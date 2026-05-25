@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { autoClassName } from '@/lib/utils';
+import { cn } from '@/lib/utils';
 import { Inter as FontSans } from 'next/font/google';
 import './styles.css';
 import { ThemeProvider } from '@/providers/ThemeProvider';
@@ -24,7 +24,7 @@ const Layout: React.FC<LayoutProps> = async ({ children }: LayoutProps) => {
   return (
     <html lang="en">
       <body
-        className={autoClassName(
+        className={cn(
           'min-h-screen bg-background font-sans antialiased',
           fontSans.variable,
         )}

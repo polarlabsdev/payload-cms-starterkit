@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { NextRequest, NextResponse } from 'next/server';
 
 export type NextPageProps<T> = {
   params: Promise<T>;
@@ -7,12 +8,32 @@ export type NextPageProps<T> = {
 
 export type NextMetadataFunc<T> = (args: NextPageProps<T>) => Promise<Metadata>;
 
-export type RequestWithCookies = {
-  cookies: {
-    get: (name: string) => {
-      value: string;
-    };
-  };
-} & Request;
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+export type NextRouteHandler<T = {}> = (
+  req: NextRequest,
+  context: { params: Promise<T> },
+) => Promise<NextResponse> | NextResponse;
 
-export type NextRouteFunc = (req: RequestWithCookies) => Promise<Response>;
+export interface SearchResult {
+  id: string | number;
+  title: string;
+  slug: string;
+  type: 'pages' | 'stories';
+  summary?: string;
+}
+
+export interface SearchResponse {
+  results: SearchResult[];
+  error?: string;
+}
+
+export interface SuggestionResult {
+  title: string;
+  url: string;
+  source: 'page' | 'story' | 'portal-page';
+}
+
+export interface SuggestionsResponse {
+  suggestions: SuggestionResult[];
+  error?: string;
+}

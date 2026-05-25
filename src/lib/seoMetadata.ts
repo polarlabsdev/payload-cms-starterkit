@@ -11,7 +11,7 @@ export const generateMeta = async (args: { doc: SeoDoc }): Promise<Metadata> => 
   const image = doc?.meta?.image as Media;
   const imageUrl = image ? `${getServerSideURL()}${image.url}` : '';
 
-  return {
+  const metadata: Metadata = {
     title: title,
     description: doc?.meta?.description,
     openGraph: {
@@ -26,4 +26,14 @@ export const generateMeta = async (args: { doc: SeoDoc }): Promise<Metadata> => 
       title: title,
     },
   };
+
+  // Add noindex robots directive if noIndex is true
+  if (doc?.meta?.noIndex) {
+    metadata.robots = {
+      index: false,
+      follow: false,
+    };
+  }
+
+  return metadata;
 };

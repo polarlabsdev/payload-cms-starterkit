@@ -15,7 +15,7 @@
  *
  * WHEN TO USE:
  * - Use these for any frontend data fetching where access control should be respected
- * - For portal/authenticated content, always use these to ensure proper permission checks
+ * - For authenticated content, always use these to ensure proper permission checks
  * - For public content (like pages, stories), these ensure the access control rules are followed
  *
  * WHEN NOT TO USE:

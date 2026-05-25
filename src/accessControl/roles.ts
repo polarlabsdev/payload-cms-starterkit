@@ -2,7 +2,7 @@
 // PERMISSIONS SYSTEM
 // ============================================================================
 // Permissions follow the pattern: domain:resource:action
-// - domain: system, website, portal
+// - domain: system, website
 // - resource: the collection/global name (users, pages, stories, etc.)
 // - action: create, read, update, delete
 
@@ -37,7 +37,7 @@ export type PermissionString =
 
 /**
  * Helper function to generate permission strings for a given domain and resource
- * @param domain - The permission domain (system, website, portal)
+ * @param domain - The permission domain (system, website)
  * @param resource - The resource being accessed
  * @param actions - Either 'all' for all CRUD actions, or an array of specific actions
  */

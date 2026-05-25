@@ -4,7 +4,6 @@ import type { CustomLinkType } from './config';
 const relationToBasePathMap = {
   pages: '',
   stories: 'stories',
-  'portal-pages': 'portal',
 } as const;
 
 /**

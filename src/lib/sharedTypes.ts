@@ -30,7 +30,7 @@ export interface SearchResponse {
 export interface SuggestionResult {
   title: string;
   url: string;
-  source: 'page' | 'story' | 'portal-page';
+  source: 'page' | 'story';
 }
 
 export interface SuggestionsResponse {

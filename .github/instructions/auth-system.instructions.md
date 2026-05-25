@@ -1,15 +1,13 @@
 ---
-description: Authentication & authorization system (dual auth, roles, permissions)
-applyTo: '{src/collections/**,src/globals/**,src/fields/**,src/accessControl/**,src/lib/{portalAuth,payloadSafeApi}.ts,src/app/**/api/portal/auth/**,src/hooks/payload/**}'
+description: Authentication & authorization system (roles, permissions)
+applyTo: '{src/collections/**,src/globals/**,src/fields/**,src/accessControl/**,src/lib/payloadSafeApi.ts,src/hooks/payload/**}'
 ---
 
 # Authentication & Authorization System
 
 This project uses a **multi-role, permission-based access control system** with domain scoping. This is the authoritative guide for all authentication and authorization concepts in this codebase.
 
-## Dual Authentication System
-
-This application implements **two separate authentication systems**:
+## Authentication System
 
 ### Admin Authentication (Users Collection)
 
@@ -21,54 +19,14 @@ This application implements **two separate authentication systems**:
 
 **Access**: Admin panel at `/admin`
 
-**Roles**: `superadmin`, `website-admin`, `website-editor`, `portal-admin`, `portal-editor`, `portal-reader`
+**Roles**: `superadmin`, `website-admin`, `website-editor`, `website-reader`
 
 **Cookie**: Standard PayloadCMS authentication cookie
 
 **Use Cases**:
-
 - CMS administrators managing content
 - Website editors creating/editing pages and stories
-- Portal administrators managing portal users and content
-
-### Portal Authentication (PortalUsers Collection)
-
-**Purpose**: Passwordless authentication for portal users
-
-**Collection**: `PortalUsers` (`src/collections/PortalUsers/config.ts`)
-
-**Authentication Method**: Magic link (passwordless email authentication)
-
-**Access**: Portal at `/portal`
-
-**Roles**: `portal-user` (default), plus any admin roles assigned
-
-**Cookie**: `portal-token` (separate from admin auth)
-
-**Use Cases**:
-
-- Portal users accessing protected resources
-- Case management and portal-specific functionality
-- Secure access without password management
-
-**Complete Documentation**: See `.github/instructions/magic-link-authentication.instructions.md` for detailed implementation of the magic link authentication system, including:
-
-- Request/verification flow
-- JWT token structure
-- Security audit logging
-- Email configuration
-- Request correlation system
-
-**Key Differences**:
-
-| Feature        | Admin (Users)                       | Portal (PortalUsers)              |
-| -------------- | ----------------------------------- | --------------------------------- |
-| Login Method   | Username/Password                   | Magic Link (Email)                |
-| Cookie Name    | (default Payload)                   | `portal-token`                    |
-| Collection     | `users`                             | `portal-users`                    |
-| Auth Strategy  | Built-in                            | Custom (`authenticatePortalUser`) |
-| Access Logs    | PayloadCMS default session tracking | Full audit trail                  |
-| Session Length | 30 days (default)                   | 12 hours                          |
+- Readers with read-only access to website content
 
 ## Core Concepts
 
@@ -76,31 +34,37 @@ This application implements **two separate authentication systems**:
 
 Permissions follow the pattern: `domain:resource:action`
 
-- **domain**: The scope of access - `system`, `website`, or `portal`
+- **domain**: The scope of access - `system` or `website`
   - `system`: CMS infrastructure (users, admin panel, etc.)
   - `website`: Public-facing website content (pages, stories, etc.)
-  - `portal`: Authenticated user portal content (cases, portal pages, etc.)
 - **resource**: The collection, global, or functionality being accessed
 - **action**: The operation being performed - `create`, `read`, `update`, or `delete`
 
 **Examples:**
-
 - `website:pages:create` - Create pages on the website
 - `system:users:update` - Update user records
-- `portal:cases:read` - Read case data in the portal
+- `website:stories:read` - Read stories
 - `system:adminPanel:read` - Access the admin panel UI
 
 ### Role System
 
-**Key Principle:** Users can have **multiple roles simultaneously**, and permissions are **additive** - a user gains all permissions from all assigned roles.
+**Key Principle:** Users can have **multiple roles simultaneously**, and permissions are **additive** — a user gains all permissions from all assigned roles.
 
 **Role Definition Location:** `src/accessControl/roles.ts`
 
-Each role object contains:
+**Available Roles:**
 
+| Role | Description |
+|------|-------------|
+| `superadmin` | Full system access, bypasses all permission checks |
+| `website-admin` | Full control over website content |
+| `website-editor` | Can create and edit website content |
+| `website-reader` | Read-only access to website content |
+
+Each role object contains:
 - `name`: Human-readable display name
 - `description`: Purpose and scope of the role
-- `permissions`: Array of permission strings (format: `domain:resource:action`)
+- `permissions`: Array of permission strings
 - `isSuper`: Optional boolean - when `true`, bypasses all permission checks (superadmin only)
 
 **Example Role Structure:**
@@ -124,7 +88,8 @@ Each role object contains:
 Use the `scope()` helper function in `roles.ts` to generate permissions efficiently:
 
 - `scope('website', 'pages', 'all')` - Generates all CRUD permissions for website pages
-- `scope('portal', 'cases', 'read')` - Generates only read permission for portal cases
+- `scope('website', 'stories', ['read'])` - Generates only read permission for stories
+- `scope('system', 'adminPanel', ['read'])` - Grants admin panel access
 
 ## Access Control Implementation
 
@@ -145,7 +110,6 @@ export const YourCollection: CollectionConfig = {
     update: hasPermission('domain:your-resource:update'),
     delete: hasPermission('domain:your-resource:delete'),
   },
-  // ... fields
 };
 ```
 
@@ -189,12 +153,11 @@ if (isSuperUser(user.roles)) {
 
 ### Critical Behavior
 
-**PayloadCMS Local API defaults to `overrideAccess: true`** - meaning it **bypasses all access control by default**. This is opposite to the REST/GraphQL APIs.
+**PayloadCMS Local API defaults to `overrideAccess: true`** — meaning it **bypasses all access control by default**. This is opposite to the REST/GraphQL APIs.
 
 **Why This Matters:**
-
-- Server-side operations (hooks, migrations, seeds) need full access - default makes sense
-- Frontend operations (Server Components, API routes) need to respect access control - default is dangerous
+- Server-side operations (hooks, migrations, seeds) need full access — default makes sense
+- Frontend operations (Server Components, API routes) need to respect access control — default is dangerous
 
 ### Safe API Utilities
 
@@ -213,7 +176,7 @@ const result = await findCollectionSafe({
   limit: 1,
 });
 
-// Returns null if access denied, full result object if allowed
+// Returns null if access denied, full result object if allowed 
 if (!result) {
   return notFound(); // Handle permission error
 }
@@ -228,14 +191,13 @@ const headerData = await findGlobalSafe({
   slug: 'header',
 });
 
-// Returns null if access denied
+// Returns null if access denied 
 if (!headerData) {
-  return null; // Handle gracefully
+  return null;
 }
 ```
 
 **What These Utilities Do:**
-
 1. Set `overrideAccess: false` to enforce access control rules
 2. Retrieve authenticated user from request headers via `payload.auth()`
 3. Pass user to Local API operations
@@ -245,13 +207,11 @@ if (!headerData) {
 ### When to Use Safe vs Direct API
 
 **Use Safe Utilities (`findCollectionSafe`, `findGlobalSafe`):**
-
 - ✅ Frontend Server Components
-- ✅ API Route handlers that need access control
+- ✅ API route handlers that need access control
 - ✅ Any data fetching where permissions should be respected
 
 **Use Direct Local API:**
-
 - ✅ Hooks (already within Payload's context)
 - ✅ Access control functions (you're defining the rules)
 - ✅ Migrations and seeds (need full access)
@@ -263,42 +223,42 @@ When adding a new collection or global requiring access control:
 
 1. **Update Resource Types** in `src/accessControl/roles.ts`:
 
-   ```typescript
-   type WebsiteResource = 'pages' | 'stories' | 'your-new-resource'; // Add here
-   ```
+```typescript
+type WebsiteResource = 'pages' | 'stories' | 'your-new-resource'; // Add here
+```
 
 2. **Add Permissions to Relevant Roles** in `src/accessControl/roles.ts`:
 
-   ```typescript
-   'website-admin': {
-     name: 'Website Admin',
-     permissions: [
-       ...scope('website', 'your-new-resource', 'all'),
-       // ... other permissions
-     ],
-   },
-   ```
+```typescript
+'website-admin': {
+  name: 'Website Admin',
+  permissions: [
+    ...scope('website', 'your-new-resource', 'all'),
+    // ... other permissions
+  ],
+},
+```
 
 3. **Apply Access Control** in collection config:
 
-   ```typescript
-   import { hasPermission } from '@/accessControl/hasPermission';
+```typescript
+import { hasPermission } from '@/accessControl/hasPermission';
 
-   export const YourCollection: CollectionConfig = {
-     slug: 'your-new-resource',
-     access: {
-       create: hasPermission('website:your-new-resource:create'),
-       read: hasPermission('website:your-new-resource:read'),
-       update: hasPermission('website:your-new-resource:update'),
-       delete: hasPermission('website:your-new-resource:delete'),
-     },
-   };
-   ```
+export const YourCollection: CollectionConfig = {
+  slug: 'your-new-resource',
+  access: {
+    create: hasPermission('domain:your-new-resource:create'),
+    read: hasPermission('domain:your-new-resource:read'),
+    update: hasPermission('domain:your-new-resource:update'),
+    delete: hasPermission('domain:your-new-resource:delete'),
+  },
+};
+```
 
 4. **Run Migration:**
-   ```bash
-   npm run payload migrate
-   ```
+```bash
+npm run payload migrate
+```
 
 ## Legacy System Compatibility
 
@@ -317,7 +277,6 @@ The `superadmin` role has special protections:
 **Implementation:** `src/hooks/payload/protectSuperadminRole.ts` (field hook on Users collection)
 
 **Rules:**
-
 - First user created can be assigned superadmin (initial setup)
 - Only admins (legacy or superadmin) can assign/remove superadmin role
 - Prevents privilege escalation attacks
@@ -356,7 +315,7 @@ if (!result) {
 ### Allowing Self-Edits
 
 ```typescript
-import { canEditUsersOrSelf } from '@/accessControl/hasPermission';
+import { canEditUsersOrSelf } from '@/collections/Users/access/canEditUsersOrSelf';
 
 access: {
   update: canEditUsersOrSelf('system:users:update'),
@@ -366,11 +325,10 @@ access: {
 ## Error Handling
 
 Permission errors are handled gracefully:
-
 - **Collections/Pages:** Return 404 (via `notFound()`)
 - **Globals:** Return `null` and render fallback/skeleton UI
 - **Blocks:** Return `null` to hide the block
 - **All cases:** Log error to console for debugging
-- **Safe utilities return `null` on permission errors** - handle gracefully downstream
+- **Safe utilities return `null` on permission errors** — handle gracefully downstream
 - **Always use `roles` array**, never deprecated `role` field
 - **Reference implementations** in `src/accessControl/` for details

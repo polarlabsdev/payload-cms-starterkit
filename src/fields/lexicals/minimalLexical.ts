@@ -15,9 +15,6 @@ import {
 } from '@payloadcms/richtext-lexical';
 import { ButtonInlineBlock } from '@/blocks/ButtonInline/config';
 import { InlineItemBlock } from '@/blocks/InlineItemBlock/config';
-import { PortalLoginBlock } from '@/blocks/PortalLoginBlock/config';
-import { PartnerLoginBlock } from '@/blocks/PartnerLoginBlock/config';
-import { PortalDataBlock } from '@/blocks/PortalDataBlock/config';
 
 export const minimalLexical: Config['editor'] = lexicalEditor({
   features: () => {
@@ -38,8 +35,8 @@ export const minimalLexical: Config['editor'] = lexicalEditor({
         },
       }),
       BlocksFeature({
-        inlineBlocks: [ButtonInlineBlock, PortalDataBlock],
-        blocks: [InlineItemBlock, PortalLoginBlock, PartnerLoginBlock],
+        inlineBlocks: [ButtonInlineBlock],
+        blocks: [InlineItemBlock],
       }),
       FixedToolbarFeature(),
       InlineToolbarFeature(),

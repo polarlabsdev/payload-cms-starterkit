@@ -20,10 +20,6 @@ import { MediaInlineBlock } from '@/blocks/MediaInline/config';
 import { FloatingMediaBlock } from '@/blocks/FloatingMedia/config';
 import { InlineItemBlock } from '@/blocks/InlineItemBlock/config';
 import { InlineYoutubeEmbedBlock } from '@/blocks/InlineYoutubeEmbed/config';
-import { InlineIssuuEmbedBlock } from '@/blocks/InlineIssuuEmbed/config';
-import { PortalLoginBlock } from '@/blocks/PortalLoginBlock/config';
-import { PartnerLoginBlock } from '@/blocks/PartnerLoginBlock/config';
-import { PortalDataBlock } from '@/blocks/PortalDataBlock/config';
 
 export const defaultLexical: Config['editor'] = lexicalEditor({
   features: () => {
@@ -48,15 +44,12 @@ export const defaultLexical: Config['editor'] = lexicalEditor({
         },
       }),
       BlocksFeature({
-        inlineBlocks: [ButtonInlineBlock, PortalDataBlock],
+        inlineBlocks: [ButtonInlineBlock],
         blocks: [
           MediaInlineBlock,
           FloatingMediaBlock,
           InlineItemBlock,
           InlineYoutubeEmbedBlock,
-          InlineIssuuEmbedBlock,
-          PortalLoginBlock,
-          PartnerLoginBlock,
         ],
       }),
       FixedToolbarFeature(),

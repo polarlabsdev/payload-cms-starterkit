@@ -1,9 +1,6 @@
 import { isPublishedOrHasAccess } from '@/accessControl/isLoggedIn';
 import { hasPermission, hasPermissionField } from '@/accessControl/hasPermission';
 import { StoryCardsBlock } from '@/blocks/StoryCards/config';
-import { NewsletterBlock } from '@/blocks/Newsletter/config';
-import { DonateBlock } from '@/blocks/Donate/config';
-import { FormstackEmbedBlock } from '@/blocks/FormstackEmbed/config';
 import { generateSeoFields } from '@/fields/seo';
 import { genSlugField } from '@/fields/slugField';
 import { populatePublishedAt } from '@/hooks/payload/populatePublishedAt';
@@ -13,10 +10,6 @@ import { defaultLexical } from '@/fields/lexicals/defaultLexical';
 import { CollectionConfig } from 'payload';
 import { minimalLexical } from '@/fields/lexicals/minimalLexical';
 import { ImageGridBlock } from '@/blocks/ImageGridBlock/config';
-import { DocumentListBlock } from '@/blocks/DocumentList/config';
-import { FaqBlock } from '@/blocks/FaqBlock/config';
-import { IssuuEmbedBlock } from '@/blocks/IssuuEmbedBlock/config';
-import { PllentyBlock } from '@/blocks/PllentyBlock/config';
 
 export const Stories: CollectionConfig = {
   slug: 'stories',
@@ -218,14 +211,7 @@ export const Stories: CollectionConfig = {
               type: 'blocks',
               blocks: [
                 StoryCardsBlock,
-                NewsletterBlock,
-                DonateBlock,
                 ImageGridBlock,
-                DocumentListBlock,
-                FaqBlock,
-                FormstackEmbedBlock,
-                IssuuEmbedBlock,
-                PllentyBlock,
               ],
               admin: {
                 description: 'Above the footer layout blocks',

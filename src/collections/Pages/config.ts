@@ -3,22 +3,11 @@ import { hasPermission, hasPermissionField } from '@/accessControl/hasPermission
 import { HeroBlock } from '@/blocks/Hero/config';
 import { StoryCardsBlock } from '@/blocks/StoryCards/config';
 import { IconRowBlock } from '@/blocks/IconRow/config';
-import { NewsletterBlock } from '@/blocks/Newsletter/config';
-import { ImpactNumbersBlock } from '@/blocks/ImpactNumbers/config';
-import { DonateBlock } from '@/blocks/Donate/config';
 import { StandardContentBlock } from '@/blocks/StandardContentBlock/config';
 import { WideImageBlock } from '@/blocks/WideImageBlock/config';
 import { ImageGridBlock } from '@/blocks/ImageGridBlock/config';
-import { DocumentListBlock } from '@/blocks/DocumentList/config';
-import { FaqBlock } from '@/blocks/FaqBlock/config';
-import { StepsExplainerBlock } from '@/blocks/StepsExplainerBlock/config';
 import { SimpleRichTextBlock } from '@/blocks/SimpleRichTextBlock/config';
 import { YoutubeEmbedBlock } from '@/blocks/YoutubeEmbed/config';
-import { FormstackEmbedBlock } from '@/blocks/FormstackEmbed/config';
-import { IssuuEmbedBlock } from '@/blocks/IssuuEmbedBlock/config';
-import { PllentyBlock } from '@/blocks/PllentyBlock/config';
-import { JobBoardBlock } from '@/blocks/JobBoard/config';
-import { LanguageDisclaimerBlock } from '@/blocks/LanguageDisclaimer/config';
 import { generateSeoFields } from '@/fields/seo';
 import { genSlugField } from '@/fields/slugField';
 import { populatePublishedAt } from '@/hooks/payload/populatePublishedAt';
@@ -114,22 +103,11 @@ export const Pages: CollectionConfig<'pages'> = {
                 HeroBlock,
                 StoryCardsBlock,
                 IconRowBlock,
-                NewsletterBlock,
-                ImpactNumbersBlock,
-                DonateBlock,
                 StandardContentBlock,
                 WideImageBlock,
                 ImageGridBlock,
-                DocumentListBlock,
-                FaqBlock,
-                StepsExplainerBlock,
                 SimpleRichTextBlock,
                 YoutubeEmbedBlock,
-                FormstackEmbedBlock,
-                IssuuEmbedBlock,
-                PllentyBlock,
-                JobBoardBlock,
-                LanguageDisclaimerBlock,
               ],
               required: true,
               admin: {},

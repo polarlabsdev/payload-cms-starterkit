@@ -14,20 +14,12 @@ import {
   FloatingMediaBlock,
   InlineItemBlock,
   InlineYoutubeEmbedBlock,
-  InlineIssuuEmbedBlock,
-  PortalLoginBlock,
-  PortalDataBlock,
-  PartnerLoginBlock,
 } from '@/payload-types';
 import { buttonInlineConverter } from './converters/buttonInline';
 import { mediaInlineConverter } from './converters/mediaInline';
 import { floatingMediaConverter } from './converters/floatingMedia';
 import { inlineItemConverter } from './converters/inlineItem';
 import { inlineYoutubeEmbedConverter } from './converters/inlineYoutubeEmbed';
-import { inlineIssuuEmbedConverter } from './converters/inlineIssuuEmbed';
-import { portalLoginConverter } from './converters/portalLogin';
-import { portalDataConverter } from './converters/portalData';
-import { partnerLoginConverter } from './converters/partnerLogin';
 
 // NOTE: This file needs to be customized to use custom blocks in the lexical editor
 // The SerializedBlockNode type needs to be updated to include the custom block types (e.g. SerializedBlockNode<CustomBlockType>)
@@ -44,10 +36,6 @@ type NodeTypes =
   | SerializedBlockNode<FloatingMediaBlock>
   | SerializedBlockNode<InlineItemBlock>
   | SerializedBlockNode<InlineYoutubeEmbedBlock>
-  | SerializedBlockNode<InlineIssuuEmbedBlock>
-  | SerializedBlockNode<PortalLoginBlock>
-  | SerializedBlockNode<PartnerLoginBlock>
-  | SerializedInlineBlockNode<PortalDataBlock>;
 
 type RichTextProps = {
   data: SerializedEditorState;
@@ -60,13 +48,9 @@ const jsxConverter: JSXConvertersFunction<NodeTypes> = ({ defaultConverters }) =
     floatingMedia: floatingMediaConverter,
     inlineItem: inlineItemConverter,
     inlineYoutubeEmbed: inlineYoutubeEmbedConverter,
-    inlineIssuuEmbed: inlineIssuuEmbedConverter,
-    portalLogin: portalLoginConverter,
-    partnerLogin: partnerLoginConverter,
   },
   inlineBlocks: {
     buttonInline: buttonInlineConverter,
-    portalData: portalDataConverter,
   },
 });
 

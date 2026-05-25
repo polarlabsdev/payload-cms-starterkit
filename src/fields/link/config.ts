@@ -1,5 +1,5 @@
 import type { DBIdentifierName, Field } from 'payload';
-import type { Page, PortalPage, Story } from '../../payload-types';
+import type { Page, Story } from '../../payload-types';
 
 import { variantClasses } from '@/components/ui/Button';
 import { titleCase } from '@/lib/utils';
@@ -21,10 +21,6 @@ export type CustomLinkType = {
     | ({
         relationTo: 'stories';
         value: number | Story;
-      } | null)
-    | ({
-        relationTo: 'portal-pages';
-        value: number | PortalPage;
       } | null);
   label?: string | null;
   buttonType?: keyof typeof variantClasses;
@@ -50,7 +46,6 @@ export const linkField = ({
   label,
   showLabel = true,
   showButton = false,
-  canUsePortal = false,
   enumName,
   defaultUrl,
   defaultLabel,
@@ -96,7 +91,7 @@ export const linkField = ({
           {
             name: 'relationTo',
             type: 'relationship',
-            relationTo: canUsePortal ? ['pages', 'stories', 'portal-pages'] : ['pages', 'stories'],
+            relationTo: ['pages', 'stories'],
             maxDepth: 1,
             admin: {
               width: '50%',

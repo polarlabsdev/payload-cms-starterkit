@@ -1,32 +1,44 @@
 image: node:21
 
 definitions:
+  services:
+    postgres:
+      image: postgres:15
+      memory: 512 # Default is 1024 MB; postgres only uses ~278 MB. Saving 512 MB gives more headroom to the build step.
+      variables:
+        POSTGRES_DB: testdb
+        POSTGRES_USER: testuser
+        POSTGRES_PASSWORD: testpass
   steps:
-    # placeholder until we decide how we want to test
     - step: &run-tests
-        name: Run Tests
+        name: Test Build
+        image: mcr.microsoft.com/playwright:v1.59.1-noble
+        size: 2x # Increase memory allocation to 8GB (default is 4GB)
         caches:
           - node
+        services:
+          - postgres
         script:
-          - echo 'Tests will go here...'
+          - export
+            POSTGRES_URL="postgresql://testuser:testpass@localhost:5432/testdb"
+          - export NEXT_PUBLIC_SERVER_URL="http://localhost:3000"
+          - export CI=true
+          - export PLAYWRIGHT_FORCE_TTY=1
+          - npm ci
+          - npm run test:unit
+          - npm run payload migrate
+          - npm run db:seed
+          - npm run build
+          - npm run start > server.log 2>&1 &
+          - timeout 180 bash -c 'until curl -sf http://localhost:3000; do sleep 2; done'
+          - tail -50 server.log
+          - npm run test:e2e
+          - npm run test:meltano-sync
+          - kill %1 || true
+        artifacts:
+          - server.log
 
 pipelines:
-  branches:
-    main:
-      - step: *run-tests
-      - step:
-          name: Mirror to GitHub
-          deployment: github
-          script:
-            # bitbucket options will fetch just the current branch, so it is required to fetch all:
-            - git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
-            # fetch all branches:
-            - git fetch --all
-            # track all branches but HEAD and the current one, which is already being tracked:
-            - for i in $(git branch -a | grep remotes | grep -v "HEAD" | grep -v "$(git rev-parse --abbrev-ref HEAD)"); do git branch --track ${i#remotes/origin/} $i; done
-            # publish the current working copy to gtithub
-            - git push --mirror $GITHUB_REPO_URL
-
   pull-requests:
     "**":
       - step: *run-tests

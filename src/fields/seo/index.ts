@@ -5,11 +5,13 @@ import {
   OverviewField,
   PreviewField,
 } from '@payloadcms/plugin-seo/fields';
+import { Field } from 'payload';
 
-// fieldName is the name given to the tab or group we are generating these fields in
-// for example, "meta"
-export const generateSeoFields = (fieldName: string) => {
-  return [
+export const generateSeoFields = (
+  fieldName: string,
+  showNoIndexOption: boolean = false,
+): Field[] => {
+  const fields: Field[] = [
     OverviewField({
       titlePath: `${fieldName}.title`,
       descriptionPath: `${fieldName}.description`,
@@ -23,12 +25,22 @@ export const generateSeoFields = (fieldName: string) => {
     }),
     MetaDescriptionField({}),
     PreviewField({
-      // if the `generateUrl` function is configured
       hasGenerateFn: true,
-
-      // field paths to match the target field for data
       titlePath: `${fieldName}.title`,
       descriptionPath: `${fieldName}.description`,
     }),
+    {
+      name: 'noIndex',
+      label: 'Hide from Search Engines',
+      type: 'checkbox',
+      defaultValue: false,
+      admin: {
+        description:
+          'Prevent search engines from indexing this page. The page will also be excluded from the sitemap.',
+        hidden: !showNoIndexOption, // Conditionally hide in admin UI
+      },
+    },
   ];
+
+  return fields;
 };

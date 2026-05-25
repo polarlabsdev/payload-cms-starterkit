@@ -11,8 +11,14 @@
     "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
     "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
     "lint": "cross-env NODE_OPTIONS=--no-deprecation next lint",
+    "test:unit": "vitest run src/",
+    "test:e2e": "TEST_MODE=true playwright test --workers=2",
+    "test:e2e:ui": "TEST_MODE=true playwright test --ui --workers=1",
+    "test:e2e:ui:headed": "TEST_MODE=true playwright test --ui --workers=1 --headed",
     "format": "cross-env NODE_OPTIONS=--no-deprecation prettier --write .",
     "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
+    "db:seed": "cross-env NODE_OPTIONS=--no-deprecation payload run ./seed/seed.ts",
+    "db:reset": "cross-env NODE_OPTIONS=--no-deprecation payload migrate:fresh && rm seed/seedState.json",
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start"
   },
   "dependencies": {
@@ -26,7 +32,6 @@
     "@payloadcms/plugin-seo": "^3.84.1",
     "@payloadcms/richtext-lexical": "^3.84.1",
     "@payloadcms/storage-s3": "^3.84.1",
-    "@playwright/test": "^1.60.0",
     "@radix-ui/react-slot": "^1.1.2",
     "@react-email/components": "^1.0.12",
     "@remixicon/react": "^4.6.0",
@@ -52,6 +57,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
+    "@playwright/test": "^1.60.0",
     "@tailwindcss/typography": "^0.5.16",
     "@types/node": "^22.5.4",
     "@types/react": "19.0.12",

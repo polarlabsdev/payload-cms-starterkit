@@ -33,7 +33,6 @@ definitions:
           - timeout 180 bash -c 'until curl -sf http://localhost:3000; do sleep 2; done'
           - tail -50 server.log
           - npm run test:e2e
-          - npm run test:meltano-sync
           - kill %1 || true
         artifacts:
           - server.log

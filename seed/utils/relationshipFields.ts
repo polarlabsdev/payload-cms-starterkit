@@ -4,11 +4,8 @@ import {
   handleMediaRelationship,
   handleVideoRelationship,
   handleCategoryRelationships,
-  handleTagRelationships,
   handleStoryRelationship,
-  handleDocumentRelationship,
   handlePageRelationship,
-  handleCaseRelationship,
 } from './relationHandlers';
 
 /**
@@ -27,11 +24,8 @@ export const RELATIONSHIP_FIELDS: Record<string, RelationshipHandler> = {
   media: (value: unknown, idMap: IdMap) => handleMediaRelationship(value, idMap, 'media'),
   video: (value: unknown, idMap: IdMap) => handleVideoRelationship(value, idMap, 'video'),
   categories: handleCategoryRelationships,
-  tags: handleTagRelationships,
   story: handleStoryRelationship,
-  document: handleDocumentRelationship,
   page: handlePageRelationship,
-  linkedCase: handleCaseRelationship,
 };
 
 /**
@@ -40,5 +34,4 @@ export const RELATIONSHIP_FIELDS: Record<string, RelationshipHandler> = {
 export const COLLECTION_HANDLERS: Record<string, RelationshipHandler> = {
   pages: handlePageRelationship,
   stories: handleStoryRelationship,
-  documents: handleDocumentRelationship,
 };

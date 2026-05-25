@@ -84,7 +84,6 @@ export const seedCollection = async (
     // Special handling for upload collections that have file upload fields
     if (
       collectionSlug === 'media' ||
-      collectionSlug === 'documents' ||
       collectionSlug === 'videos'
     ) {
       console.log(`  🎭 Using direct database insert for ${collectionSlug} item...`);

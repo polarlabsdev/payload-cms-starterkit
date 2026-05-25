@@ -75,6 +75,7 @@ export interface Config {
     'image-grid': ImageGridBlock;
     'simple-rich-text': SimpleRichTextBlock;
     'youtube-embed': YoutubeEmbedBlock;
+    'info-block': InfoBlock;
   };
   collections: {
     users: User;
@@ -1461,6 +1462,121 @@ export interface YoutubeEmbedBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'youtube-embed';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "InfoBlock".
+ */
+export interface InfoBlock {
+  /**
+   * Choose the background color for the section
+   */
+  backgroundColor:
+    | 'Background'
+    | 'Foreground'
+    | 'Card'
+    | 'Card Foreground'
+    | 'Primary'
+    | 'Primary Foreground'
+    | 'Secondary'
+    | 'Secondary Foreground'
+    | 'Muted'
+    | 'Muted Foreground'
+    | 'Accent'
+    | 'Accent Foreground'
+    | 'Destructive'
+    | 'Destructive Foreground'
+    | 'Success'
+    | 'Success Foreground'
+    | 'Warning'
+    | 'Warning Foreground'
+    | 'Border';
+  theme: 'default' | 'info' | 'success' | 'error' | 'partial';
+  /**
+   * Enter a Remix Icon name, e.g. "calendar-line" or "mail-line". See remixicon.com for all icons.
+   */
+  icon?: string | null;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  /**
+   * Add 1 or 2 action buttons
+   */
+  actions?:
+    | {
+        actionType: 'link' | 'email';
+        label: string;
+        link?: {
+          linkType?: ('manual' | 'relation') | null;
+          url?: string | null;
+          relationTo?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'stories';
+                value: number | Story;
+              } | null);
+          label?: string | null;
+          buttonType?: ('default' | 'secondary' | 'destructive' | 'outline' | 'ghost' | 'link' | 'brand') | null;
+          buttonColor?:
+            | (
+                | 'White'
+                | 'Black'
+                | 'Yellow'
+                | 'Red'
+                | 'Purple'
+                | 'Blue'
+                | 'Pink'
+                | 'Teal'
+                | 'Dark Purple'
+                | 'Orange'
+                | 'Dark Green'
+                | 'Dark Red'
+              )
+            | null;
+          textColor?:
+            | (
+                | 'White'
+                | 'Black'
+                | 'Yellow'
+                | 'Red'
+                | 'Purple'
+                | 'Blue'
+                | 'Pink'
+                | 'Teal'
+                | 'Dark Purple'
+                | 'Orange'
+                | 'Dark Green'
+                | 'Dark Red'
+              )
+            | null;
+          newTab?: boolean | null;
+        };
+        emailDetails?: {
+          to?: string | null;
+          subject?: string | null;
+          body?: string | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'info-block';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

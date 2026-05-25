@@ -28,6 +28,7 @@ import { WideImageBlock } from '@/blocks/WideImageBlock/config';
 import { ImageGridBlock } from '@/blocks/ImageGridBlock/config';
 import { SimpleRichTextBlock } from '@/blocks/SimpleRichTextBlock/config';
 import { YoutubeEmbedBlock } from '@/blocks/YoutubeEmbed/config';
+import { InfoBlock } from '@/blocks/InfoBlock/config';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -103,7 +104,8 @@ export default buildConfig({
     WideImageBlock,
     ImageGridBlock,
     SimpleRichTextBlock,
-    YoutubeEmbedBlock
+    YoutubeEmbedBlock,
+    InfoBlock,
   ],
   collections: [Users, Media, Pages, Stories, StoryCategories, Videos],
   globals: [Header, Footer, AnnouncementBar, StoriesPage],

@@ -1,6 +1,6 @@
 import type { CollectionConfig } from 'payload';
 import { isAdminOrSelf } from './access/isAdminOrSelf';
-import { isRole, isRoleField } from '@/accessControl/isRole';
+import { hasPermission, hasPermissionField } from '@/accessControl/hasPermission';
 
 // The order of roles here is very important as it defines the hierarchy
 // that we use in the access control checks. The idea is that anything
@@ -23,8 +23,8 @@ export const Users: CollectionConfig = {
     defaultColumns: ['name', 'email', 'role', 'createdAt', 'updatedAt'],
   },
   access: {
-    create: isRole('admin'),
-    delete: isRole('admin'),
+    create: hasPermission('system:users:create'),
+    delete: hasPermission('system:users:delete'),
     read: isAdminOrSelf,
     update: isAdminOrSelf,
   },
@@ -46,8 +46,8 @@ export const Users: CollectionConfig = {
         };
       }),
       access: {
-        create: isRoleField('admin'),
-        update: isRoleField('admin'),
+        create: hasPermissionField('system:users:create'),
+        update: hasPermissionField('system:users:update'),
       },
     },
   ],

@@ -1,5 +1,5 @@
-import { isLoggedInOrPublished } from '@/accessControl/isLoggedIn';
-import { isRole } from '@/accessControl/isRole';
+import { isPublishedOrHasAccess } from '@/accessControl/isLoggedIn';
+import { hasPermission } from '@/accessControl/hasPermission';
 import { ButtonBlock } from '@/blocks/Button/config';
 import { HeroBlock } from '@/blocks/Hero/config';
 import { generateSeoFields } from '@/fields/seo';
@@ -11,10 +11,10 @@ import { CollectionConfig } from 'payload';
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
   access: {
-    create: isRole('contributor'),
-    delete: isRole('editor'),
-    read: isLoggedInOrPublished,
-    update: isRole('contributor'),
+    create: hasPermission('website:pages:create'),
+    delete: hasPermission('website:pages:delete'),
+    read: isPublishedOrHasAccess(),
+    update: hasPermission('website:pages:update'),
   },
   // This config controls what's populated by default when a page is referenced
   // https://payloadcms.com/docs/queries/select#defaultpopulate-collection-config-property

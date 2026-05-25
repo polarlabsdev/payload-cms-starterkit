@@ -1,14 +1,14 @@
 import type { GlobalConfig } from 'payload';
 import { linkField } from '@/fields/link';
 import { anyone } from '@/accessControl/anyone';
-import { isRole } from '@/accessControl/isRole';
+import { hasPermission } from '@/accessControl/hasPermission';
 import { generatePreviewPath } from '@/lib/utils';
 
 export const Header: GlobalConfig = {
   slug: 'header',
   access: {
     read: anyone,
-    update: isRole('editor'),
+    update: hasPermission('website:globals:update'),
   },
   admin: {
     livePreview: {

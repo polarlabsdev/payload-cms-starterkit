@@ -1,6 +1,6 @@
 import { anyone } from '@/accessControl/anyone';
 import { isLoggedIn } from '@/accessControl/isLoggedIn';
-import { isRole } from '@/accessControl/isRole';
+import { hasPermission } from '@/accessControl/hasPermission';
 import type { CollectionConfig } from 'payload';
 
 export const Media: CollectionConfig = {
@@ -9,7 +9,7 @@ export const Media: CollectionConfig = {
     create: isLoggedIn,
     read: anyone,
     update: isLoggedIn,
-    delete: isRole('editor'),
+    delete: hasPermission('website:media:delete'),
   },
   admin: {
     useAsTitle: 'alt',

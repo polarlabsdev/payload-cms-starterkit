@@ -1,6 +1,6 @@
 import type { GlobalConfig } from 'payload';
 import { anyone } from '@/accessControl/anyone';
-import { isRole } from '@/accessControl/isRole';
+import { hasPermission } from '@/accessControl/hasPermission';
 import { defaultLexical } from '@/fields/lexicals/defaultLexical';
 import { generatePreviewPath } from '@/lib/utils';
 
@@ -8,7 +8,7 @@ export const Footer: GlobalConfig = {
   slug: 'footer',
   access: {
     read: anyone,
-    update: isRole('editor'),
+    update: hasPermission('website:globals:update'),
   },
   admin: {
     livePreview: {

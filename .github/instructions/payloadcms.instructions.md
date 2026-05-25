@@ -116,7 +116,6 @@ export type CustomLinkType = {
 **Grouping** (`admin.group`):
 
 - `'Content'` - Public content (Pages, Stories)
-- `'Portal'` - Portal collections
 - `'Navigation'` - Header, Footer
 - `'System'` - Users, Media
 
@@ -173,8 +172,8 @@ Add `localized: true` for multi-language content:
 For complex logic, create functions in `access/` directory:
 
 ```typescript
-// src/collections/PortalUsers/access/canEditPortalUsersOrSelf.ts
-export const canEditPortalUsersOrSelf = (permission: string): Access => {
+// src/collections/Users/access/canEditUsersOrSelf.ts
+export const canEditUsersOrSelf = (permission: string): Access => {
   return ({ req: { user } }) => {
     // Custom logic
   };

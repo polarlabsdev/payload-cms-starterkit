@@ -7,9 +7,6 @@
  * Rules under test:
  *   - Unauthenticated  → public pages/stories: published only
  *   - CMS admin        → public pages/stories: ALL (access returns `true`, no _status filter)
- *   - CMS admin        → portal pages: redirect to /auth-error (not a portal user)
- *   - Portal user      → public pages/stories: published only
- *   - Portal user      → portal pages: published only
  *
  * Seed fixtures: ids 101 (published) and 102 (draft) in each collection.
  * Slugs are prefixed `e2e-` to avoid collisions with real content.

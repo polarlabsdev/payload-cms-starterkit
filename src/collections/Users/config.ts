@@ -51,7 +51,6 @@ export const Users: CollectionConfig = {
       defaultValue: ['website-reader'],
       saveToJWT: true,
       options: Object.entries(ROLES)
-        .filter(([key]) => key !== 'portal-user') // Exclude portal-user role (only for portal users)
         .map(([key, value]) => ({
           label: value.name,
           value: key,

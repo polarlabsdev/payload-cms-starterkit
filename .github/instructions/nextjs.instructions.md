@@ -171,7 +171,7 @@ const MyPage = async ({ params }) => {
 };
 ```
 
-- Pass the **locale-stripped path** (e.g. `/about`, `/stories/my-story`, `/portal/dashboard`)
+- Pass the **locale-stripped path** (e.g. `/about`, `/stories/my-story`)
 - Pass `locale` from the route params so the redirect destination is locale-prefixed correctly
 - Skip for non-content routes (admin, auth-error, static routes)
 - Redirects are managed in the CMS admin under **Navigation → Redirects**

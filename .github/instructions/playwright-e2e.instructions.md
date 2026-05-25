@@ -112,22 +112,10 @@ test.describe('Admin feature', () => {
 
 Use `test.use()` at the describe level, not inside individual tests. For unauthenticated tests, omit `test.use()` entirely — the `chromium` project has no default `storageState`.
 
-For admin API assertions use the `request` fixture (no browser needed):
-
-```typescript
-test.use({ storageState: 'playwright/.auth/admin.json' });
-
-test('admin API access', async ({ request }) => {
-  const response = await request.get('/api/users/me');
-  expect(response.status()).toBe(200);
-});
-```
-
 ### How auth files are generated
 
 `e2e/auth.setup.ts` generates the auth files at the start of each test run:
 
-- **Portal users** — JWTs are signed locally using `PAYLOAD_SECRET` + DB IDs from `seed/seedState.json`. The `seedState.json` file is produced by `npm run db:seed`, which must have run at least once.
 - **Admin** — a real `POST /api/users/login` request using the seed admin credentials defined in `seed/utils/validation.ts`.
 
 `PAYLOAD_SECRET` must be present in the environment. Locally it is loaded from `.env` via `dotenv` at the top of `auth.setup.ts`. In CI it is an injected environment variable.

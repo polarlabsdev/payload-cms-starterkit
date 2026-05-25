@@ -23,13 +23,14 @@ export const isPublishedOrHasAccess =
       return permission ? hasPermissionCheck(user.roles as RoleName[], permission) : true;
     }
 
-    // Portal end-users and unauthenticated users on public collections:
-    // published docs only (+ pre-versioning docs without _status)
-    if (user?.collection === 'portal-users' || !permission) {
+    // Unauthenticated users on public collections
+    // Show published docs only (+ pre-versioning docs without _status)
+    if (!permission) {
       return {
         or: [{ _status: { equals: 'published' } }, { _status: { exists: false } }],
       } as Where;
     }
 
+    // Permission required but user is unauthenticated or lacks access
     return false;
   };

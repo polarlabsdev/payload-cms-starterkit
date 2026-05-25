@@ -303,7 +303,7 @@ const canAccessAdmin = hasPermissionCheck(user.roles, 'system:adminPanel:read');
 
 ```typescript
 const result = await findCollectionSafe({
-  collection: 'portal-pages',
+  collection: 'users',
   where: { id: { equals: id } },
 });
 

@@ -1,74 +1,133 @@
 import { minimalLexical } from '@/fields/lexicals/minimalLexical';
-import { linkField } from '@/fields/link';
+import { linkField } from '@/fields/link/config';
 import type { Block } from 'payload';
+import { anchorLinkField } from '@/fields/anchorLink';
 
 export const HeroBlock: Block = {
   slug: 'hero',
   interfaceName: 'HeroBlock',
+  imageURL: `${process.env.ADMIN_CDN_BASE_URL}Hero.png`,
+  imageAltText: 'Hero block thumbnail',
   fields: [
+    anchorLinkField,
     {
       name: 'heroType',
       label: 'Hero Type',
       type: 'select',
       required: true,
       options: [
-        { label: 'Centered', value: 'centered' },
-        { label: 'Left Aligned', value: 'left-aligned' },
+        { label: 'Full Screen', value: 'fullscreen' },
+        { label: 'Half Screen', value: 'half' },
+        { label: 'Minimal', value: 'minimal' },
       ],
     },
     {
-      name: 'backgroundImage',
-      label: 'Background Image',
-      type: 'upload',
-      relationTo: 'media',
-      required: false,
+      name: 'mediaType',
+      label: 'Media Type',
+      type: 'radio',
+      required: true,
+      defaultValue: 'image',
+      options: [
+        {
+          label: 'Image',
+          value: 'image',
+        },
+        {
+          label: 'Video',
+          value: 'video',
+        },
+      ],
+      admin: {
+        condition: (data, siblingData) => siblingData?.heroType !== 'minimal',
+        description: 'Choose whether to display an image or video',
+        layout: 'horizontal',
+      },
     },
     {
-      name: 'textDarkMode',
-      label: 'Text Dark Mode',
-      type: 'checkbox',
-      defaultValue: false,
+      name: 'textOrientation',
+      label: 'Text Orientation',
+      type: 'select',
+      required: true,
+      defaultValue: 'left',
+      options: [
+        { label: 'Left', value: 'left' },
+        { label: 'Right', value: 'right' },
+      ],
       admin: {
+        condition: (data, siblingData) => siblingData?.heroType !== 'minimal',
+        description: 'Choose which side the text content appears on',
+      },
+    },
+    {
+      name: 'bannerImage',
+      label: 'Banner Image',
+      type: 'upload',
+      relationTo: 'media',
+      admin: {
+        condition: (_, siblingData) =>
+          siblingData?.heroType !== 'minimal' && siblingData?.mediaType === 'image',
+        description: 'Main image for the hero section',
+      },
+      validate: (value: unknown, { siblingData }: { siblingData: Record<string, unknown> }) => {
+        if (siblingData?.heroType !== 'minimal' && siblingData?.mediaType === 'image' && !value) {
+          return 'Please select an image.';
+        }
+        return true;
+      },
+    },
+    {
+      name: 'bannerVideo',
+      label: 'Banner Video',
+      type: 'upload',
+      relationTo: 'videos',
+      admin: {
+        condition: (_, siblingData) =>
+          siblingData?.heroType !== 'minimal' && siblingData?.mediaType === 'video',
         description:
-          'If checked, the text will be displayed in dark mode. This is useful for backgrounds that are dark and need white text.',
+          'Main video for the hero section (will autoplay, mute, and loop with no controls)',
+      },
+      validate: (value: unknown, { siblingData }: { siblingData: Record<string, unknown> }) => {
+        if (siblingData?.heroType !== 'minimal' && siblingData?.mediaType === 'video' && !value) {
+          return 'Please select a video.';
+        }
+        return true;
       },
     },
     {
       name: 'title',
-      label: 'Title',
+      label: 'Header',
       type: 'text',
       required: true,
+      localized: true,
     },
     {
       name: 'body',
-      label: 'Body Text',
+      label: 'Description',
       type: 'richText',
       editor: minimalLexical,
       required: false,
+      localized: true,
     },
     {
-      name: 'featuredImage',
-      label: 'Featured Image',
-      type: 'upload',
-      relationTo: 'media',
-      required: false,
-      admin: {
-        condition: (_, { heroType }) => heroType === 'left-aligned',
-      },
-    },
-    {
-      name: 'ctas',
-      label: 'Calls to Action',
-      labels: {
-        singular: 'Call to Action',
-        plural: 'Calls to Action',
-      },
+      name: 'buttons',
+      label: 'Buttons',
       type: 'array',
-      admin: {
-        description: 'Shows as buttons in the hero',
-      },
-      fields: [linkField()],
       maxRows: 2,
+      admin: {
+        description: 'Add up to 2 action buttons',
+      },
+      fields: [linkField({ showButton: true, canUsePortal: true })],
     },
+    // {
+    //   name: 'textDarkMode',
+    //   label: 'Dark Text Mode',
+    //   type: 'checkbox',
+    //   defaultValue: false,
+    //   admin: {
+    //     condition: (data, siblingData) => siblingData?.heroType === 'fullscreen',
+    //     description:
+    //       'If checked, the text will be displayed in dark mode. This is useful for light backgrounds that need dark text.',
+    //   },
+    // },
   ],
 };

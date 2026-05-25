@@ -1,0 +1,1 @@
+export { StoryCategories } from './config';

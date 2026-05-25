@@ -34,7 +34,6 @@ type LinkArgs = {
   label?: string;
   showLabel?: boolean;
   showButton?: boolean;
-  canUsePortal?: boolean;
   enumName?: DBIdentifierName;
   defaultUrl?: string;
   defaultLabel?: string;

@@ -116,7 +116,7 @@ export const HeroBlock: Block = {
       admin: {
         description: 'Add up to 2 action buttons',
       },
-      fields: [linkField({ showButton: true, canUsePortal: true })],
+      fields: [linkField({ showButton: true })],
     },
     // {
     //   name: 'textDarkMode',

@@ -10,7 +10,6 @@ export const ButtonInlineBlock: Block = {
       label: 'Button Link',
       showLabel: true,
       showButton: true,
-      canUsePortal: true,
     }),
   ],
 };

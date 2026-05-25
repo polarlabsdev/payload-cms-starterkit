@@ -1,0 +1,104 @@
+{
+  "NotFound": {
+    "notFound": "Cette page n'a pas pu être trouvée.",
+    "goHome": "Retourner à l'accueil",
+    "didYouMean": "Vouliez-vous dire ?",
+    "searchHint": "Appuyez sur {hotkey} pour chercher",
+    "noSuggestions": "Essayez de rechercher ce dont vous avez besoin",
+    "search": "Rechercher"
+  },
+  "AuthError": {
+    "title": "Accès refusé",
+    "description": "Vous n'avez pas la permission d'accéder à cette page ou votre authentification a échoué. Cela peut être dû à un lien de connexion expiré ou invalide, ou à des autorisations insuffisantes. Veuillez réessayer, demander un nouveau lien ou contacter le support si le problème persiste.",
+    "goPortal": "Aller au Portail"
+  },
+  "EscapeButton": {
+    "toastMobile": "Appuyez sur le bouton d'éjection pour quitter rapidement cette page",
+    "toastDesktopPress": "Appuyez sur",
+    "toastDesktopSuffix": "pour quitter rapidement cette page",
+    "toastDesktopOr": "Ou cliquez sur le bouton d'éjection",
+    "ariaLabel": "Éjecter la page",
+    "tooltip": "Quitter la page"
+  },
+  "ThemeToggle": {
+    "toggleDark": "Activer le mode sombre",
+    "toggleLight": "Activer le mode clair"
+  },
+  "PortalSidebarToggle": {
+    "closeSidebar": "Fermer la barre latérale",
+    "openSidebar": "Ouvrir la barre latérale",
+    "openNavigation": "Ouvrir le menu",
+    "menu": "Menu"
+  },
+  "PortalSidebar": {
+    "logoAriaLabel": "Retourner à l'accueil",
+    "portalUser": "Utilisateur du portail",
+    "signOut": "Se déconnecter"
+  },
+  "Search": {
+    "placeholder": "Rechercher des pages et des histoires...",
+    "noResults": "Aucun résultat trouvé.",
+    "heading": "Rechercher des pages et des histoires",
+    "typeMoreChars": "Saisissez au moins 3 caractères pour rechercher",
+    "toSearch": "pour rechercher"
+  },
+  "StoriesSidebar": {
+    "selectCategory": "Sélectionner une catégorie"
+  },
+  "Navigation": {
+    "searchAriaLabel": "Rechercher",
+    "closeMenu": "Fermer le menu",
+    "openMenu": "Ouvrir le menu"
+  },
+  "AnnouncementBar": {
+    "closeAriaLabel": "Fermer l'annonce"
+  },
+  "LanguageSelect": {
+    "placeholder": "Sélectionner une langue",
+    "label": "Langues"
+  },
+  "PortalLoginForm": {
+    "emailLabel": "Adresse e-mail",
+    "emailPlaceholder": "Adresse e-mail",
+    "dobLabel": "Date de naissance",
+    "dobPlaceholder": "Date",
+    "submit": "Soumettre",
+    "sending": "Envoi en cours...",
+    "reSendEmail": "Renvoyer l'e-mail",
+    "emailSent": "E-mail envoyé",
+    "enterNewEmail": "Saisir une nouvelle adresse e-mail",
+    "errorDefault": "Une erreur s'est produite. Veuillez réessayer.",
+    "altchaNotReady": "Veuillez patienter pendant la vérification de sécurité.",
+    "verifyingBrowser": "V\u00e9rification du navigateur\u2026",
+    "altchaVerifyError": "V\u00e9rification de s\u00e9curit\u00e9 en cours, veuillez patienter\u2026",
+    "emailExplainerText": "Cette adresse e-mail sera utilisée par nos travailleurs sociaux pour communiquer avec vous. Vous l'utiliserez pour vous connecter au portail à l'avenir.",
+    "ageValidationError": "Vous devez avoir au moins 18 ans pour continuer.",
+    "formFooterText": "Après avoir cliqué sur le bouton d'envoi, vous recevrez un e-mail de confirmation dans votre boîte de réception avec un lien pour confirmer votre adresse e-mail.",
+    "confirmationHeader": "Nous avons envoyé un lien de vérification à",
+    "confirmationText": "Vérifiez votre boîte de réception et cliquez sur le lien pour terminer la connexion. Vérifiez votre dossier de courriers indésirables si vous ne le voyez pas. Utilisez le bouton ci-dessous pour renvoyer, ou revenez en arrière pour saisir une adresse e-mail différente.",
+    "authenticatedExplainerText": "Vous êtes déjà connecté au portail. Cliquez sur le bouton ci-dessous pour y accéder.",
+    "orgReferralMessage": "Vous êtes actuellement enregistré dans le système de Rainbow Railroad en tant que référence d'organisation. Veuillez contacter votre interlocuteur Rainbow Railroad pour recevoir un lien vers notre Portail Partenaires.",
+    "wrongAudiencePortal": "Vous êtes connecté en tant qu'utilisateur partenaire. Ceci est le portail client.",
+    "wrongAudiencePartner": "Vous êtes connecté en tant que client du portail. Ceci est la page de connexion partenaire.",
+    "goToPartnerPortal": "Accéder au Portail Partenaires",
+    "goToClientPortal": "Accéder au Portail Client",
+    "goToPortal": "Accéder au Portail"
+  },
+  "Newsletter": {
+    "firstNamePlaceholder": "Prénom",
+    "lastNamePlaceholder": "Nom de famille",
+    "emailPlaceholder": "Adresse e-mail",
+    "firstNameRequired": "Le prénom est obligatoire.",
+    "lastNameRequired": "Le nom de famille est obligatoire.",
+    "emailRequired": "Veuillez saisir une adresse e-mail valide.",
+    "loading": "Inscription en cours...",
+    "success": "Merci de vous être abonné\u00a0! Nous prendrons contact avec vous.",
+    "error": "Une erreur s'est produite. Veuillez réessayer."
+  },
+  "JobBoard": {
+    "loading": "Chargement des opportunités de carrière…",
+    "error": "Nous avons des difficultés à charger les emplois. Veuillez revenir plus tard.",
+    "noJobs": "Aucun poste vacant pour le moment.",
+    "applyNow": "Postuler Maintenant"
+  }
+}

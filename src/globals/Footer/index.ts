@@ -1,1 +1,1 @@
-export { FooterServer as Footer } from './Footer.server';
+export { FooterComponent as FooterComponent } from './components/Footer';

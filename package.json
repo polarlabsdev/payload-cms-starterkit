@@ -25,6 +25,7 @@
     "@payloadcms/plugin-seo": "^3.84.1",
     "@payloadcms/richtext-lexical": "^3.84.1",
     "@payloadcms/storage-s3": "^3.84.1",
+    "@playwright/test": "^1.60.0",
     "@radix-ui/react-slot": "^1.1.2",
     "@react-email/components": "^1.0.12",
     "@remixicon/react": "^4.6.0",

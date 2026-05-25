@@ -2,13 +2,15 @@
 
 import { getClientSideURL } from '@/lib/utils';
 import { PayloadAdminBar, PayloadAdminBarProps } from '@payloadcms/admin-bar';
-import { Button } from './ui/Button';
+import { Button } from '@/components/ui/Button';
 import { RiListSettingsLine } from '@remixicon/react';
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/i18n/navigation';
 import { useCurrentCollection } from '@/providers/CollectionProvider'; // Import the hook
 
+export const ADMIN_BAR_HEIGHT_CLASS = 'h-10';
+
 const Logo: React.FC = () => (
-  <Button variant="default" size="xs">
+  <Button variant="ghost" size="xs">
     <RiListSettingsLine />
     Admin Panel
   </Button>
@@ -27,11 +29,35 @@ const collectionLabelsMap = {
     plural: 'Media',
     singular: 'Media Item',
   },
+  stories: {
+    plural: 'Stories',
+    singular: 'Story',
+  },
+  'story-categories': {
+    plural: 'Story Categories',
+    singular: 'Story Category',
+  },
+  documents: {
+    plural: 'Documents',
+    singular: 'Document',
+  },
+  faqs: {
+    plural: 'FAQs',
+    singular: 'FAQ',
+  },
+  'faq-tags': {
+    plural: 'FAQ Tags',
+    singular: 'FAQ Tag',
+  },
+  exports: {
+    plural: 'Exports',
+    singular: 'Export',
+  },
   default: {
     singular: 'Item',
     plural: 'Items',
   },
-};
+} as const;
 
 const AdminBar: React.FC<PayloadAdminBarProps> = (props) => {
   const router = useRouter();
@@ -41,12 +67,12 @@ const AdminBar: React.FC<PayloadAdminBarProps> = (props) => {
   // Check if the contextSlug is a valid key in our map
   const labels =
     collectionSlug && collectionSlug in collectionLabelsMap
-      ? collectionLabelsMap[collectionSlug] // Type assertion safe due to check
+      ? collectionLabelsMap[collectionSlug as keyof typeof collectionLabelsMap]
       : collectionLabelsMap.default;
 
   return (
     <PayloadAdminBar
-      className="dark !bg-neutral-900 !py-3"
+      className={`dark !bg-neutral-900 !py-3 ${ADMIN_BAR_HEIGHT_CLASS}`}
       cmsURL={getClientSideURL()}
       collectionSlug={collectionSlug || undefined}
       id={String(collectionObject?.id)}

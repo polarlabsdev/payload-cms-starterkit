@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { autoClassName } from '@/lib/utils';
+import { cn } from '@/lib/utils';
 
 export interface LoadingSpinnerProps extends React.InputHTMLAttributes<HTMLDivElement> {
   type?: 'short' | 'long' | 'bars';
@@ -34,7 +34,7 @@ const Spinner = React.forwardRef<HTMLDivElement, LoadingSpinnerProps>(
     return (
       <div
         data-testid="spinner"
-        className={autoClassName(
+        className={cn(
           'flex h-4 w-4 animate-spin items-center justify-center text-[color:var(--primary)]',
           className,
         )}

@@ -1,9 +1,9 @@
 import { SitemapMapper } from '@/app/sitemap';
 import { getClientSideURL } from '@/lib/utils';
 
-const pagesToSitemap: SitemapMapper = async (payload) => {
-  const pages = await payload.find({
-    collection: 'pages',
+const storiesToSitemap: SitemapMapper = async (payload) => {
+  const stories = await payload.find({
+    collection: 'stories',
     overrideAccess: false,
     draft: false,
     where: {
@@ -14,7 +14,7 @@ const pagesToSitemap: SitemapMapper = async (payload) => {
           },
         },
         {
-          // Exclude pages with noIndex set to true
+          // Exclude stories with noIndex set to true
           'meta.noIndex': {
             equals: false,
           },
@@ -32,17 +32,14 @@ const pagesToSitemap: SitemapMapper = async (payload) => {
 
   const baseUrl = getClientSideURL() || 'http://localhost:3000';
 
-  return pages.docs.map((page) => {
-    const slug = page.slug === 'home' ? '' : page.slug;
-
+  return stories.docs.map((story) => {
     return {
-      url: `${baseUrl}/${slug}`,
-      lastModified: page.updatedAt,
-      changeFrequency: 'weekly',
-      // Home page gets highest priority
-      priority: slug === '' ? 1.0 : 0.8,
+      url: `${baseUrl}/stories/${story.slug}`,
+      lastModified: story.updatedAt,
+      changeFrequency: 'monthly',
+      priority: 0.7,
     };
   });
 };
 
-export default pagesToSitemap;
+export default storiesToSitemap;

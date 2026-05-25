@@ -2,10 +2,13 @@
 
 import { useTheme } from '@/providers/ThemeProvider';
 import { Button } from './ui/Button';
-import { RiSunLine, RiMoonLine } from '@remixicon/react';
+import { Icon } from '@/components/ui/Icon';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
 
 export const ThemeToggle: React.FC = () => {
+  const t = useTranslations('ThemeToggle');
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -18,16 +21,32 @@ export const ThemeToggle: React.FC = () => {
   }, []);
 
   return (
-    <Button
-      variant="outline"
-      size="icon"
-      shape="circle"
-      onClick={() => {
-        const newTheme = theme === 'light' ? 'dark' : 'light';
-        setTheme(newTheme);
-      }}
-    >
-      {mounted ? theme === 'light' ? <RiSunLine /> : <RiMoonLine /> : null}
-    </Button>
+    <Tooltip delayDuration={0}>
+      <TooltipTrigger asChild>
+        <Button
+          variant="outline"
+          size="icon-lg"
+          shape="pill"
+          onClick={() => {
+            const newTheme = theme === 'light' ? 'dark' : 'light';
+            setTheme(newTheme);
+          }}
+          className="bg-background"
+        >
+          {mounted ? (
+            theme === 'light' ? (
+              <Icon iconName="moon-fill" iconSize="xl" />
+            ) : (
+              <Icon iconName="sun-fill" iconSize="xl" />
+            )
+          ) : (
+            <Icon iconName="sun-fill" iconSize="xl" />
+          )}
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent side="left">
+        {theme === 'light' ? t('toggleDark') : t('toggleLight')}
+      </TooltipContent>
+    </Tooltip>
   );
 };

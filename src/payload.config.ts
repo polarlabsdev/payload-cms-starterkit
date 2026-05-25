@@ -7,10 +7,23 @@ import { plugins } from './plugins';
 import { Users } from './collections/Users';
 import { Media } from './collections/Media';
 import { Pages } from './collections/Pages';
+import { Stories } from './collections/Stories';
+import { Videos } from './collections/Videos';
+import { StoryCategories } from './collections/StoryCategories';
 import { Header } from './globals/Header/config';
 import { Footer } from './globals/Footer/config';
+import { AnnouncementBar } from './globals/AnnouncementBar/config';
+import { StoriesPage } from './globals/StoriesPage/config';
 import { defaultLexical } from './fields/lexicals/defaultLexical';
 import { ButtonBlock } from './blocks/Button/config';
+import { HeroBlock } from '@/blocks/Hero/config';
+import { StoryCardsBlock } from '@/blocks/StoryCards/config';
+import { IconRowBlock } from '@/blocks/IconRow/config';
+import { StandardContentBlock } from '@/blocks/StandardContentBlock/config';
+import { WideImageBlock } from '@/blocks/WideImageBlock/config';
+import { ImageGridBlock } from '@/blocks/ImageGridBlock/config';
+import { SimpleRichTextBlock } from '@/blocks/SimpleRichTextBlock/config';
+import { YoutubeEmbedBlock } from '@/blocks/YoutubeEmbed/config';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -46,9 +59,19 @@ export default buildConfig({
   },
   // use this blocks key to get Payload to recognize blocks
   // that aren't used in a collection (for example, a block that is used in lexical)
-  blocks: [ButtonBlock],
-  collections: [Users, Media, Pages],
-  globals: [Header, Footer],
+  blocks: [
+    ButtonBlock,
+    HeroBlock,
+    StoryCardsBlock,
+    IconRowBlock,
+    StandardContentBlock,
+    WideImageBlock,
+    ImageGridBlock,
+    SimpleRichTextBlock,
+    YoutubeEmbedBlock
+  ],
+  collections: [Users, Media, Pages, Stories, StoryCategories, Videos],
+  globals: [Header, Footer, AnnouncementBar, StoriesPage],
   editor: defaultLexical,
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

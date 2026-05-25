@@ -1,9 +1,13 @@
 import { postgresAdapter } from '@payloadcms/db-postgres';
+import { nodemailerAdapter } from '@payloadcms/email-nodemailer';
 import path from 'path';
 import { buildConfig } from 'payload';
+import { en } from '@payloadcms/translations/languages/en';
+import { fr } from '@payloadcms/translations/languages/fr';
+import { es } from '@payloadcms/translations/languages/es';
 import { fileURLToPath } from 'url';
 import sharp from 'sharp';
-import { plugins } from './plugins';
+import { plugins, createPostgresPoolConfig } from './plugins';
 import { Users } from './collections/Users';
 import { Media } from './collections/Media';
 import { Pages } from './collections/Pages';
@@ -28,7 +32,27 @@ import { YoutubeEmbedBlock } from '@/blocks/YoutubeEmbed/config';
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
+const emailConfig = process.env.SMTP_HOST
+  ? nodemailerAdapter({
+      defaultFromAddress: process.env.EMAIL_FROM_ADDRESS || '',
+      defaultFromName: process.env.EMAIL_FROM_NAME || '',
+      transportOptions: {
+        host: process.env.SMTP_HOST,
+        port: Number(process.env.SMTP_PORT) || 587,
+        secure: false,
+        auth: {
+          user: process.env.SMTP_USER,
+          pass: process.env.SMTP_PASS,
+        },
+        tls: {
+          rejectUnauthorized: false,
+        },
+      },
+    })
+  : undefined;
+
 export default buildConfig({
+  ...(emailConfig && { email: emailConfig }),
   admin: {
     user: Users.slug,
     importMap: {
@@ -57,6 +81,17 @@ export default buildConfig({
       ],
     },
   },
+  // This is just for the admin panel
+  i18n: {
+    supportedLanguages: { en, fr, es },
+  },
+  // This is for the actual content stored in the db
+  // This needs to match the locales in i18n/routing.ts
+  // You need to also create the corresponding json files in /messages
+  localization: {
+    locales: ['en', 'fr', 'es', 'ru', 'ar'],
+    defaultLocale: 'en',
+  },
   // use this blocks key to get Payload to recognize blocks
   // that aren't used in a collection (for example, a block that is used in lexical)
   blocks: [
@@ -78,9 +113,7 @@ export default buildConfig({
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
   db: postgresAdapter({
-    pool: {
-      connectionString: process.env.DATABASE_URI || '',
-    },
+    pool: createPostgresPoolConfig(),
   }),
   sharp,
   plugins: [...plugins],

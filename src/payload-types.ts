@@ -112,7 +112,12 @@ export interface Config {
   db: {
     defaultIDType: number;
   };
-  fallbackLocale: null;
+  fallbackLocale:
+    | ('false' | 'none' | 'null')
+    | false
+    | null
+    | ('en' | 'fr' | 'es' | 'ru' | 'ar')
+    | ('en' | 'fr' | 'es' | 'ru' | 'ar')[];
   globals: {
     header: Header;
     footer: Footer;
@@ -125,7 +130,7 @@ export interface Config {
     'announcement-bar': AnnouncementBarSelect<false> | AnnouncementBarSelect<true>;
     'stories-page': StoriesPageSelect<false> | StoriesPageSelect<true>;
   };
-  locale: null;
+  locale: 'en' | 'fr' | 'es' | 'ru' | 'ar';
   widgets: {
     collections: CollectionsWidget;
   };
@@ -1469,6 +1474,7 @@ export interface Export {
   page?: number | null;
   sort?: string | null;
   sortOrder?: ('asc' | 'desc') | null;
+  locale?: ('all' | 'en' | 'fr' | 'es' | 'ru' | 'ar') | null;
   drafts?: ('yes' | 'no') | null;
   selectionToUse?: ('currentSelection' | 'currentFilters' | 'all') | null;
   fields?: string[] | null;
@@ -2228,6 +2234,7 @@ export interface ExportsSelect<T extends boolean = true> {
   page?: T;
   sort?: T;
   sortOrder?: T;
+  locale?: T;
   drafts?: T;
   selectionToUse?: T;
   fields?: T;

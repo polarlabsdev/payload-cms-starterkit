@@ -57,7 +57,7 @@ export const seedGlobal = async (
       data: processedData as Record<string, unknown>,
       overrideAccess: true,
       showHiddenFields: true,
-      locale: 'all',
+      locale: 'en',
     });
   } catch (error) {
     console.error(`❌ ERROR UPDATING GLOBAL: ${JSON.stringify(error)}`);

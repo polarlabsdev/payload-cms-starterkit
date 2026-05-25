@@ -52,7 +52,7 @@ const storagePlugin = process.env.SUPABASE_STORAGE_REGION
         requestChecksumCalculation: 'WHEN_REQUIRED' as const,
         responseChecksumValidation: 'WHEN_REQUIRED' as const,
       },
-      // Enable client-side uploads to bypass Vercel's 4.5MB file size limit
+      // Enable client-side uploads to allow large file uploads without server size limits
       clientUploads: true,
     })
   : undefined;
@@ -71,11 +71,10 @@ export const createPostgresPoolConfig = (): PoolConfig => {
   );
 
   const config: PoolConfig = {
-    connectionString: process.env.POSTGRES_URL || '',
+    connectionString: process.env.DATABASE_URI || '',
     max: poolMax,
-    // Release idle connections quickly so suspended Vercel instances don't hold
-    // open backend connections against Supabase's hard per-instance limit.
-    // Vercel recommends ~5 s: https://vercel.com/kb/guide/connection-pooling-with-functions
+    // Release idle connections quickly to avoid holding open backend connections
+    // against Supabase's hard per-instance limit.
     idleTimeoutMillis: 5_000,
     // Fail fast rather than queueing indefinitely when the pool is saturated.
     connectionTimeoutMillis: 10_000,

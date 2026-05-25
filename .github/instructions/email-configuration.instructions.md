@@ -51,6 +51,3 @@ await payload.sendEmail({
 });
 ```
 
-## Related Documentation
-
-- Magic link authentication: `.github/instructions/magic-link-authentication.instructions.md`

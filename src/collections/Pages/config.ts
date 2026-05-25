@@ -86,16 +86,16 @@ export const Pages: CollectionConfig<'pages'> = {
         {
           label: 'Layout',
           fields: [
-            // {
-            //   name: 'pullBehindNav',
-            //   label: 'Pull Content Up Behind Navigation Bar',
-            //   type: 'checkbox',
-            //   defaultValue: false,
-            //   admin: {
-            //     description:
-            //       'This will pull the content up behind the navigation bar, which is useful for a hero section you want to be exactly full screen height.',
-            //   },
-            // },
+            {
+              name: 'pullBehindNav',
+              label: 'Pull Content Up Behind Navigation Bar',
+              type: 'checkbox',
+              defaultValue: false,
+              admin: {
+                description:
+                  'This will pull the content up behind the navigation bar, which is useful for a hero section you want to be exactly full screen height.',
+              },
+            },
             {
               name: 'layout',
               type: 'blocks',

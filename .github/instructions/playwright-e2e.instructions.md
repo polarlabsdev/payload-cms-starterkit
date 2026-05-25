@@ -36,16 +36,16 @@ npm run test:e2e:ui     # interactive UI
 
 ## Seed System
 
-> The seed system is not yet implemented. When added, it should live in `seed/` and follow this pattern:
+The database seeding system is fully implemented and is located in the `seed/` directory.
 
-- Fixture data lives in `seed/fixtures/` with clearly namespaced slugs (e.g. `e2e-home-page`)
-- `npm run db:seed` populates the database and writes `seed/seedState.json` (IDs of created records)
-- The auth setup script reads `seed/seedState.json` to generate auth files
-- If adding a new fixture file, wire it into `seed/utils/types.ts`, `seed/utils/seedState.ts`, and `seed/seed.ts`
+- Fixture data lives in `seed/fixtures/` (e.g., E2E page resources like `e2e-page-published` are seeded via `pages.json`).
+- Running `npm run db:seed` populates the local database and generates `seed/seedState.json`.
+- The database is preloaded with:
+  - E2E smoke pages (published page `e2e-page-published` and draft page `e2e-page-draft`).
+  - E2E stories (published story `e2e-story-published` and draft story `e2e-story-draft`).
+  - A seed admin user with credentials defined in `seed/utils/validation.ts`.
 
-When implementing seeds, create at minimum:
-- A home page (`slug: 'home'`) for smoke testing page rendering
-- A seed admin user for auth testing (credentials defined in `seed/utils/validation.ts`)
+For complete details on running the seed script, resetting the database, and updating/maintaining the seeding schema or relationship mappings, refer to [.github/instructions/database-seeding.instructions.md](database-seeding.instructions.md).
 
 ## Fixture Data
 

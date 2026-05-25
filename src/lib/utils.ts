@@ -112,45 +112,6 @@ export const titleCase = (string: string): string => {
 };
 
 // --------------------------
-// ESCAPE FUNCTIONALITY
-// --------------------------
-// This function provides a quick escape mechanism for users in danger.
-// It arms all current pages in history with a trap, then navigates to a safe decoy URL.
-export const DECOY_URL = 'https://www.google.com/search?q=weather';
-
-// Set a flag in sessionStorage to indicate escape was triggered
-const ESCAPE_TRIGGERED_KEY = 'escape_triggered';
-
-export const escapePage = () => {
-  if (canUseDOM()) {
-    // Check if we're in the portal and clear token server-side if so
-    if (window.location.pathname.includes('/portal')) {
-      // Start logout request in background (don't await)
-      fetch('/api/portal/auth/signout', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }).catch((error) => {
-        console.error('Failed to clear portal token:', error);
-      });
-    }
-
-    // Mark that escape has been triggered
-    sessionStorage.setItem(ESCAPE_TRIGGERED_KEY, 'true');
-
-    // Navigate to decoy URL immediately
-    window.location.replace(DECOY_URL);
-  }
-};
-
-// Check if escape was triggered
-export const wasEscapeTriggered = (): boolean => {
-  if (!canUseDOM()) return false;
-  return sessionStorage.getItem(ESCAPE_TRIGGERED_KEY) === 'true';
-};
-
-// --------------------------
 // DEVICE DETECTION UTILITIES
 // --------------------------
 // These utility functions detect device types and operating systems.

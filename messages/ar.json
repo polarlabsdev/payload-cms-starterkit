@@ -36,22 +36,5 @@
   "LanguageSelect": {
     "placeholder": "اختر اللغة",
     "label": "اللغات"
-  },
-  "Newsletter": {
-    "firstNamePlaceholder": "الاسم الأول",
-    "lastNamePlaceholder": "اسم العائلة",
-    "emailPlaceholder": "البريد الإلكتروني",
-    "firstNameRequired": "الاسم الأول مطلوب.",
-    "lastNameRequired": "اسم العائلة مطلوب.",
-    "emailRequired": "الرجاء إدخال بريد إلكتروني صحيح.",
-    "loading": "جارٍ التسجيل...",
-    "success": "شكراً لتسجيلك! سنتواصل معك قريباً.",
-    "error": "حدث خطأ ما. يرجى المحاولة مرة أخرى."
-  },
-  "JobBoard": {
-    "loading": "جارٍ تحميل فرص العمل…",
-    "error": "نواجه مشكلة في تحميل الوظائف. يرجى المحاولة مرة أخرى لاحقاً.",
-    "noJobs": "لا توجد وظائف شاغرة في الوقت الحالي.",
-    "applyNow": "تقدم الآن"
   }
 }

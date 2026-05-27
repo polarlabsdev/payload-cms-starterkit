@@ -36,22 +36,5 @@
   "LanguageSelect": {
     "placeholder": "Sélectionner une langue",
     "label": "Langues"
-  },
-  "Newsletter": {
-    "firstNamePlaceholder": "Prénom",
-    "lastNamePlaceholder": "Nom de famille",
-    "emailPlaceholder": "Adresse e-mail",
-    "firstNameRequired": "Le prénom est obligatoire.",
-    "lastNameRequired": "Le nom de famille est obligatoire.",
-    "emailRequired": "Veuillez saisir une adresse e-mail valide.",
-    "loading": "Inscription en cours...",
-    "success": "Merci de vous être abonné\u00a0! Nous prendrons contact avec vous.",
-    "error": "Une erreur s'est produite. Veuillez réessayer."
-  },
-  "JobBoard": {
-    "loading": "Chargement des opportunités de carrière…",
-    "error": "Nous avons des difficultés à charger les emplois. Veuillez revenir plus tard.",
-    "noJobs": "Aucun poste vacant pour le moment.",
-    "applyNow": "Postuler Maintenant"
   }
 }

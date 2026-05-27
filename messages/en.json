@@ -36,22 +36,5 @@
   "LanguageSelect": {
     "placeholder": "Select a Language",
     "label": "Languages"
-  },
-  "Newsletter": {
-    "firstNamePlaceholder": "First name",
-    "lastNamePlaceholder": "Last name",
-    "emailPlaceholder": "Email address",
-    "firstNameRequired": "First name is required.",
-    "lastNameRequired": "Last name is required.",
-    "emailRequired": "Please enter a valid email address.",
-    "loading": "Subscribing...",
-    "success": "Thank you for subscribing! We'll be in touch.",
-    "error": "Something went wrong. Please try again."
-  },
-  "JobBoard": {
-    "loading": "Loading career opportunities…",
-    "error": "We're having trouble loading jobs. Please check back shortly.",
-    "noJobs": "No open roles at this time.",
-    "applyNow": "Apply Now"
   }
 }

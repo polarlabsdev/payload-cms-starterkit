@@ -36,22 +36,5 @@
   "LanguageSelect": {
     "placeholder": "Seleccionar un idioma",
     "label": "Idiomas"
-  },
-  "Newsletter": {
-    "firstNamePlaceholder": "Nombre",
-    "lastNamePlaceholder": "Apellido",
-    "emailPlaceholder": "Correo electrónico",
-    "firstNameRequired": "El nombre es obligatorio.",
-    "lastNameRequired": "El apellido es obligatorio.",
-    "emailRequired": "Por favor, introduce una dirección de correo válida.",
-    "loading": "Suscribiéndose...",
-    "success": "¡Gracias por suscribirte! Estaremos en contacto.",
-    "error": "Algo salió mal. Por favor, inténtalo de nuevo."
-  },
-  "JobBoard": {
-    "loading": "Cargando oportunidades de carrera…",
-    "error": "Tenemos problemas para cargar los trabajos. Por favor, vuelve a intentarlo más tarde.",
-    "noJobs": "No hay roles disponibles en este momento.",
-    "applyNow": "Aplicar Ahora"
   }
 }

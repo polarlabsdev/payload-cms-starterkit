@@ -169,11 +169,11 @@ These are implementation choices made for the default stack in this repository. 
 
 - **Seed fixtures are fictional by default**
   - Files in `seed/fixtures/` are starter placeholders for development/testing and should be replaced for production projects.
-- **Supabase media admin thumbnails**
-  - `src/collections/Media/config.ts` uses a custom `upload.adminThumbnail` URL builder that points directly at public Supabase Storage objects.
-  - This avoids relying on Payload's file proxy route in the current S3/Supabase setup.
+- **Supabase media thumbnails in admin ([`src/collections/Media/config.ts`](src/collections/Media/config.ts))**
+  - The `upload.adminThumbnail` callback builds a direct public Supabase Storage URL from the stored filename.
+  - This avoids requests going through Payload's `/api/media/file/*` proxy path, which is incompatible with the current S3 plugin setup when `disablePayloadAccessControl` behavior is in play.
+  - If you move to local storage or another object storage adapter, you may want to revisit this behavior.
 
-There is more information about this available in `seed/README.md`.
 
 ## Available Scripts
 

@@ -9,31 +9,11 @@
   },
   "AuthError": {
     "title": "Access Denied",
-    "description": "You do not have permission to access this page or your authentication has failed. This may be due to an expired or invalid sign-in link, or insufficient permissions. Please try again, request a new link, or contact support if the problem persists.",
-    "goPortal": "Go to Portal"
-  },
-  "EscapeButton": {
-    "toastMobile": "Press the eject button to quickly leave this page",
-    "toastDesktopPress": "Press",
-    "toastDesktopSuffix": "to quickly leave this page",
-    "toastDesktopOr": "Or click the eject button",
-    "ariaLabel": "Eject page",
-    "tooltip": "Exit from page"
+    "description": "You do not have permission to access this page or your authentication has failed. This may be due to an expired or invalid sign-in link, or insufficient permissions. Please try again, request a new link, or contact support if the problem persists."
   },
   "ThemeToggle": {
     "toggleDark": "Toggle dark mode",
     "toggleLight": "Toggle light mode"
-  },
-  "PortalSidebarToggle": {
-    "closeSidebar": "Close sidebar",
-    "openSidebar": "Open sidebar",
-    "openNavigation": "Open Menu",
-    "menu": "Menu"
-  },
-  "PortalSidebar": {
-    "logoAriaLabel": "Go to website home",
-    "portalUser": "Portal User",
-    "signOut": "Sign Out"
   },
   "Search": {
     "placeholder": "Search pages and stories...",
@@ -56,34 +36,6 @@
   "LanguageSelect": {
     "placeholder": "Select a Language",
     "label": "Languages"
-  },
-  "PortalLoginForm": {
-    "emailLabel": "Email address",
-    "emailPlaceholder": "Email address",
-    "dobLabel": "Date of birth",
-    "dobPlaceholder": "Date",
-    "submit": "Submit",
-    "sending": "Sending...",
-    "reSendEmail": "Re-send email",
-    "emailSent": "Email sent",
-    "enterNewEmail": "Enter a new email",
-    "errorDefault": "Something went wrong. Please try again.",
-    "altchaNotReady": "Please wait for the security check to complete.",
-    "verifyingBrowser": "Verifying browser\u2026",
-    "altchaVerifyError": "Security check in progress, please wait\u2026",
-    "invalidSecurityCheck": "Invalid security check. Please refresh the page and try again.",
-    "emailExplainerText": "This will be the email address that our case workers use to communicate with you. You will use this email address to log into the portal in the future.",
-    "ageValidationError": "You must be at least 18 years old to continue.",
-    "formFooterText": "After clicking the submit button, you will receive a confirmation email in your inbox with a link to confirm your email address.",
-    "confirmationHeader": "We have sent a verification link to",
-    "confirmationText": "Check your inbox and click the link to complete sign-in. Check your spam folder if you don't see it. Use the button below to resend, or go back to enter a different email address.",
-    "authenticatedExplainerText": "You are already signed in to the portal. Click the button below to access it.",
-    "orgReferralMessage": "You are currently listed in Rainbow Railroad's system as an organization referral. Please reach out to your Rainbow Railroad contact to receive a link to our Partner Portal.",
-    "wrongAudiencePortal": "You are signed in as a partner user. This is the client portal login.",
-    "wrongAudiencePartner": "You are signed in as a portal client. This is the partner login page.",
-    "goToPartnerPortal": "Go to Partner Portal",
-    "goToClientPortal": "Go to Client Portal",
-    "goToPortal": "Go to Portal"
   },
   "Newsletter": {
     "firstNamePlaceholder": "First name",

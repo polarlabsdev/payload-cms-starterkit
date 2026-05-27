@@ -153,29 +153,6 @@ import type { Page } from '@/payload-types';
 import config from '@/payload.config';
 ```
 
-### Redirects
-
-**Every content page.tsx must call `checkRedirect` before any data fetching.** This performs a single DB query against the `redirects` collection and issues a 301/302 if an active match is found.
-
-```typescript
-import { checkRedirect } from '@/lib/checkRedirect';
-
-const MyPage = async ({ params }) => {
-  const { slug, locale } = await params;
-
-  // Must be first — before any data fetching
-  await checkRedirect(`/${slug}`, locale);
-
-  const data = await getPageData(slug, locale);
-  // ...
-};
-```
-
-- Pass the **locale-stripped path** (e.g. `/about`, `/stories/my-story`)
-- Pass `locale` from the route params so the redirect destination is locale-prefixed correctly
-- Skip for non-content routes (admin, auth-error, static routes)
-- Redirects are managed in the CMS admin under **Navigation → Redirects**
-
 ### Search Hotkey
 
 Use `getSearchHotkeyLabel()` from `@/lib/searchHotkey` whenever you need to display the search keyboard shortcut. This ensures consistent platform-aware display (`⌘ Cmd + K` / `Ctrl + K`) across all surfaces.

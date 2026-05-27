@@ -9,31 +9,11 @@
   },
   "AuthError": {
     "title": "تم رفض الوصول",
-    "description": "ليس لديك إذن للوصول إلى هذه الصفحة أو فشلت عملية المصادقة الخاصة بك. قد يكون ذلك بسبب انتهاء صلاحية رابط تسجيل الدخول أو عدم صلاحيته، أو بسبب عدم كفاية الأذونات. يرجى المحاولة مرة أخرى أو طلب رابط جديد أو التواصل مع الدعم إذا استمرت المشكلة.",
-    "goPortal": "الذهاب إلى البوابة"
-  },
-  "EscapeButton": {
-    "toastMobile": "اضغط على زر الخروج السريع لمغادرة هذه الصفحة",
-    "toastDesktopPress": "اضغط",
-    "toastDesktopSuffix": "لمغادرة هذه الصفحة بسرعة",
-    "toastDesktopOr": "أو انقر على زر الخروج السريع",
-    "ariaLabel": "خروج سريع",
-    "tooltip": "مغادرة الصفحة"
+    "description": "ليس لديك إذن للوصول إلى هذه الصفحة أو فشلت عملية المصادقة الخاصة بك. قد يكون ذلك بسبب انتهاء صلاحية رابط تسجيل الدخول أو عدم صلاحيته، أو بسبب عدم كفاية الأذونات. يرجى المحاولة مرة أخرى أو طلب رابط جديد أو التواصل مع الدعم إذا استمرت المشكلة."
   },
   "ThemeToggle": {
     "toggleDark": "تفعيل الوضع الداكن",
     "toggleLight": "تفعيل الوضع الفاتح"
-  },
-  "PortalSidebarToggle": {
-    "closeSidebar": "إغلاق الشريط الجانبي",
-    "openSidebar": "فتح الشريط الجانبي",
-    "openNavigation": "فتح القائمة",
-    "menu": "القائمة"
-  },
-  "PortalSidebar": {
-    "logoAriaLabel": "الرجوع إلى الصفحة الرئيسية",
-    "portalUser": "مستخدم البوابة",
-    "signOut": "تسجيل الخروج"
   },
   "Search": {
     "placeholder": "البحث في الصفحات والقصص...",
@@ -56,34 +36,6 @@
   "LanguageSelect": {
     "placeholder": "اختر اللغة",
     "label": "اللغات"
-  },
-  "PortalLoginForm": {
-    "emailLabel": "البريد الإلكتروني",
-    "emailPlaceholder": "البريد الإلكتروني",
-    "dobLabel": "تاريخ الميلاد",
-    "dobPlaceholder": "التاريخ",
-    "submit": "إرسال",
-    "sending": "جارٍ الإرسال...",
-    "reSendEmail": "إعادة إرسال البريد",
-    "emailSent": "تم الإرسال",
-    "enterNewEmail": "أدخل بريداً إلكترونياً جديداً",
-    "errorDefault": "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
-    "altchaNotReady": "يرجى الانتظار حتى تكتمل عملية التحقق الأمني.",
-    "verifyingBrowser": "جارٍ التحقق من المتصفح\u2026",
-    "altchaVerifyError": "فحص الأمان جارٍ، يرجى الانتظار\u2026",
-    "invalidSecurityCheck": "فحص أمان غير صالح. يرجى تحديث الصفحة والمحاولة مرة أخرى.",
-    "emailExplainerText": "ستكون هذه هي عنوان بريدك الإلكتروني الذي يستخدمه موظفو الحالات لدينا للتواصل معك. ستستخدم هذا البريد الإلكتروني لتسجيل الدخول إلى البوابة في المستقبل.",
-    "ageValidationError": "يجب أن يكون عمرك 18 عامًا على الأقل للمتابعة.",
-    "formFooterText": "بعد النقر على زر الإرسال، ستتلقى رسالة تأكيد على بريدك الإلكتروني تحتوي على رابط لتأكيد عنوان بريدك الإلكتروني.",
-    "confirmationHeader": "لقد أرسلنا رابط التحقق إلى",
-    "confirmationText": "تحقق من صندوق الوارد وانقر على الرابط لإتمام تسجيل الدخول. تحقق من مجلد البريد العشوائي إذا لم تجده. استخدم الزر أدناه لإعادة الإرسال، أو ارجع لإدخال عنوان بريد إلكتروني مختلف.",
-    "authenticatedExplainerText": "أنت مسجّل الدخول بالفعل إلى البوابة. انقر على الزر أدناه للوصول إليها.",
-    "orgReferralMessage": "أنت مدرج حاليًا في نظام Rainbow Railroad كإحالة من منظمة. يرجى التواصل مع ممثلك في Rainbow Railroad للحصول على رابط للوصول إلى بوابة الشركاء.",
-    "wrongAudiencePortal": "You are signed in as a partner user. This is the client portal login.",
-    "wrongAudiencePartner": "You are signed in as a portal client. This is the partner login page.",
-    "goToPartnerPortal": "Go to Partner Portal",
-    "goToClientPortal": "Go to Client Portal",
-    "goToPortal": "Go to Portal"
   },
   "Newsletter": {
     "firstNamePlaceholder": "الاسم الأول",

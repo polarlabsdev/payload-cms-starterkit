@@ -3,25 +3,44 @@
     "light": 1,
     "dark": 2
   },
-
   "navItems": [
     {
+      "type": "link",
+      "linkConfig": {
+        "linkType": "manual",
+        "url": "/",
+        "label": "Home",
+        "newTab": false
+      }
+    },
+    {
       "type": "dropdown",
-      "dropdownLabel": "About Us",
+      "dropdownLabel": "Starterkit",
       "hasDropdownLabelLink": true,
       "dropdownLabelLink": {
         "linkType": "manual",
         "url": "/about",
-        "label": "About Us",
+        "label": "About this Starterkit",
         "newTab": false
       },
       "dropdownLinks": [
         {
+          "isFeatured": true,
+          "featuredImage": 18,
+          "link": {
+            "linkType": "manual",
+            "url": "/about",
+            "label": "Why this Starterkit",
+            "newTab": false
+          },
+          "description": "Understand the foundations included out of the box."
+        },
+        {
           "isFeatured": false,
           "link": {
             "linkType": "manual",
-            "url": "/about#our-mission",
-            "label": "Our Mission",
+            "url": "/about#features",
+            "label": "Core Features",
             "newTab": false
           }
         },
@@ -29,17 +48,8 @@
           "isFeatured": false,
           "link": {
             "linkType": "manual",
-            "url": "/about#our-impact",
-            "label": "Our Impact",
-            "newTab": false
-          }
-        },
-        {
-          "isFeatured": false,
-          "link": {
-            "linkType": "manual",
-            "url": "/about#our-team",
-            "label": "Our Team",
+            "url": "/about#how-to-use",
+            "label": "How to Use",
             "newTab": false
           }
         }
@@ -57,22 +67,11 @@
       },
       "dropdownLinks": [
         {
-          "isFeatured": true,
-          "featuredImage": 18,
-          "link": {
-            "linkType": "manual",
-            "url": "/stories/global-partnerships-working-together-to-expand-lgbtqi-protection-pathways",
-            "label": "Featured Story",
-            "newTab": false
-          },
-          "description": "Read our latest featured story."
-        },
-        {
           "isFeatured": false,
           "link": {
             "linkType": "manual",
-            "url": "/stories?category=news",
-            "label": "News",
+            "url": "/stories?category=guides",
+            "label": "Guides",
             "newTab": false
           }
         },
@@ -80,36 +79,19 @@
           "isFeatured": false,
           "link": {
             "linkType": "manual",
-            "url": "/stories?category=press-releases",
-            "label": "Press Releases",
+            "url": "/stories?category=engineering",
+            "label": "Engineering",
             "newTab": false
           }
-        }
-      ]
-    },
-    {
-      "type": "dropdown",
-      "dropdownLabel": "Get Involved",
-      "dropdownLinks": [
-        {
-          "isFeatured": false,
-          "link": {
-            "linkType": "manual",
-            "url": "/donate",
-            "label": "Donate",
-            "newTab": false
-          },
-          "description": "Support our work and make a difference."
         },
         {
           "isFeatured": false,
           "link": {
             "linkType": "manual",
-            "url": "/volunteer",
-            "label": "Volunteer",
+            "url": "/stories?category=product",
+            "label": "Product",
             "newTab": false
-          },
-          "description": "Join our community of volunteers."
+          }
         }
       ]
     },
@@ -121,32 +103,14 @@
         "label": "Contact",
         "newTab": false
       }
-    },
-    {
-      "type": "link",
-      "linkConfig": {
-        "linkType": "manual",
-        "url": "/portal-login",
-        "label": "Portal Login",
-        "newTab": false
-      }
-    },
-    {
-      "type": "link",
-      "linkConfig": {
-        "linkType": "manual",
-        "url": "/partner-login",
-        "label": "Partner Login",
-        "newTab": false
-      }
     }
   ],
   "navButtons": [
     {
       "link": {
         "linkType": "manual",
-        "url": "/donate",
-        "label": "Donate",
+        "url": "/about",
+        "label": "Get Started",
         "buttonType": "secondary",
         "newTab": false
       }
@@ -154,8 +118,8 @@
     {
       "link": {
         "linkType": "manual",
-        "url": "/help",
-        "label": "Request Help",
+        "url": "/stories",
+        "label": "Explore Stories",
         "buttonType": "default",
         "newTab": false
       }

@@ -1,12 +1,12 @@
 {
   "id": 1,
   "allStoriesLabel": "All Stories",
-  "defaultDescription": "Discover inspiring stories from our community",
+  "defaultDescription": "Guides, updates, and examples for building with this starterkit.",
 
   "meta": {
-    "title": "Rainbow Railroad News & Stories",
+    "title": "Starterkit Stories",
     "image": 13,
-    "description": "Meta description goes here"
+    "description": "Stories and guides for the Payload CMS starterkit."
   },
   "_status": "published",
   "updatedAt": "2025-10-12T02:39:34.953Z",

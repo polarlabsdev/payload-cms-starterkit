@@ -163,6 +163,18 @@ We intend to deploy this project using:
 
 Configuration and documentation for this deployment strategy are still under development.
 
+## Stack-Specific Decisions
+
+These are implementation choices made for the default stack in this repository. If you change providers or architecture, verify whether they are still needed.
+
+- **Seed fixtures are fictional by default**
+  - Files in `seed/fixtures/` are starter placeholders for development/testing and should be replaced for production projects.
+- **Supabase media admin thumbnails**
+  - `src/collections/Media/config.ts` uses a custom `upload.adminThumbnail` URL builder that points directly at public Supabase Storage objects.
+  - This avoids relying on Payload's file proxy route in the current S3/Supabase setup.
+
+There is more information about this available in `seed/README.md`.
+
 ## Available Scripts
 
 *   `npm run dev`: Starts the development server (Next.js + Payload).

@@ -2,6 +2,21 @@
 
 This guide covers how to seed a new PayloadCMS database with sample data and how to maintain the seeding system as the project evolves.
 
+## Notes About Seed Content
+
+- The fixture content in `seed/fixtures/` is intentionally fictional starter content.
+- Treat seeded copy, links, and media metadata as placeholders for local development and QA.
+- Before production use, replace seeded branding/content with project-specific data.
+
+## Stack-Specific Implementation Notes
+
+These notes document implementation choices made for this starterkit's default stack. If you swap infrastructure, some choices may no longer apply.
+
+- **Supabase media thumbnails in admin (`src/collections/Media/config.ts`)**
+  - The `upload.adminThumbnail` callback builds a direct public Supabase Storage URL from the stored filename.
+  - This avoids requests going through Payload's `/api/media/file/*` proxy path, which is incompatible with the current S3 plugin setup when `disablePayloadAccessControl` behavior is in play.
+  - If you move to local storage or another object storage adapter, you may want to revisit this behavior.
+
 ## Quick Start: Seeding a New Database
 
 Follow these steps to seed a fresh database for development:

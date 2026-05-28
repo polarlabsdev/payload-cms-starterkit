@@ -1,8 +1,8 @@
-import { Media, Page } from '@/payload-types';
+import { Media, Page, Story } from '@/payload-types';
 import { Metadata } from 'next';
 import { getServerSideURL } from './utils';
 
-type SeoDoc = Partial<Page> | null;
+type SeoDoc = Partial<Page> | Partial<Story> | null;
 
 export const generateMeta = async (args: { doc: SeoDoc }): Promise<Metadata> => {
   const { doc } = args;

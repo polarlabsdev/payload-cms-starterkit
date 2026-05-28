@@ -291,6 +291,124 @@
     "createdAt": "2026-05-27T10:10:00.000Z"
   },
   {
+    "id": 4,
+    "title": {
+      "en": "Privacy Policy"
+    },
+    "slug": "privacy",
+    "publishedAt": "2026-05-27T10:12:00.000Z",
+    "layout": [
+      {
+        "id": "privacy-richtext-001",
+        "backgroundColor": "Background",
+        "title": {
+          "en": "Privacy Policy"
+        },
+        "body": {
+          "en": {
+            "root": {
+              "type": "root",
+              "format": "",
+              "indent": 0,
+              "version": 1,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "format": "",
+                  "indent": 0,
+                  "version": 1,
+                  "children": [
+                    {
+                      "mode": "normal",
+                      "text": "This is a starter template privacy page. Replace this content with your organization-specific privacy disclosures before launch.",
+                      "type": "text",
+                      "style": "",
+                      "detail": 0,
+                      "format": 0,
+                      "version": 1
+                    }
+                  ],
+                  "direction": null,
+                  "textStyle": "",
+                  "textFormat": 0
+                }
+              ],
+              "direction": null
+            }
+          }
+        },
+        "blockType": "simple-rich-text"
+      }
+    ],
+    "meta": {
+      "title": "Privacy Policy",
+      "image": 4,
+      "description": "Starter privacy policy template page."
+    },
+    "_status": "published",
+    "updatedAt": "2026-05-27T10:12:00.000Z",
+    "createdAt": "2026-05-27T10:12:00.000Z"
+  },
+  {
+    "id": 5,
+    "title": {
+      "en": "Terms"
+    },
+    "slug": "terms",
+    "publishedAt": "2026-05-27T10:13:00.000Z",
+    "layout": [
+      {
+        "id": "terms-richtext-001",
+        "backgroundColor": "Background",
+        "title": {
+          "en": "Terms of Use"
+        },
+        "body": {
+          "en": {
+            "root": {
+              "type": "root",
+              "format": "",
+              "indent": 0,
+              "version": 1,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "format": "",
+                  "indent": 0,
+                  "version": 1,
+                  "children": [
+                    {
+                      "mode": "normal",
+                      "text": "This is a starter template terms page. Replace this content with legal terms that apply to your deployed product.",
+                      "type": "text",
+                      "style": "",
+                      "detail": 0,
+                      "format": 0,
+                      "version": 1
+                    }
+                  ],
+                  "direction": null,
+                  "textStyle": "",
+                  "textFormat": 0
+                }
+              ],
+              "direction": null
+            }
+          }
+        },
+        "blockType": "simple-rich-text"
+      }
+    ],
+    "meta": {
+      "title": "Terms",
+      "image": 5,
+      "description": "Starter terms-of-use template page."
+    },
+    "_status": "published",
+    "updatedAt": "2026-05-27T10:13:00.000Z",
+    "createdAt": "2026-05-27T10:13:00.000Z"
+  },
+  {
     "id": 101,
     "title": {
       "en": "E2E Page Published"

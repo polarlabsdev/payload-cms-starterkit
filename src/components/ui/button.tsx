@@ -8,12 +8,12 @@ import { BRAND_COLORS, type BrandColorKey } from '@/lib/colors';
 // Be aware that changing the keys in this object is going to trigger migration changes
 // as there are some fields like linkFields that reference these keys directly.
 export const variantClasses = {
-  default: 'bg-primary text-primary-foreground hover:bg-primary/90',
-  secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/90',
+  default: 'bg-primary text-primary-foreground shadow-sm hover:bg-primary/90 hover:shadow',
+  secondary: 'bg-foreground text-background hover:bg-foreground/90',
   destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
-  outline: 'border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground',
-  ghost: 'hover:bg-foreground/5',
-  link: 'text-foreground hover:underline underline-offset-8 decoration-2 decoration-foreground p-0',
+  outline: 'border-2 border-border text-foreground hover:bg-foreground/5',
+  ghost: 'hover:bg-foreground/5 hover:text-foreground',
+  link: 'text-foreground hover:underline underline-offset-4 decoration-2 decoration-primary p-0',
   brand: '', // Will be dynamically overridden with brand colors
 };
 

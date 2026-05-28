@@ -27,7 +27,7 @@ export const StoryPreview: React.FC<StoryPreviewProps> = ({ story, className }) 
     /* Fixed Height only on large screens. On mobile and tablet - cards grow naturally based on content. */
     <article
       className={cn(
-        'group flex flex-col overflow-hidden rounded-lg border border-border/60 bg-card/90 text-start transition-all duration-100 hover:bg-card md:mx-auto md:w-[75%] lg:max-h-[38rem] lg:min-h-[20rem] lg:w-full',
+        'group flex flex-col overflow-hidden rounded-xl border border-border/60 bg-card text-start shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md md:mx-auto md:w-[75%] lg:max-h-[38rem] lg:min-h-[20rem] lg:w-full',
         className,
       )}
     >
@@ -47,7 +47,7 @@ export const StoryPreview: React.FC<StoryPreviewProps> = ({ story, className }) 
       </div>
 
       {/* Content */}
-      <div className="flex flex-1 flex-col p-5">
+      <div className="flex flex-1 flex-col p-6">
         {/* Categories */}
         {categories.length > 0 && (
           <div className="mb-3 flex flex-wrap gap-2">
@@ -65,7 +65,7 @@ export const StoryPreview: React.FC<StoryPreviewProps> = ({ story, className }) 
         )}
 
         {/* Title */}
-        <h3 className="mb-2 line-clamp-2 font-header font-extrabold leading-tight md:text-xl lg:text-2xl">
+        <h3 className="mb-2 line-clamp-2 font-header text-xl font-extrabold leading-tight md:text-2xl">
           <Link
             href={storyLink}
             className="no-underline hover:underline"
@@ -90,7 +90,7 @@ export const StoryPreview: React.FC<StoryPreviewProps> = ({ story, className }) 
         </div>
 
         {/* Button and Metadata - Fixed height section at bottom */}
-        <div className="mt-auto space-y-3">
+        <div className="mt-auto space-y-4 border-t border-border/70 pt-4">
           {/* Button */}
           <div>
             <Button variant="secondary" size="xs" asChild>

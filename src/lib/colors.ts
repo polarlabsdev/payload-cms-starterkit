@@ -1,16 +1,16 @@
 export const BRAND_COLORS = {
-  White: '#FCFBF8',
-  Black: '#2B2B2B',
-  Yellow: '#FFC367',
-  Red: '#F55F5C',
-  Purple: '#6A4C93',
-  Blue: '#3D7EAB',
-  Pink: '#B22F75',
-  Teal: '#1D8590',
-  'Dark Purple': '#441736',
-  Orange: '#8A4A22',
-  'Dark Green': '#143D35',
-  'Dark Red': '#810503',
+  White: '#F8FAFC',
+  Black: '#111827',
+  Yellow: '#F59E0B',
+  Red: '#DC2626',
+  Purple: '#4F46E5',
+  Blue: '#2563EB',
+  Pink: '#DB2777',
+  Teal: '#0EA5E9',
+  'Dark Purple': '#312E81',
+  Orange: '#EA580C',
+  'Dark Green': '#065F46',
+  'Dark Red': '#7F1D1D',
 } as const;
 
 export const TAILWIND_THEME_COLORS = {

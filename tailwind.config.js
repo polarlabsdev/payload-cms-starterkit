@@ -88,9 +88,9 @@ const config = {
         },
       },
       fontFamily: {
-        sans: ['acumin-variable', 'system-ui', 'sans-serif'],
-        body: ['acumin-variable', 'system-ui', 'sans-serif'],
-        header: ['adapt-variable', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-sans)', 'Inter', 'system-ui', 'sans-serif'],
+        body: ['var(--font-sans)', 'Inter', 'system-ui', 'sans-serif'],
+        header: ['var(--font-sans)', 'Inter', 'system-ui', 'sans-serif'],
       },
       borderRadius: {
         xl: 'var(--radius) + 2px',

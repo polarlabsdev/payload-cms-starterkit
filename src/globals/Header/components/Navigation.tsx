@@ -26,7 +26,10 @@ import { useTranslations } from 'next-intl';
 // If you change this don't forget to update the sidebar top offset in StoriesSidebar.tsx
 export const HEADER_HEIGHT_CLASS = 'h-16';
 export const HEADER_NEGATIVE_MARGIN_CLASS = '-mt-16';
-const HEADER_CLASSNAME = cn('sticky top-0 z-50 w-full border-b bg-background', HEADER_HEIGHT_CLASS);
+const HEADER_CLASSNAME = cn(
+  'sticky top-0 z-50 w-full border-b border-border/70 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/85',
+  HEADER_HEIGHT_CLASS,
+);
 
 type NavigationProps = {
   header: Header | null;
@@ -77,7 +80,7 @@ export const Navigation: React.FC<NavigationProps> = ({ header }) => {
             </Link>
           )}
 
-          <nav className="hidden items-center space-x-6 lg:flex [&_a]:!text-sm 2xl:[&_a]:!text-base">
+          <nav className="hidden items-center space-x-7 lg:flex [&_a]:!text-sm 2xl:[&_a]:!text-base">
             <NavigationMenu>
               <NavigationMenuList>
                 {navItems?.map((item: NonNullable<Header['navItems']>[number], i: number) =>

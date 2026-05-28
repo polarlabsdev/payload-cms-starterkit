@@ -33,7 +33,7 @@ export const NavDropdown: React.FC<NavDropdownProps> = ({ item }) => {
             className="flex items-center gap-2 no-underline hover:no-underline"
             renderAs="link"
           >
-            <span className="text-sm font-semibold text-foreground decoration-foreground decoration-2 underline-offset-8 transition-colors hover:underline">
+            <span className="text-sm font-semibold text-foreground decoration-primary decoration-2 underline-offset-4 transition-colors hover:text-primary hover:underline">
               {item.dropdownLabel}
             </span>
 

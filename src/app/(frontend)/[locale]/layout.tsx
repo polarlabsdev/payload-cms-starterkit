@@ -1,7 +1,9 @@
 import { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 import { Inter as FontSans } from 'next/font/google';
-import './styles.css';
+import '@/app/tailwind.css';
+import 'remixicon/fonts/remixicon.css';
+import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css';
 import { ThemeProvider } from '@/providers/ThemeProvider';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { notFound } from 'next/navigation';

@@ -11,6 +11,11 @@
   means it will break all opacity features. Set it in tailwind.config.js instead.
 	See https://github.com/tailwindlabs/tailwindcss/issues/7575
 */
+
+/* 
+  NOTE: You may be tempted to put commas in the HSL values here but DON'T! 
+  It will also prevent opacity features from working correctly.
+*/
 @layer base {
   :root,
   .light {
@@ -30,6 +35,10 @@
     --accent-foreground: 222 47% 11%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
+    --success: 160 84% 39%;
+    --success-foreground: 0 0% 100%;
+    --warning: 32 95% 44%;
+    --warning-foreground: 222 47% 11%;
     --border: 214 32% 88%;
     --input: 214 32% 88%;
     --ring: 198 93% 48%;
@@ -38,10 +47,12 @@
     --chart-3: 262 83% 58%;
     --chart-4: 160 84% 39%;
     --chart-5: 32 95% 44%;
-    --radius: 0.625rem;
+    --radius: 0.75rem;
+    --dark: 222 47% 11%;
+    --dark-foreground: 210 40% 98%;
   }
   .dark,
-	[data-theme='dark'] {
+  [data-theme='dark'] {
     --background: 222 47% 8%;
     --foreground: 210 40% 98%;
     --card: 222 47% 10%;
@@ -58,6 +69,10 @@
     --accent-foreground: 210 40% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
+    --success: 160 84% 49%;
+    --success-foreground: 210 40% 98%;
+    --warning: 32 95% 54%;
+    --warning-foreground: 222 47% 11%;
     --border: 217 20% 24%;
     --input: 217 20% 24%;
     --ring: 198 93% 58%;
@@ -67,6 +82,27 @@
     --chart-4: 160 84% 49%;
     --chart-5: 32 95% 54%;
   }
+  :root {
+    --sidebar-background: 210 40% 98%;
+    --sidebar-foreground: 222 47% 11%;
+    --sidebar-primary: 198 93% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 198 85% 92%;
+    --sidebar-accent-foreground: 222 47% 11%;
+    --sidebar-border: 214 32% 88%;
+    --sidebar-ring: 198 93% 48%;
+  }
+  .dark,
+  [data-theme='dark'] {
+    --sidebar-background: 222 47% 10%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 198 93% 58%;
+    --sidebar-primary-foreground: 222 47% 11%;
+    --sidebar-accent: 217 28% 18%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217 20% 24%;
+    --sidebar-ring: 198 93% 58%;
+  }
 }
 
 @layer base {
@@ -75,8 +111,24 @@
   }
   body {
     @apply bg-background text-foreground;
+    scroll-behavior: smooth; /* Enable smooth scrolling */
   }
-  a:not(.button-component) {
-    @apply text-foreground decoration-primary/70 underline-offset-4 hover:text-primary hover:decoration-primary;
+  a:not(.button-component):not(.no-underline) {
+    @apply underline transition-all duration-100 visited:brightness-75 hover:text-secondary;
+  }
+  section:not(.no-section-border) {
+    @apply border-t border-border;
+  }
+
+  .portal section {
+    @apply border-t-0;
   }
 }
+
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-color: hsl(var(--border)) transparent;
+    scrollbar-width: thin;
+  }
+}
+

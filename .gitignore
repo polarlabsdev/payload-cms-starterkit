@@ -41,3 +41,13 @@ next-env.d.ts
 .env
 
 /media
+
+
+# Seed state file
+seed/seedState.json
+
+# Playwright
+/playwright-report/
+/test-results/
+/blob-report/
+/playwright/.auth/

@@ -1,19 +1,17 @@
-import Link from 'next/link';
-import React from 'react';
+import { getTranslations } from 'next-intl/server';
+import { NotFoundContent } from '@/components/NotFoundContent';
 
-import { Button } from '@/components/ui/button';
+export default async function NotFound() {
+  const t = await getTranslations('NotFound');
 
-export default function NotFound() {
   return (
-    <div className="flex min-h-[calc(100vh-10rem)] flex-col items-center justify-center py-28 text-center">
-      <div className="prose max-w-none dark:prose-invert">
-        <h1 style={{ marginBottom: 0 }}>404</h1>
-        <p className="mb-4">This page could not be found.</p>
-      </div>
-
-      <Button variant="default" asChild>
-        <Link href="/">Go home</Link>
-      </Button>
-    </div>
+    <NotFoundContent
+      notFoundLabel={t('notFound')}
+      didYouMeanLabel={t('didYouMean')}
+      noSuggestionsLabel={t('noSuggestions')}
+      goHomeLabel={t('goHome')}
+      searchLabel={t('search')}
+      searchHintLabel={t.raw('searchHint') as string}
+    />
   );
 }

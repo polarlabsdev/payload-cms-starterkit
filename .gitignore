@@ -42,7 +42,6 @@ next-env.d.ts
 
 /media
 
-
 # Seed state file
 seed/seedState.json
 

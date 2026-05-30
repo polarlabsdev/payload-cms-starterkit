@@ -4,7 +4,7 @@ import { CustomLink } from '@/fields/link/CustomLink';
 import { CustomLinkType } from '@/fields/link/config';
 import { TAILWIND_THEME_COLORS, TailwindThemeColorKey, BrandColorKey } from '@/lib/colors';
 import { cn } from '@/lib/utils';
-import { Icon } from '@/components/ui/Icon';
+import { Icon } from '@/components/ui/icon';
 
 interface IconItemProps {
   iconName: string;

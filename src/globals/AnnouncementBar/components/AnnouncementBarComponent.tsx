@@ -6,8 +6,8 @@ import { cn } from '@/lib/utils';
 import type { AnnouncementBar } from '@/payload-types';
 import { CustomLink } from '@/fields/link/CustomLink';
 import type { CustomLinkType } from '@/fields/link';
-import { Icon } from '@/components/ui/Icon';
-import { Button } from '@/components/ui/Button';
+import { Icon } from '@/components/ui/icon';
+import { Button } from '@/components/ui/button';
 import { useTranslations } from 'next-intl';
 
 interface AnnouncementBarComponentProps {

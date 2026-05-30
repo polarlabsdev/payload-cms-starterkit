@@ -8,8 +8,8 @@ import {
   CarouselContent,
   CarouselItem,
   type CarouselApi,
-} from '@/components/ui/Carousel';
-import { Button } from '@/components/ui/Button';
+} from '@/components/ui/carousel';
+import { Button } from '@/components/ui/button';
 import { RiArrowLeftSLine, RiArrowRightSLine } from '@remixicon/react';
 import { cn } from '@/lib/utils';
 

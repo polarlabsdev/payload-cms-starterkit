@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Media, Video as VideoType } from '@/payload-types';
-import { Skeleton } from '@/components/ui/Skeleton';
+import { Skeleton } from '@/components/ui/skeleton';
 import { OptimizedImage } from '@/components/ui/OptimizedImage';
 import { Video } from '@/components/ui/Video';
 

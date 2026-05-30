@@ -6,7 +6,7 @@ import { RiCalendarLine } from '@remixicon/react';
 import { DayButton, DayPicker, getDefaultClassNames, type Locale } from 'react-day-picker';
 
 import { cn } from '@/lib/utils';
-import { Button, buttonVariants } from '@/components/ui/Button';
+import { Button, buttonVariants } from '@/components/ui/button';
 
 function Calendar({
   className,

@@ -6,7 +6,7 @@ import { RichText } from '@/components/RichText';
 import { cn } from '@/lib/utils';
 import { CustomLinkType } from '@/fields/link/config';
 import { Link } from '@/i18n/navigation';
-import { Icon } from '@/components/ui/Icon';
+import { Icon } from '@/components/ui/icon';
 import LanguageSelect from './LanguageSelect';
 
 type FooterClientProps = {

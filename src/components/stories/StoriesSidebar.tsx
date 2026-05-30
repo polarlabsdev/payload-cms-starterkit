@@ -3,14 +3,14 @@
 import React from 'react';
 import { StoryCategory, StoriesPage } from '@/payload-types';
 import { Link, useRouter } from '@/i18n/navigation';
-import { Icon } from '@/components/ui/Icon';
+import { Icon } from '@/components/ui/icon';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/Select';
+} from '@/components/ui/select';
 import { cn } from '@/lib/utils';
 import { BRAND_COLORS } from '@/lib/colors';
 import { useTranslations } from 'next-intl';

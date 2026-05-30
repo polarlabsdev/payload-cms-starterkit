@@ -2,7 +2,7 @@
 
 import React from 'react';
 import LiteYouTubeEmbed from 'react-lite-youtube-embed';
-import { Skeleton } from '@/components/ui/Skeleton';
+import { Skeleton } from '@/components/ui/skeleton';
 
 interface InlineYoutubeEmbedProps {
   videoId: string;

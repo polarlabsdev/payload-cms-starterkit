@@ -1,7 +1,7 @@
 import React from 'react';
 import { CommandItem } from '@/components/ui/command';
-import { Badge } from '@/components/ui/Badge';
-import { Icon } from '../ui/Icon';
+import { Badge } from '@/components/ui/badge';
+import { Icon } from '../ui/icon';
 import { SearchResult } from '@/lib/sharedTypes';
 
 interface SearchResultItemProps {

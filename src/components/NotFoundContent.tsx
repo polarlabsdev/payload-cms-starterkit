@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Link } from '@/i18n/navigation';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui/button';
 import { SearchModal } from '@/components/search/SearchModal';
 import { NotFoundSuggestions } from '@/components/NotFoundSuggestions';
 import { getSearchHotkeyLabel } from '@/lib/searchHotkey';

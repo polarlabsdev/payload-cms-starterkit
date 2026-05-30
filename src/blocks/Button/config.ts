@@ -1,4 +1,4 @@
-import { shapeClasses, sizeClasses, variantClasses } from '@/components/ui/Button';
+import { shapeClasses, sizeClasses, variantClasses } from '@/components/ui/button';
 import { titleCase } from '@/lib/utils';
 import type { Block } from 'payload';
 

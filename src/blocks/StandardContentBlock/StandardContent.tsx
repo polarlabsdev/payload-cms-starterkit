@@ -1,6 +1,6 @@
 import React from 'react';
 import { StandardContentBlock, Media } from '@/payload-types';
-import { Skeleton } from '@/components/ui/Skeleton';
+import { Skeleton } from '@/components/ui/skeleton';
 import { BRAND_COLORS, TAILWIND_THEME_COLORS } from '@/lib/colors';
 import { HighlightedTextHeader } from '@/fields/highlightedTextHeader/HighlightedTextHeader';
 import { CustomLink } from '@/fields/link/CustomLink';

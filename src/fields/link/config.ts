@@ -1,7 +1,7 @@
 import type { DBIdentifierName, Field } from 'payload';
 import type { Page, Story } from '../../payload-types';
 
-import { variantClasses } from '@/components/ui/Button';
+import { variantClasses } from '@/components/ui/button';
 import { titleCase } from '@/lib/utils';
 import { getBrandColorOptions, type BrandColorKey } from '@/lib/colors';
 

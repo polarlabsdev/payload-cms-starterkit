@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocale } from 'next-intl';
 import { Link } from '@/i18n/navigation';
-import { Spinner } from '@/components/ui/Spinner';
+import { Spinner } from '@/components/ui/spinner';
 import {
   Item,
   ItemActions,
@@ -11,7 +11,7 @@ import {
   ItemGroup,
   ItemSeparator,
   ItemTitle,
-} from '@/components/ui/Item';
+} from '@/components/ui/item';
 import { stripLocaleFromPath } from '@/i18n/routing';
 import { RiExternalLinkLine } from '@remixicon/react';
 import type { SuggestionResult, SuggestionsResponse } from '@/lib/sharedTypes';

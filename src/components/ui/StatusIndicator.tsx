@@ -1,7 +1,7 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { Spinner } from '@/components/ui/Spinner';
-import { Icon } from '@/components/ui/Icon';
+import { Spinner } from '@/components/ui/spinner';
+import { Icon } from '@/components/ui/icon';
 
 export type Variant = 'default' | 'info' | 'success' | 'error' | 'loading' | 'partial';
 

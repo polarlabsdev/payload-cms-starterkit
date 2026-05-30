@@ -1,7 +1,7 @@
 import React from 'react';
 import { HeroBlock, Media, Video } from '@/payload-types';
 import { MinimalHero } from '@/blocks/Hero/components/MinimalHero';
-import { Skeleton } from '@/components/ui/Skeleton';
+import { Skeleton } from '@/components/ui/skeleton';
 import type { HeroProps } from './types';
 import { heroComponents } from './heroComponents';
 

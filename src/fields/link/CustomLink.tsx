@@ -10,7 +10,7 @@ import {
   sizeClasses,
   variantClasses,
   widthClasses,
-} from '@/components/ui/Button';
+} from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { CustomLinkType } from './config';
 import { getLinkUrl } from './utils';

@@ -1,8 +1,8 @@
 'use client';
 
 import { useTheme } from '@/providers/ThemeProvider';
-import { Button } from './ui/Button';
-import { Icon } from '@/components/ui/Icon';
+import { Button } from './ui/button';
+import { Icon } from '@/components/ui/icon';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';

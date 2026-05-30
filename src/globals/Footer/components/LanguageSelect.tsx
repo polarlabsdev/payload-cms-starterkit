@@ -12,7 +12,7 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/Select';
+} from '@/components/ui/select';
 
 const LanguageSelect: React.FC<{ className?: string }> = ({ className }) => {
   const t = useTranslations('LanguageSelect');

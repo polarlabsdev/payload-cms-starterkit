@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui/button';
 import {
   Item,
   ItemContent,
@@ -7,11 +7,11 @@ import {
   ItemMedia,
   ItemTitle,
   ItemActions,
-} from '@/components/ui/Item';
+} from '@/components/ui/item';
 import type { CustomLinkType } from '@/fields/link/config';
 import { getLinkUrl } from '@/fields/link';
 import { Link } from '@/i18n/navigation';
-import { Icon } from '@/components/ui/Icon';
+import { Icon } from '@/components/ui/icon';
 
 interface InlineItemBlockProps {
   title: string;

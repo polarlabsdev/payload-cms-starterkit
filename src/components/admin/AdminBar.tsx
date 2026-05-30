@@ -2,7 +2,7 @@
 
 import { getClientSideURL } from '@/lib/utils';
 import { PayloadAdminBar, PayloadAdminBarProps } from '@payloadcms/admin-bar';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui/button';
 import { RiListSettingsLine } from '@remixicon/react';
 import { useRouter } from '@/i18n/navigation';
 import { useCurrentCollection } from '@/providers/CollectionProvider'; // Import the hook

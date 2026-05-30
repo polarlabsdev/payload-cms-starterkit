@@ -5,12 +5,12 @@ import React, { Fragment, useState } from 'react';
 import { Link } from '@/i18n/navigation';
 import { RiMenu2Line, RiCloseLine, RiSearchLine } from '@remixicon/react';
 import { Header } from '@/payload-types';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { CustomLink } from '@/fields/link/CustomLink';
 import { CustomLinkType } from '@/fields/link';
 import { ThemeAwareImage } from '@/fields/themeAwareImage';
-import { Skeleton } from '@/components/ui/Skeleton';
+import { Skeleton } from '@/components/ui/skeleton';
 import {
   NavigationMenu,
   NavigationMenuItem,

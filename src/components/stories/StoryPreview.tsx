@@ -1,10 +1,10 @@
 import React from 'react';
 import { Story, Media } from '@/payload-types';
 import { Link } from '@/i18n/navigation';
-import { Badge } from '@/components/ui/Badge';
+import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
-import { Icon } from '@/components/ui/Icon';
-import { Button } from '@/components/ui/Button';
+import { Icon } from '@/components/ui/icon';
+import { Button } from '@/components/ui/button';
 import { OptimizedImage } from '@/components/ui/OptimizedImage';
 import { extractTextFromLexical, hasRichTextContent } from '@/lib/richTextUtils';
 

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui/button';
 import { useAuth } from '@payloadcms/ui';
 
 const RegenerateMediaSizesButton: React.FC = () => {

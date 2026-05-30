@@ -10,7 +10,7 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from '@/components/ui/Pagination';
+} from '@/components/ui/pagination';
 
 type StoriesPaginationProps = {
   currentPage: number;

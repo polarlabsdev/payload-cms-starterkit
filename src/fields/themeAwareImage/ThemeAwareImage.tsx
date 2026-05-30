@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { Media } from '@/payload-types';
 import { useTheme } from '@/providers/ThemeProvider';
 import { cn } from '@/lib/utils';
-import { Skeleton } from '@/components/ui/Skeleton';
+import { Skeleton } from '@/components/ui/skeleton';
 import { ThemeAwareImageType } from './config';
 
 interface ThemeAwareImageProps {

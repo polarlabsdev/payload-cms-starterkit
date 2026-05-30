@@ -10,7 +10,7 @@ import {
   CommandInput,
   CommandList,
 } from '@/components/ui/command';
-import { Spinner } from '@/components/ui/Spinner';
+import { Spinner } from '@/components/ui/spinner';
 import { Kbd, KbdGroup } from '@/components/ui/kbd';
 import { notFound } from 'next/navigation';
 import { isMobileDevice } from '@/lib/utils';

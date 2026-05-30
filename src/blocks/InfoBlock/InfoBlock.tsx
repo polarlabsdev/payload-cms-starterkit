@@ -5,9 +5,9 @@ import { RichText } from '@/components/RichText';
 import { cn } from '@/lib/utils';
 import { getLinkUrl } from '@/fields/link/utils';
 import type { CustomLinkType } from '@/fields/link/config';
-import { Icon } from '@/components/ui/Icon';
+import { Icon } from '@/components/ui/icon';
 import { TAILWIND_THEME_COLORS, type TailwindThemeColorKey } from '@/lib/colors';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui/button';
 
 /**
  * THEME CONFIGURATION

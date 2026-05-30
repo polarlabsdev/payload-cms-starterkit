@@ -6,7 +6,7 @@ import { CustomLink } from '@/fields/link/CustomLink';
 import { CustomLinkType, getLinkUrl } from '@/fields/link';
 import { TAILWIND_THEME_COLORS, TailwindThemeColorKey } from '@/lib/colors';
 import { OptimizedImage } from '@/components/ui/OptimizedImage';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import type { Media } from '@/payload-types';
 

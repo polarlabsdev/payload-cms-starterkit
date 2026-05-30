@@ -1,8 +1,8 @@
 import React from 'react';
 import { Story, Media } from '@/payload-types';
-import { Badge } from '@/components/ui/Badge';
+import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
-import { Icon } from '@/components/ui/Icon';
+import { Icon } from '@/components/ui/icon';
 import { RichText } from '@/components/RichText';
 import { RenderBlocks } from '@/blocks/RenderBlocks';
 import { OptimizedImage } from '@/components/ui/OptimizedImage';

@@ -1,185 +1,280 @@
 # Payload CMS v3 + Next.js 15 Starter Kit
 
-This project provides a comprehensive starter kit for building websites using Payload CMS v3 integrated with Next.js 15 (App Router). It serves as a foundation with common features, best practices, and a clear structure for efficient development.
+A production-ready starter kit for building multilingual, block-based websites with Payload CMS v3 and Next.js 15 (App Router).
+
+## Stack
+
+| Layer | Technology |
+|---|---|
+| Framework | Next.js 15 (App Router, Turbopack) |
+| CMS | Payload CMS v3 |
+| Database | PostgreSQL (local or Supabase) |
+| Media storage | S3-compatible (Supabase Storage or any S3 provider) |
+| Rich text | Lexical editor |
+| UI components | shadcn/ui + Tailwind CSS |
+| i18n | next-intl (en, ar, fr, es, ru) |
+| Email | Nodemailer / Zeptomail SMTP + React Email |
+| Error tracking | Sentry |
+| E2E tests | Playwright |
 
 ## Features
 
-- **Payload CMS v3:** Integrated CMS for managing content.
-- **Next.js 15 App Router:** Modern React framework for the frontend.
-- **Postgres Database:** Powered by Supabase or managed Postgres.
-- **S3 Media Uploads:** Powered by Supabase or managed S3.
-- **Lexical Rich Text Editor:** Powerful and extensible rich text editing.
-- **Block-Based Page Building:** Dynamically render page layouts using predefined Blocks in the `Pages` collection.
-- **Access Control:** Granular control over collection and field access (see `src/accessControl`).
-- **Live Preview:** Real-time preview of draft content changes from the Payload admin panel.
-- **SEO Fields:** Basic SEO meta title and description fields included in the `Pages` collection.
-- **Shadcn/ui:** UI components are managed using Shadcn/ui.
-- **Tailwind CSS:** Utility-first CSS framework for styling.
-- **ESLint & Prettier:** Code linting and formatting configured.
-- **TypeScript:** Strong typing throughout the project.
+- **Block-based page building** — compose pages from reusable blocks in the Payload admin
+- **Granular access control** — `domain:resource:action` permission strings with four built-in roles
+- **shadcn/ui + Tailwind CSS** — pre-wired component library with RTL-friendly logical CSS classes
+- **S3 media uploads** — pluggable S3-compatible storage (Supabase Storage by default, falls back to local disk)
+- **Live preview** — real-time draft preview from the Payload admin panel
+- **SEO plugin** — meta title/description on Pages and Stories
+- **Search plugin** — full-text search across content
+- **Import/export plugin** — export and re-seed collections via JSON fixtures
+- **Multilingual** — next-intl locale routing (en, ar, fr, es, ru); RTL-ready throughout
+- **Announcement bar global** — site-wide configurable banner
+- **Stories collection** — blog/news with categories
+- **Altcha CAPTCHA** — spam protection on public-facing forms
+- **React Email + Zeptomail SMTP** — transactional emails with pre-built templates
+- **Sentry** — error tracking wired up on both client and server
 
 ## Project Structure
 
 ```
 /
-├── public/                     # Static assets
+├── e2e/                        # Playwright end-to-end tests
+├── messages/                   # next-intl translation files (en, ar, fr, es, ru)
+├── seed/
+│   ├── fixtures/               # JSON fixture files for seeding
+│   ├── utils/                  # Seed utilities (relationship mapping, state, etc.)
+│   ├── seed.ts                 # Main seed entry point
+│   └── seedState.json          # Tracks seeded IDs — do not edit manually
 ├── src/
-│   ├── payload-types.ts        # Auto-generated Payload types
-│   ├── payload.config.ts       # Main Payload CMS configuration
 │   ├── accessControl/          # Reusable access control functions
 │   ├── app/
-│   │   ├── (frontend)/         # Next.js frontend routes & layout
-│   │   ├── (payload)/          # Payload admin UI routes & layout
-│   │   └── preview/            # Routes for Live Preview functionality
-│   ├── blocks/                 # Definitions and React components for Page Blocks
-│   ├── collections/            # Payload Collection definitions (e.g., Pages, Users, Media)
-│   ├── components/             # Shared React components (UI, RichText, etc.)
-│   ├── fields/                 # Reusable Payload Field definitions (e.g., slug, link, seo)
-│   ├── globals/                # Payload Global definitions (e.g., Header, Footer)
-│   ├── hooks/                  # Payload Hooks (e.g., populatePublishedAt)
-│   ├── lib/                    # Utility functions and shared types
-│   └── providers/              # React Context Providers (e.g., Theme, Collection)
-├── next.config.mjs             # Next.js configuration
-├── Dockerfile                  # Docker configuration (Optional)
-├── docker-compose.yml          # Docker Compose configuration (Optional)
-├── package.json                # Project dependencies and scripts
-└── tsconfig.json               # TypeScript configuration
+│   │   ├── (frontend)/         # Next.js frontend routes and layout
+│   │   ├── (payload)/          # Payload admin UI routes
+│   │   └── preview/            # Live preview init/exit routes
+│   ├── blocks/                 # Block configs + React components
+│   ├── collections/            # Payload collections (Pages, Stories, StoryCategories, Media, Videos, Users)
+│   ├── components/             # Shared React components
+│   ├── emailTemplates/         # React Email templates
+│   ├── fields/                 # Reusable Payload field definitions
+│   ├── globals/                # Payload globals (Header, Footer, AnnouncementBar, StoriesPage)
+│   ├── hooks/                  # Payload hooks
+│   ├── i18n/                   # next-intl config and routing
+│   ├── lib/                    # Utility functions
+│   ├── migrations/             # Payload DB migrations
+│   ├── providers/              # React context providers
+│   ├── payload-types.ts        # Auto-generated — do not edit
+│   ├── payload.config.ts       # Main Payload configuration
+│   └── plugins.ts              # Payload plugins (SEO, search, storage, import/export)
+├── .env.example                # Environment variable template
+└── playwright.config.ts        # Playwright configuration
 ```
 
-## Getting Started
+## Setup
 
 ### Prerequisites
 
-- Node.js (v21 or later recommended)
+- Node.js v21+
 - npm
-- Postgres database (local or cloud-hosted like Supabase)
+- PostgreSQL database (local or cloud-hosted)
 
-### Environment Variables
+> **MongoDB**: The repo ships with `@payloadcms/db-postgres`, but Payload supports MongoDB equally well. Swap the adapter in `src/payload.config.ts` and update `DATABASE_URI` in `.env` if you prefer Mongo.
 
-Create a `.env` file in the root of the project based on the `.env.template` file. If you add new env vars make sure to update the template for others & CI/CD.
+### 1. Clone and install
 
-### Installation
+```bash
+git clone <repository-url>
+cd payload-cms-starterkit
+npm install
+```
 
-1.  Clone the repository:
-    ```bash
-    git clone <repository-url>
-    cd payload-cms-starterkit
-    ```
-2.  Install dependencies:
-    ```bash
-    npm install
-    ```
+### 2. Configure environment variables
 
-### Running the Development Server
+Copy `.env.example` to `.env` and fill in your values:
 
-1.  Start the development server (includes Next.js and Payload):
-    ```bash
-    npm run dev
-    ```
-2.  Access the frontend: [http://localhost:3000](http://localhost:3000)
-3.  Access the Payload admin panel: [http://localhost:3000/admin](http://localhost:3000/admin)
+```bash
+cp .env.example .env
+```
 
-    - The first time you access the admin panel, you'll be prompted to create an initial admin user.
+| Variable | Required | Description |
+|---|---|---|
+| `DATABASE_URI` | ✅ | PostgreSQL connection string |
+| `PAYLOAD_SECRET` | ✅ | Secret key for Payload (JWT signing, etc.) |
+| `PREVIEW_SECRET` | ✅ | Secret for live preview token validation |
+| `NEXT_PUBLIC_SERVER_URL` | ✅ | Full URL of the app (e.g. `http://localhost:3000`) |
+| `NEXT_PUBLIC_WEBSITE_NAME` | ✅ | Used in the UI and email templates |
+| `DEFAULT_THEME` | ✅ | `light` or `dark` |
+| `SUPABASE_STORAGE_BUCKET` | S3 only | Storage bucket name |
+| `SUPABASE_STORAGE_REGION` | S3 only | Region (omit to use local file storage) |
+| `SUPABASE_URL` | S3 only | Supabase project URL |
+| `SUPABASE_STORAGE_ACCESS_KEY` | S3 only | S3 access key |
+| `SUPABASE_STORAGE_SECRET_KEY` | S3 only | S3 secret key |
+| `NEXT_PUBLIC_SENTRY_DSN` | Optional | Sentry DSN for error tracking |
+
+> S3 storage is enabled automatically when `SUPABASE_STORAGE_REGION` is set. Without it, Payload falls back to local disk storage — fine for development.
+
+### 3. Run migrations
+
+Run migrations (or just skip straight to seeding — `db:seed` runs migrations automatically):
+
+```bash
+npm run db:seed
+```
+
+The seed script creates a superadmin user automatically if the database is empty. See [Database Seeding](#database-seeding-workflow) below.
+
+## Development
+
+```bash
+npm run dev           # Start dev server with Turbopack (fast refresh)
+npm run devsafe       # Clear .next cache, then start dev server (use when you hit stale-cache issues)
+```
+
+### Regenerate types
+
+After changing any collection, global, or field config, regenerate Payload's TypeScript types:
+
+```bash
+npm run generate:types
+```
+
+Never edit `src/payload-types.ts` directly — it is overwritten on every run.
+
+## Database Seeding Workflow
+
+The recommended workflow for a clean local environment is:
+
+```
+db:reset → db:seed → regenerate media → run tests
+```
+
+### Step-by-step
+
+1. **Reset the database** — drops all tables and clears seed state:
+   ```bash
+   npm run db:reset
+   ```
+
+2. **Seed the database**:
+   ```bash
+   npm run db:seed
+   ```
+   If the database has no users, the seed script automatically creates a superadmin. No manual admin setup needed.
+
+3. **Regenerate media sizes** — start the dev server, go to `/admin/collections/media`, click **Regenerate All Media Sizes**.
+
+### Seeded user accounts
+
+After seeding, the following accounts are available:
+
+| Email | Password | Role |
+|---|---|---|
+| `admin@seed.local` | `SeedAdmin1!` | Superadmin |
+| `website-admin@seed.local` | `SeedWebAdmin1!` | Website Admin |
+| `editor@seed.local` | `SeedEditor1!` | Website Editor |
+| `reader@seed.local` | `SeedReader1!` | Website Reader |
+
+> These are development-only credentials. Never use them in production.
+
+The seed system is resumable. If it fails partway through, re-run `npm run db:seed` — it skips already-processed records using `seed/seedState.json`.
+
+### Fixtures
+
+Fixture files live in `seed/fixtures/`. They are JSON exports from a previous database (via the import/export plugin) and are used as starter content for development and testing. Replace them with project-specific data before production use.
+
+> **Important:** Fixtures must be sorted by `createdAt` ascending so relationship dependencies resolve in the correct order.
+
+### Updating fixtures
+
+1. Make your content changes in the Payload admin.
+2. Export the collection via the import/export plugin.
+3. Replace the corresponding file in `seed/fixtures/`.
+4. Delete `seed/seedState.json` if you want a clean re-seed next time.
+
+## Testing
+
+Playwright E2E tests live in `e2e/`. The suite covers auth flows, access control, blocks, locale switching, navigation, search, and more.
+
+### Run tests
+
+```bash
+npm run test:e2e              # Headless, 2 workers
+npm run test:e2e:ui           # Playwright UI mode (interactive, 1 worker)
+npm run test:e2e:ui:headed    # Playwright UI mode with visible browser
+```
+
+Tests require a running server at port 3000. Playwright will use the production build (`npm run start`) and reuse an existing server if one is already listening. In CI, the server must be started separately before running tests.
+
+> **Preferred workflow**: use `db:reset → db:seed → test:e2e` rather than manual browser testing. The seed state is deterministic, so tests always run against the same known data.
+
+### Unit tests
+
+```bash
+npm run test:unit     # Vitest, runs tests in src/
+```
 
 ## Key Concepts
 
-### Payload Configuration (`payload.config.ts`)
+### Collections and Globals
 
-This is the heart of the Payload integration (`src/payload.config.ts`). It defines:
+| Name | Type | Description |
+|---|---|---|
+| `Pages` | Collection | Block-based pages with SEO fields and live preview |
+| `Stories` | Collection | Blog/news articles with categories |
+| `StoryCategories` | Collection | Taxonomy for Stories |
+| `Media` | Collection | Image and file uploads (S3-backed) |
+| `Videos` | Collection | Video references |
+| `Users` | Collection | Auth users with role-based permissions |
+| `Header` | Global | Site header navigation config |
+| `Footer` | Global | Site footer config |
+| `AnnouncementBar` | Global | Site-wide announcement banner |
+| `StoriesPage` | Global | Stories listing page configuration |
 
-- Collections and Globals available in the CMS.
-- Database adapter (`@payloadcms/db-postgres`).
-- Rich Text editor (`lexicalEditor`).
-- GraphQL and REST API settings.
-- Admin panel customization.
-- Plugins (if any).
+### Block-based page building
 
-### Collections & Globals
+Pages use a `blocks` field to compose layouts from predefined blocks. Each block lives in `src/blocks/` with a `config.ts` (Payload fields) and a React component. `RenderBlocks.tsx` iterates over the page's `layout` array and renders the matching component for each entry.
 
-- **Collections:** Define repeatable content structures (e.g., `Pages`, `Users`, `Media`). Found in `src/collections/`. Each collection has its own configuration file defining fields, hooks, access control, and admin UI settings.
-- **Globals:** Define singleton content structures (e.g., `Header`, `Footer`). Found in `src/globals/`. Useful for site-wide settings or content that doesn't repeat.
+Available blocks: `Hero`, `StandardContentBlock`, `SimpleRichTextBlock`, `InfoBlock`, `FloatingMedia`, `MediaInline`, `WideImageBlock`, `ImageGridBlock`, `IconRow`, `InlineItemBlock`, `StoryCards`, `YoutubeEmbed`, `InlineYoutubeEmbed`, `Button`, `ButtonInline`.
 
-### Access Control
+### Access control
 
-Access control functions are defined in `src/accessControl/`. These functions determine who can perform read, create, update, or delete operations on Collections and Globals, or access specific fields.
+Permissions follow the pattern `domain:resource:action` (e.g. `website:pages:update`). Four built-in roles are defined in `src/accessControl/roles.ts`:
 
-- `anyone.ts`: Allows access to everyone (public).
-- `isLoggedIn.ts`: Allows access only to authenticated users.
-- `isRole.ts`: Allows access based on user roles (e.g., `admin`).
+| Role | Description |
+|---|---|
+| `superadmin` | Bypasses all permission checks — full system access |
+| `website-admin` | Full CRUD on all content; can create and read users |
+| `website-editor` | Create/read/update on content; cannot delete or manage users |
+| `website-reader` | Read-only access to all content |
 
-These functions are imported and used within the `access` properties of Collection and Global configurations. For example, in `src/collections/Users/index.ts`:
+Users can hold multiple roles; permissions are additive. The `superadmin` role uses an `isSuper: true` flag rather than listing individual permissions — it short-circuits all access checks.
 
-```typescript
-// Example from src/collections/Users/index.ts
-import { isRole } from '../../accessControl/isRole';
-import { isLoggedIn } from '../../accessControl/isLoggedIn';
-// ...
-const Users: CollectionConfig = {
-  // ...
-  access: {
-    read: isLoggedIn, // Logged in users can read user data
-    create: isRole('admin'), // Only admins can create new users
-    update: isLoggedIn, // Logged in users can update their own data (or admins)
-    delete: isRole('admin'), // Only admins can delete users
-    admin: isRole('admin'), // Only admins can access admin functions for users
-  },
-  // ...
-};
-```
+Access control functions in `src/accessControl/` (`anyone`, `isLoggedIn`, `isAdmin`, `hasPermission`) are imported directly into collection and global configs. `hasPermission` accepts a `PermissionString` and checks it against the requesting user's effective permission set.
 
-For more details, see the [Payload Access Control Documentation](https://payloadcms.com/docs/access-control/overview).
+### Live preview
 
-### Block-Based Content (`Pages` Collection)
+1. Click **Preview** in the Payload admin for a Page document.
+2. The app routes to `/preview/init`, setting a preview cookie.
+3. `LivePreviewListener` subscribes to real-time draft changes from the Payload API.
+4. Navigate to `/preview/exit` to leave preview mode.
 
-The `Pages` collection (`src/collections/Pages/index.ts`) uses a `blocks` field type. This allows content editors to build pages dynamically by adding, removing, and reordering predefined "Blocks".
+### i18n
 
-- **Block Definitions:** Each block is defined in `src/blocks/`. A block typically consists of:
-  - `config.ts`: Defines the Payload fields for the block.
-  - `Component.tsx` / `index.tsx`: The React component responsible for rendering the block on the frontend. Variations (like `Centered.tsx`, `LeftAligned.tsx` for the Hero block) can provide different layouts for the same block data.
-- **Rendering Blocks:** The `src/blocks/RenderBlocks.tsx` component iterates over the `layout` field (the array of blocks) on a Page document and renders the corresponding React component for each block. This is used in the frontend page template (`src/app/(frontend)/[slug]/page.tsx`).
+`next-intl` handles locale routing via middleware. Message files are in `messages/` (en, ar, fr, es, ru). Do not inject locale into `href` attributes manually — the middleware handles locale prefixing automatically.
 
-This approach promotes abstract thinking and reusability. New page sections can often be created simply by defining a new Block, without needing to change the core page rendering logic.
+### S3 media
 
-Learn more about [Payload Blocks](https://payloadcms.com/docs/fields/blocks).
+The S3 storage plugin is conditionally enabled based on the presence of `SUPABASE_STORAGE_REGION`. The `Media` collection's `adminThumbnail` builds direct public Supabase Storage URLs, bypassing Payload's API proxy (which is incompatible with `disablePayloadAccessControl`). If you switch to a different storage provider, revisit `src/collections/Media/config.ts`.
 
-### Live Preview
+## AI Agent Instructions
 
-This starter kit implements Payload's Live Preview feature:
+This repo includes instruction files for AI coding assistants:
 
-1.  **Initialization:** Clicking the "Preview" button in the Payload admin panel for a document (like a Page) navigates the user to `/preview/init?url=/path/to/page&token=PAYLOAD_JWT`.
-2.  **Listener:** The `src/components/LivePreviewListener.tsx` component (used in the frontend layout `src/app/(frontend)/layout.tsx`) detects the preview state (via cookies set during initialization).
-3.  **Data Fetching:** When in preview mode, the listener uses Payload's utility functions to subscribe to changes for the specific document being previewed. It fetches draft versions of the data directly from the Payload API in real-time.
-4.  **Rendering:** The fetched draft data is passed down to the page components, allowing instant visualization of unpublished changes.
-5.  **Exiting:** Navigating to `/preview/exit` clears the preview cookies and returns the user to the standard published view.
+- **`.github/copilot-instructions.md`** — always-active rules for GitHub Copilot covering code style, Tailwind conventions, UI component choices, PayloadCMS patterns, and workflow rules
+- **`CLAUDE.md`** — references the same instruction files for Claude-based agents
+- **`.github/instructions/*.instructions.md`** — topic-specific deep-dives (auth, seeding, email, Next.js App Router, PayloadCMS, Playwright) that agents load on demand based on the files they're editing
 
-Explore the [Payload Live Preview Documentation](https://payloadcms.com/docs/live-preview/overview) for more information.
+Agents working in this repo should be able to operate safely and follow project conventions without manual guidance.
 
-### Deployment (Work in Progress)
+## Deployment
 
-We intend to deploy this project using:
-
-- **Vercel:** For hosting the Next.js application.
-- **Supabase:** For hosting the PostgreSQL database.
-
-Configuration and documentation for this deployment strategy are still under development.
-
-## Stack-Specific Decisions
-
-These are implementation choices made for the default stack in this repository. If you change providers or architecture, verify whether they are still needed.
-
-- **Seed fixtures are fictional by default**
-  - Files in `seed/fixtures/` are starter placeholders for development/testing and should be replaced for production projects.
-- **Supabase media thumbnails in admin ([`src/collections/Media/config.ts`](src/collections/Media/config.ts))**
-  - The `upload.adminThumbnail` callback builds a direct public Supabase Storage URL from the stored filename.
-  - This avoids requests going through Payload's `/api/media/file/*` proxy path, which is incompatible with the current S3 plugin setup when `disablePayloadAccessControl` behavior is in play.
-  - If you move to local storage or another object storage adapter, you may want to revisit this behavior.
-
-## Available Scripts
-
-- `npm run dev`: Starts the development server (Next.js + Payload).
-- `npm run build`: Builds the Next.js application and Payload admin panel for production.
-- `npm start`: Starts the production server (requires running `build` first).
-- `npm run payload`: Runs Payload-specific commands (e.g., `npm run payload migrate`).
-- `npm run generate:types`: Generates Payload TypeScript types based on your config (`src/payload-types.ts`).
-- `npm run payload generate:importmap`: Generates an import map for Payload collections and globals.
-- `npm run lint`: Lints the codebase using ESLint.
+The app is designed to deploy as a Docker container or on Vercel with a managed PostgreSQL database. See `Dockerfile` for container configuration. Ensure all required environment variables are set in your deployment environment.

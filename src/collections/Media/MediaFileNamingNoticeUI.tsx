@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Alert, AlertTitle, AlertDescription } from '@/components/ui/Alert';
+import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
 import { RiAlertFill } from '@remixicon/react';
 
 export const MediaFileNamingNoticeUI: React.FC = () => {

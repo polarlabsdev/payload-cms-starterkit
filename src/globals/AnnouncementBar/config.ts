@@ -2,7 +2,7 @@ import { linkField } from '@/fields/link/config';
 import { anyone } from '@/accessControl/anyone';
 import { hasPermission } from '@/accessControl/hasPermission';
 import { getBrandColorOptions } from '@/lib/colors';
-import { GlobalConfig } from 'node_modules/payload/dist/globals/config/types';
+import { GlobalConfig } from 'payload';
 
 export const AnnouncementBar: GlobalConfig = {
   slug: 'announcement-bar',

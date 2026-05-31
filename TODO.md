@@ -12,7 +12,6 @@
 - ~~Documentation~~
 - Docker
 
-
 ## Future Improvements
 
 - caching for globals & other static collections & sitemap

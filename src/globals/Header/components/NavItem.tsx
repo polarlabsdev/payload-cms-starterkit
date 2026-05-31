@@ -33,7 +33,7 @@ export const NavItem: React.FC<NavItemProps> = ({
             className="no-underline hover:no-underline"
             renderAs="link"
           >
-            <div className="h-auto w-max items-center justify-center px-0 py-0 text-sm font-semibold text-foreground decoration-primary decoration-2 underline-offset-4 transition-colors hover:text-primary hover:underline focus:outline-none disabled:pointer-events-none disabled:opacity-50">
+            <div className="h-auto w-max items-center justify-center px-0 py-0 text-sm font-semibold text-foreground decoration-foreground decoration-2 underline-offset-8 transition-colors hover:underline focus:outline-none disabled:pointer-events-none disabled:opacity-50">
               {navItem.linkConfig?.label}
             </div>
           </CustomLink>

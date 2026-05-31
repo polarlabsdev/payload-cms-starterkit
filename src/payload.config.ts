@@ -116,6 +116,7 @@ export default buildConfig({
   },
   db: postgresAdapter({
     pool: createPostgresPoolConfig(),
+    push: false,
   }),
   sharp,
   plugins: [...plugins],

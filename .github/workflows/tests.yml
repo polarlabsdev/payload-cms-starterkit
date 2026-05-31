@@ -27,7 +27,7 @@ jobs:
       image: mcr.microsoft.com/playwright:v1.60.0-noble
 
     env:
-      POSTGRES_URL: postgresql://testuser:testpass@postgres:5432/testdb
+      DATABASE_URI: postgresql://testuser:testpass@postgres:5432/testdb
       NEXT_PUBLIC_SERVER_URL: http://localhost:3000
       CI: true
       PLAYWRIGHT_FORCE_TTY: 1

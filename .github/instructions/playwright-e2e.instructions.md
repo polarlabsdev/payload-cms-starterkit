@@ -88,12 +88,12 @@ Authentication is handled by a **setup project** (`e2e/auth.setup.ts`) that runs
 
 ### Available Identities
 
-| `storageState` file                    | Who                                          |
-| -------------------------------------- | -------------------------------------------- |
-| `playwright/.auth/admin.json`          | Seed admin (`superadmin` role)               |
-| `playwright/.auth/website-admin.json`  | Website admin (full content control)         |
-| `playwright/.auth/website-editor.json` | Website editor (create/edit, no delete)      |
-| `playwright/.auth/website-reader.json` | Website reader (read-only)                   |
+| `storageState` file                    | Who                                     |
+| -------------------------------------- | --------------------------------------- |
+| `playwright/.auth/admin.json`          | Seed admin (`superadmin` role)          |
+| `playwright/.auth/website-admin.json`  | Website admin (full content control)    |
+| `playwright/.auth/website-editor.json` | Website editor (create/edit, no delete) |
+| `playwright/.auth/website-reader.json` | Website reader (read-only)              |
 
 ### Writing an authenticated test
 

@@ -108,6 +108,18 @@
             "textColor": "White",
             "newTab": false
           }
+        },
+        {
+          "id": "starterkit-group-1-item-4",
+          "link": {
+            "linkType": "manual",
+            "url": "/blocks-showcase",
+            "label": "Blocks Showcase",
+            "buttonType": "link",
+            "buttonColor": "Teal",
+            "textColor": "White",
+            "newTab": false
+          }
         }
       ]
     },

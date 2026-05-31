@@ -45,12 +45,7 @@ export const defaultLexical: Config['editor'] = lexicalEditor({
       }),
       BlocksFeature({
         inlineBlocks: [ButtonInlineBlock],
-        blocks: [
-          MediaInlineBlock,
-          FloatingMediaBlock,
-          InlineItemBlock,
-          InlineYoutubeEmbedBlock,
-        ],
+        blocks: [MediaInlineBlock, FloatingMediaBlock, InlineItemBlock, InlineYoutubeEmbedBlock],
       }),
       FixedToolbarFeature(),
       InlineToolbarFeature(),

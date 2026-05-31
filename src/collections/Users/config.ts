@@ -50,11 +50,10 @@ export const Users: CollectionConfig = {
       required: true,
       defaultValue: ['website-reader'],
       saveToJWT: true,
-      options: Object.entries(ROLES)
-        .map(([key, value]) => ({
-          label: value.name,
-          value: key,
-        })),
+      options: Object.entries(ROLES).map(([key, value]) => ({
+        label: value.name,
+        value: key,
+      })),
       hooks: {
         beforeChange: [protectSuperadminRole],
       },

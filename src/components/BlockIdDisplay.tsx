@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { Button, useFormFields } from '@payloadcms/ui';
-import { convertTitleToSlug } from 'src/lib/utils';
+import { convertTitleToSlug } from '@/lib/utils';
 import { copyToClipboard } from '@/lib/clipboardUtils';
 
 type Props = {

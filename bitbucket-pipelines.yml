@@ -19,8 +19,7 @@ definitions:
         services:
           - postgres
         script:
-          - export
-            POSTGRES_URL="postgresql://testuser:testpass@localhost:5432/testdb"
+          - export DATABASE_URI="postgresql://testuser:testpass@localhost:5432/testdb"
           - export NEXT_PUBLIC_SERVER_URL="http://localhost:3000"
           - export CI=true
           - export PLAYWRIGHT_FORCE_TTY=1
@@ -39,5 +38,5 @@ definitions:
 
 pipelines:
   pull-requests:
-    "**":
+    '**':
       - step: *run-tests

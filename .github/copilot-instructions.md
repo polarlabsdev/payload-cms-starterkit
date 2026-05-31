@@ -50,11 +50,11 @@ These rules apply to every request in this repository.
 ## Instruction Files
 
 Look up the relevant file when working in these areas — do not guess at conventions:
-| When you're working on...                                                                | Read this file                                                   |
+| When you're working on... | Read this file |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| Auth, access control, roles, permissions, `req.user`                                     | `.github/instructions/auth-system.instructions.md`               |
-| Database seeding, resetting, fixtures, seedState                                        | `.github/instructions/database-seeding.instructions.md`          |
-| Email sending, Zeptomail SMTP, React Email templates                                     | `.github/instructions/email-configuration.instructions.md`       |
-| App Router, data fetching, blocks, route handlers, metadata, images, links, middleware   | `.github/instructions/nextjs.instructions.md`                    |
-| Collections, globals, hooks, fields, admin UI, migrations, PayloadCMS config             | `.github/instructions/payloadcms.instructions.md`                |
-| E2E tests in `e2e/`                                                                      | `.github/instructions/playwright-e2e.instructions.md`            |
+| Auth, access control, roles, permissions, `req.user` | `.github/instructions/auth-system.instructions.md` |
+| Database seeding, resetting, fixtures, seedState | `.github/instructions/database-seeding.instructions.md` |
+| Email sending, Zeptomail SMTP, React Email templates | `.github/instructions/email-configuration.instructions.md` |
+| App Router, data fetching, blocks, route handlers, metadata, images, links, middleware | `.github/instructions/nextjs.instructions.md` |
+| Collections, globals, hooks, fields, admin UI, migrations, PayloadCMS config | `.github/instructions/payloadcms.instructions.md` |
+| E2E tests in `e2e/` | `.github/instructions/playwright-e2e.instructions.md` |

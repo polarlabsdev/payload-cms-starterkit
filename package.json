@@ -10,7 +10,7 @@
     "devsafe": "rm -rf .next && cross-env NODE_OPTIONS=--no-deprecation next dev",
     "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
     "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
-    "lint": "cross-env NODE_OPTIONS=--no-deprecation next lint",
+    "lint": "cross-env NODE_OPTIONS=--no-deprecation eslint .",
     "test:unit": "vitest run src/ --passWithNoTests",
     "test:e2e": "TEST_MODE=true playwright test --workers=2",
     "test:e2e:ui": "TEST_MODE=true playwright test --ui --workers=1",

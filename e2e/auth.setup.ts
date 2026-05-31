@@ -1,6 +1,5 @@
 import { config as dotenvConfig } from 'dotenv';
-import { test as setup, expect } from '@playwright/test';
-import { SignJWT } from 'jose';
+import { test as setup, expect, type APIRequestContext } from '@playwright/test';
 import fs from 'fs';
 import path from 'path';
 import {
@@ -18,7 +17,6 @@ import {
 dotenvConfig();
 
 const AUTH_DIR = path.join(process.cwd(), 'playwright/.auth');
-const SEED_STATE_PATH = path.join(process.cwd(), 'seed/seedState.json');
 
 // --- Admin auth ---
 
@@ -41,7 +39,7 @@ setup('authenticate as seed admin', async ({ request }) => {
 // ---------------------------------------------------------------------------
 
 const setupRoleUser = async (
-  request: Parameters<Parameters<typeof setup>[1]>[0]['request'],
+  request: APIRequestContext,
   {
     email,
     password,

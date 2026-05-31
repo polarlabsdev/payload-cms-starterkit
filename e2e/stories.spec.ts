@@ -38,19 +38,19 @@ test.describe('Stories page — listing', () => {
 });
 
 test.describe('Stories page — sidebar category navigation', () => {
-  // BUG: stories/page.tsx renders <StoriesGrid> directly instead of <StoriesGallery>,
-  // so the <StoriesSidebar> with clickable category links is never rendered.
-  // These tests are skipped until the page is updated to use StoriesGallery.
-  test.skip('desktop sidebar renders category links', async ({ page }) => {
+  test('desktop sidebar renders category links', async ({ page }) => {
     await page.goto('/stories');
     await expect(page.getByRole('heading', { name: /categories/i })).toBeVisible({
       timeout: 10_000,
     });
   });
 
-  test.skip('clicking a sidebar category link filters stories and updates URL', async ({ page }) => {
+  test('clicking a sidebar category link filters stories and updates URL', async ({ page }) => {
     await page.goto('/stories');
-    await page.getByRole('link', { name: /engineering/i }).first().click();
+    await page
+      .getByRole('link', { name: /engineering/i })
+      .first()
+      .click();
     await expect(page).toHaveURL(/category=engineering/, { timeout: 10_000 });
     await expect(page.getByText('Modeling Content for Reusable Blocks')).toBeVisible({
       timeout: 10_000,

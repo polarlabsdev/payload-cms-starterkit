@@ -1,4 +1,4 @@
-import PageComponent, { generateMetadata } from './[slug]/page';
+import PageComponent, { generateMetadata } from './[...slugArray]/page';
 
 export default PageComponent;
 

@@ -1,0 +1,15 @@
+{
+  "id": 1,
+  "allStoriesLabel": "All Stories",
+  "defaultDescription": "Guides, updates, and examples for building with this starterkit.",
+
+  "meta": {
+    "title": "Starterkit Stories",
+    "image": 13,
+    "description": "Stories and guides for the Payload CMS starterkit."
+  },
+  "_status": "published",
+  "updatedAt": "2025-10-12T02:39:34.953Z",
+  "createdAt": "2025-10-12T02:39:02.835Z",
+  "globalType": "stories-page"
+}

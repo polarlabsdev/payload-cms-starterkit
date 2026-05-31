@@ -1,0 +1,40 @@
+{
+  "NotFound": {
+    "notFound": "Cette page n'a pas pu être trouvée.",
+    "goHome": "Retourner à l'accueil",
+    "didYouMean": "Vouliez-vous dire ?",
+    "searchHint": "Appuyez sur {hotkey} pour chercher",
+    "noSuggestions": "Essayez de rechercher ce dont vous avez besoin",
+    "search": "Rechercher"
+  },
+  "AuthError": {
+    "title": "Accès refusé",
+    "description": "Vous n'avez pas la permission d'accéder à cette page ou votre authentification a échoué. Cela peut être dû à un lien de connexion expiré ou invalide, ou à des autorisations insuffisantes. Veuillez réessayer, demander un nouveau lien ou contacter le support si le problème persiste."
+  },
+  "ThemeToggle": {
+    "toggleDark": "Activer le mode sombre",
+    "toggleLight": "Activer le mode clair"
+  },
+  "Search": {
+    "placeholder": "Rechercher des pages et des histoires...",
+    "noResults": "Aucun résultat trouvé.",
+    "heading": "Rechercher des pages et des histoires",
+    "typeMoreChars": "Saisissez au moins 3 caractères pour rechercher",
+    "toSearch": "pour rechercher"
+  },
+  "StoriesSidebar": {
+    "selectCategory": "Sélectionner une catégorie"
+  },
+  "Navigation": {
+    "searchAriaLabel": "Rechercher",
+    "closeMenu": "Fermer le menu",
+    "openMenu": "Ouvrir le menu"
+  },
+  "AnnouncementBar": {
+    "closeAriaLabel": "Fermer l'annonce"
+  },
+  "LanguageSelect": {
+    "placeholder": "Sélectionner une langue",
+    "label": "Langues"
+  }
+}

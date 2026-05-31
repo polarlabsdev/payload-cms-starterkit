@@ -7,9 +7,19 @@ const pagesToSitemap: SitemapMapper = async (payload) => {
     overrideAccess: false,
     draft: false,
     where: {
-      _status: {
-        equals: 'published',
-      },
+      and: [
+        {
+          _status: {
+            equals: 'published',
+          },
+        },
+        {
+          // Exclude pages with noIndex set to true
+          'meta.noIndex': {
+            equals: false,
+          },
+        },
+      ],
     },
     depth: 0,
     limit: 1000,
@@ -17,7 +27,6 @@ const pagesToSitemap: SitemapMapper = async (payload) => {
     select: {
       slug: true,
       updatedAt: true,
-      publishedAt: true,
     },
   });
 
@@ -28,7 +37,7 @@ const pagesToSitemap: SitemapMapper = async (payload) => {
 
     return {
       url: `${baseUrl}/${slug}`,
-      lastModified: page.publishedAt || page.updatedAt,
+      lastModified: page.updatedAt,
       changeFrequency: 'weekly',
       // Home page gets highest priority
       priority: slug === '' ? 1.0 : 0.8,

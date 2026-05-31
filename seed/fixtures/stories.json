@@ -1,0 +1,442 @@
+[
+  {
+    "id": 1,
+    "title": {
+      "en": "Getting Started with the Payload CMS Starterkit"
+    },
+    "slug": "getting-started-with-the-payload-cms-starterkit",
+    "isExternalLink": false,
+    "externalUrl": null,
+    "publishedAt": "2026-05-27T10:30:00.000Z",
+    "categories": [7],
+    "author": 1,
+    "featured": true,
+    "bannerImage": 3,
+    "thumbnail": 13,
+    "summary": {
+      "en": {
+        "root": {
+          "type": "root",
+          "format": "",
+          "indent": 0,
+          "version": 1,
+          "children": [
+            {
+              "type": "paragraph",
+              "format": "",
+              "indent": 0,
+              "version": 1,
+              "children": [
+                {
+                  "mode": "normal",
+                  "text": "A quick guide to understanding the folder structure, content model, and development workflow.",
+                  "type": "text",
+                  "style": "",
+                  "detail": 0,
+                  "format": 0,
+                  "version": 1
+                }
+              ],
+              "direction": null,
+              "textStyle": "",
+              "textFormat": 0
+            }
+          ],
+          "direction": null
+        }
+      }
+    },
+    "body": {
+      "en": {
+        "root": {
+          "type": "root",
+          "format": "",
+          "indent": 0,
+          "version": 1,
+          "children": [
+            {
+              "type": "paragraph",
+              "format": "",
+              "indent": 0,
+              "version": 1,
+              "children": [
+                {
+                  "mode": "normal",
+                  "text": "Start by reviewing the collections and globals, then update the seed fixtures to match your project domain. The starterkit is intentionally generic and designed to be extended.",
+                  "type": "text",
+                  "style": "",
+                  "detail": 0,
+                  "format": 0,
+                  "version": 1
+                }
+              ],
+              "direction": null,
+              "textStyle": "",
+              "textFormat": 0
+            }
+          ],
+          "direction": null
+        }
+      }
+    },
+    "layout": [],
+    "meta": {
+      "title": "Getting Started with the Payload CMS Starterkit",
+      "description": "How to start building with the Payload CMS starterkit.",
+      "image": 13
+    },
+    "_status": "published",
+    "updatedAt": "2026-05-27T10:30:00.000Z",
+    "createdAt": "2026-05-27T10:30:00.000Z"
+  },
+  {
+    "id": 2,
+    "title": {
+      "en": "Modeling Content for Reusable Blocks"
+    },
+    "slug": "modeling-content-for-reusable-blocks",
+    "isExternalLink": false,
+    "externalUrl": null,
+    "publishedAt": "2026-05-27T10:35:00.000Z",
+    "categories": [8],
+    "author": 1,
+    "featured": false,
+    "bannerImage": 4,
+    "thumbnail": 14,
+    "summary": {
+      "en": {
+        "root": {
+          "type": "root",
+          "format": "",
+          "indent": 0,
+          "version": 1,
+          "children": [
+            {
+              "type": "paragraph",
+              "format": "",
+              "indent": 0,
+              "version": 1,
+              "children": [
+                {
+                  "mode": "normal",
+                  "text": "Tips for structuring content so blocks stay flexible across multiple pages.",
+                  "type": "text",
+                  "style": "",
+                  "detail": 0,
+                  "format": 0,
+                  "version": 1
+                }
+              ],
+              "direction": null,
+              "textStyle": "",
+              "textFormat": 0
+            }
+          ],
+          "direction": null
+        }
+      }
+    },
+    "body": {
+      "en": {
+        "root": {
+          "type": "root",
+          "format": "",
+          "indent": 0,
+          "version": 1,
+          "children": [
+            {
+              "type": "paragraph",
+              "format": "",
+              "indent": 0,
+              "version": 1,
+              "children": [
+                {
+                  "mode": "normal",
+                  "text": "Keep content fields focused on intent and avoid hard-coding page-specific assumptions into reusable components. This makes migration and scaling easier.",
+                  "type": "text",
+                  "style": "",
+                  "detail": 0,
+                  "format": 0,
+                  "version": 1
+                }
+              ],
+              "direction": null,
+              "textStyle": "",
+              "textFormat": 0
+            }
+          ],
+          "direction": null
+        }
+      }
+    },
+    "layout": [],
+    "meta": {
+      "title": "Modeling Content for Reusable Blocks",
+      "description": "Content modeling guidance for reusable page blocks.",
+      "image": 14
+    },
+    "_status": "published",
+    "updatedAt": "2026-05-27T10:35:00.000Z",
+    "createdAt": "2026-05-27T10:35:00.000Z"
+  },
+  {
+    "id": 3,
+    "title": {
+      "en": "Seed Data Strategy for New Projects"
+    },
+    "slug": "seed-data-strategy-for-new-projects",
+    "isExternalLink": false,
+    "externalUrl": null,
+    "publishedAt": "2026-05-27T10:40:00.000Z",
+    "categories": [11],
+    "author": 1,
+    "featured": false,
+    "bannerImage": 5,
+    "thumbnail": 15,
+    "summary": {
+      "en": {
+        "root": {
+          "type": "root",
+          "format": "",
+          "indent": 0,
+          "version": 1,
+          "children": [
+            {
+              "type": "paragraph",
+              "format": "",
+              "indent": 0,
+              "version": 1,
+              "children": [
+                {
+                  "mode": "normal",
+                  "text": "How to keep seed data useful for local testing while staying domain-neutral.",
+                  "type": "text",
+                  "style": "",
+                  "detail": 0,
+                  "format": 0,
+                  "version": 1
+                }
+              ],
+              "direction": null,
+              "textStyle": "",
+              "textFormat": 0
+            }
+          ],
+          "direction": null
+        }
+      }
+    },
+    "body": {
+      "en": {
+        "root": {
+          "type": "root",
+          "format": "",
+          "indent": 0,
+          "version": 1,
+          "children": [
+            {
+              "type": "paragraph",
+              "format": "",
+              "indent": 0,
+              "version": 1,
+              "children": [
+                {
+                  "mode": "normal",
+                  "text": "Use concise fictional content and stable test fixtures. Keep IDs deterministic where tests depend on status and slug behavior.",
+                  "type": "text",
+                  "style": "",
+                  "detail": 0,
+                  "format": 0,
+                  "version": 1
+                }
+              ],
+              "direction": null,
+              "textStyle": "",
+              "textFormat": 0
+            }
+          ],
+          "direction": null
+        }
+      }
+    },
+    "layout": [],
+    "meta": {
+      "title": "Seed Data Strategy for New Projects",
+      "description": "Practical seed data guidance for starter projects.",
+      "image": 15
+    },
+    "_status": "published",
+    "updatedAt": "2026-05-27T10:40:00.000Z",
+    "createdAt": "2026-05-27T10:40:00.000Z"
+  },
+  {
+    "id": 201,
+    "title": {
+      "en": "E2E Story Published"
+    },
+    "slug": "e2e-story-published",
+    "isExternalLink": false,
+    "externalUrl": null,
+    "publishedAt": "2026-05-27T10:45:00.000Z",
+    "categories": [7],
+    "author": 1,
+    "featured": false,
+    "bannerImage": 3,
+    "thumbnail": 3,
+    "summary": {
+      "en": {
+        "root": {
+          "type": "root",
+          "format": "",
+          "indent": 0,
+          "version": 1,
+          "children": [
+            {
+              "type": "paragraph",
+              "format": "",
+              "indent": 0,
+              "version": 1,
+              "children": [
+                {
+                  "mode": "normal",
+                  "text": "Published e2e story fixture.",
+                  "type": "text",
+                  "style": "",
+                  "detail": 0,
+                  "format": 0,
+                  "version": 1
+                }
+              ],
+              "direction": null,
+              "textStyle": "",
+              "textFormat": 0
+            }
+          ],
+          "direction": null
+        }
+      }
+    },
+    "body": {
+      "en": {
+        "root": {
+          "type": "root",
+          "format": "",
+          "indent": 0,
+          "version": 1,
+          "children": [
+            {
+              "type": "paragraph",
+              "format": "",
+              "indent": 0,
+              "version": 1,
+              "children": [
+                {
+                  "mode": "normal",
+                  "text": "This story exists for access-control e2e coverage.",
+                  "type": "text",
+                  "style": "",
+                  "detail": 0,
+                  "format": 0,
+                  "version": 1
+                }
+              ],
+              "direction": null,
+              "textStyle": "",
+              "textFormat": 0
+            }
+          ],
+          "direction": null
+        }
+      }
+    },
+    "layout": [],
+    "_status": "published",
+    "updatedAt": "2026-05-27T10:45:00.000Z",
+    "createdAt": "2026-05-27T10:45:00.000Z"
+  },
+  {
+    "id": 202,
+    "title": {
+      "en": "E2E Story Draft"
+    },
+    "slug": "e2e-story-draft",
+    "isExternalLink": false,
+    "externalUrl": null,
+    "publishedAt": null,
+    "categories": [7],
+    "author": 1,
+    "featured": false,
+    "bannerImage": 3,
+    "thumbnail": 3,
+    "summary": {
+      "en": {
+        "root": {
+          "type": "root",
+          "format": "",
+          "indent": 0,
+          "version": 1,
+          "children": [
+            {
+              "type": "paragraph",
+              "format": "",
+              "indent": 0,
+              "version": 1,
+              "children": [
+                {
+                  "mode": "normal",
+                  "text": "Draft e2e story fixture.",
+                  "type": "text",
+                  "style": "",
+                  "detail": 0,
+                  "format": 0,
+                  "version": 1
+                }
+              ],
+              "direction": null,
+              "textStyle": "",
+              "textFormat": 0
+            }
+          ],
+          "direction": null
+        }
+      }
+    },
+    "body": {
+      "en": {
+        "root": {
+          "type": "root",
+          "format": "",
+          "indent": 0,
+          "version": 1,
+          "children": [
+            {
+              "type": "paragraph",
+              "format": "",
+              "indent": 0,
+              "version": 1,
+              "children": [
+                {
+                  "mode": "normal",
+                  "text": "This draft story exists for access-control e2e coverage.",
+                  "type": "text",
+                  "style": "",
+                  "detail": 0,
+                  "format": 0,
+                  "version": 1
+                }
+              ],
+              "direction": null,
+              "textStyle": "",
+              "textFormat": 0
+            }
+          ],
+          "direction": null
+        }
+      }
+    },
+    "layout": [],
+    "_status": "draft",
+    "updatedAt": "2026-05-27T10:50:00.000Z",
+    "createdAt": "2026-05-27T10:50:00.000Z"
+  }
+]

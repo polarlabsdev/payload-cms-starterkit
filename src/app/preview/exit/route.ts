@@ -1,8 +1,9 @@
 import { draftMode } from 'next/headers';
-import { NextRouteFunc } from '@/lib/sharedTypes';
+import { NextRouteHandler } from '@/lib/sharedTypes';
+import { NextResponse } from 'next/server';
 
-export const GET: NextRouteFunc = async () => {
+export const GET: NextRouteHandler = async () => {
   const draft = await draftMode();
   draft.disable();
-  return new Response('Draft mode is disabled');
+  return NextResponse.json({ message: 'Draft mode is disabled' });
 };

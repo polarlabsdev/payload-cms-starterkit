@@ -1,0 +1,40 @@
+{
+  "NotFound": {
+    "notFound": "This page could not be found.",
+    "goHome": "Go home",
+    "didYouMean": "¿Quizás quisiste decir?",
+    "searchHint": "Pulsa {hotkey} para buscar",
+    "noSuggestions": "Intenta buscar lo que necesitas",
+    "search": "Buscar"
+  },
+  "AuthError": {
+    "title": "Acceso denegado",
+    "description": "No tienes permiso para acceder a esta página o tu autenticación ha fallado. Esto puede deberse a un enlace de inicio de sesión caducado o inválido, o a permisos insuficientes. Por favor, inténtalo de nuevo, solicita un nuevo enlace o contacta con soporte si el problema persiste."
+  },
+  "ThemeToggle": {
+    "toggleDark": "Activar modo oscuro",
+    "toggleLight": "Activar modo claro"
+  },
+  "Search": {
+    "placeholder": "Buscar páginas e historias...",
+    "noResults": "No se encontraron resultados.",
+    "heading": "Buscar páginas e historias",
+    "typeMoreChars": "Escribe al menos 3 caracteres para buscar",
+    "toSearch": "para buscar"
+  },
+  "StoriesSidebar": {
+    "selectCategory": "Seleccionar una categoría"
+  },
+  "Navigation": {
+    "searchAriaLabel": "Buscar",
+    "closeMenu": "Cerrar menú",
+    "openMenu": "Abrir menú"
+  },
+  "AnnouncementBar": {
+    "closeAriaLabel": "Cerrar anuncio"
+  },
+  "LanguageSelect": {
+    "placeholder": "Seleccionar un idioma",
+    "label": "Idiomas"
+  }
+}

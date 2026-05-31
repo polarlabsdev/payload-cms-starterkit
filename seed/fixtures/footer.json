@@ -1,0 +1,284 @@
+{
+  "id": 1,
+  "logo": {
+    "light": 1,
+    "dark": 2
+  },
+  "socialLinks": [
+    {
+      "id": "starterkit-social-1",
+      "iconName": "github-fill",
+      "link": {
+        "linkType": "manual",
+        "url": "https://github.com/polarlabs",
+        "buttonType": "link",
+        "buttonColor": "Teal",
+        "textColor": "White",
+        "newTab": true
+      }
+    },
+    {
+      "id": "starterkit-social-2",
+      "iconName": "linkedin-fill",
+      "link": {
+        "linkType": "manual",
+        "url": "https://www.linkedin.com/company/polar-labs",
+        "buttonType": "link",
+        "buttonColor": "Teal",
+        "textColor": "White",
+        "newTab": true
+      }
+    },
+    {
+      "id": "starterkit-social-3",
+      "iconName": "article-line",
+      "link": {
+        "linkType": "manual",
+        "url": "https://www.polarlabs.ca/stories",
+        "buttonType": "link",
+        "buttonColor": "Teal",
+        "textColor": "White",
+        "newTab": true
+      }
+    }
+  ],
+  "navButtons": [
+    {
+      "id": "starterkit-footer-btn-1",
+      "link": {
+        "linkType": "manual",
+        "url": "/about",
+        "label": "Get Started",
+        "buttonType": "secondary",
+        "buttonColor": "Teal",
+        "textColor": "White",
+        "newTab": false
+      }
+    },
+    {
+      "id": "starterkit-footer-btn-2",
+      "link": {
+        "linkType": "manual",
+        "url": "/contact",
+        "label": "Contact",
+        "buttonType": "default",
+        "buttonColor": "Teal",
+        "textColor": "White",
+        "newTab": false
+      }
+    }
+  ],
+  "navGroups": [
+    {
+      "id": "starterkit-group-1",
+      "label": "Starterkit",
+      "navItems": [
+        {
+          "id": "starterkit-group-1-item-1",
+          "link": {
+            "linkType": "manual",
+            "url": "/about",
+            "label": "Overview",
+            "buttonType": "link",
+            "buttonColor": "Teal",
+            "textColor": "White",
+            "newTab": false
+          }
+        },
+        {
+          "id": "starterkit-group-1-item-2",
+          "link": {
+            "linkType": "manual",
+            "url": "/about#features",
+            "label": "Features",
+            "buttonType": "link",
+            "buttonColor": "Teal",
+            "textColor": "White",
+            "newTab": false
+          }
+        },
+        {
+          "id": "starterkit-group-1-item-3",
+          "link": {
+            "linkType": "manual",
+            "url": "/about#how-to-use",
+            "label": "How to Use",
+            "buttonType": "link",
+            "buttonColor": "Teal",
+            "textColor": "White",
+            "newTab": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "starterkit-group-2",
+      "label": "Stories",
+      "navItems": [
+        {
+          "id": "starterkit-group-2-item-1",
+          "link": {
+            "linkType": "manual",
+            "url": "/stories",
+            "label": "All Stories",
+            "buttonType": "link",
+            "buttonColor": "Teal",
+            "textColor": "White",
+            "newTab": false
+          }
+        },
+        {
+          "id": "starterkit-group-2-item-2",
+          "link": {
+            "linkType": "manual",
+            "url": "/stories?category=guides",
+            "label": "Guides",
+            "buttonType": "link",
+            "buttonColor": "Teal",
+            "textColor": "White",
+            "newTab": false
+          }
+        },
+        {
+          "id": "starterkit-group-2-item-3",
+          "link": {
+            "linkType": "manual",
+            "url": "/stories?category=engineering",
+            "label": "Engineering",
+            "buttonType": "link",
+            "buttonColor": "Teal",
+            "textColor": "White",
+            "newTab": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "starterkit-group-3",
+      "label": "Company",
+      "navItems": [
+        {
+          "id": "starterkit-group-3-item-1",
+          "link": {
+            "linkType": "manual",
+            "url": "/about",
+            "label": "About",
+            "buttonType": "link",
+            "buttonColor": "Teal",
+            "textColor": "White",
+            "newTab": false
+          }
+        },
+        {
+          "id": "starterkit-group-3-item-2",
+          "link": {
+            "linkType": "manual",
+            "url": "/contact",
+            "label": "Contact",
+            "buttonType": "link",
+            "buttonColor": "Teal",
+            "textColor": "White",
+            "newTab": false
+          }
+        },
+        {
+          "id": "starterkit-group-3-item-3",
+          "link": {
+            "linkType": "manual",
+            "url": "https://www.polarlabs.ca",
+            "label": "Polar Labs",
+            "buttonType": "link",
+            "buttonColor": "Teal",
+            "textColor": "White",
+            "newTab": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "starterkit-group-4",
+      "label": "Legal",
+      "navItems": [
+        {
+          "id": "starterkit-group-4-item-1",
+          "link": {
+            "linkType": "manual",
+            "url": "/privacy",
+            "label": "Privacy Policy",
+            "buttonType": "link",
+            "buttonColor": "Teal",
+            "textColor": "White",
+            "newTab": false
+          }
+        },
+        {
+          "id": "starterkit-group-4-item-2",
+          "link": {
+            "linkType": "manual",
+            "url": "/terms",
+            "label": "Terms",
+            "buttonType": "link",
+            "buttonColor": "Teal",
+            "textColor": "White",
+            "newTab": false
+          }
+        }
+      ]
+    }
+  ],
+  "footerText": {
+    "root": {
+      "type": "root",
+      "format": "",
+      "indent": 0,
+      "version": 1,
+      "children": [
+        {
+          "type": "paragraph",
+          "format": "",
+          "indent": 0,
+          "version": 1,
+          "children": [
+            {
+              "mode": "normal",
+              "text": "This starterkit ships with fictional sample content for local development and testing.",
+              "type": "text",
+              "style": "",
+              "detail": 0,
+              "format": 0,
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "textStyle": "",
+          "textFormat": 0
+        },
+        {
+          "type": "paragraph",
+          "format": "",
+          "indent": 0,
+          "version": 1,
+          "children": [
+            {
+              "mode": "normal",
+              "text": "Replace logos, links, and copy before production use.",
+              "type": "text",
+              "style": "",
+              "detail": 0,
+              "format": 0,
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "textStyle": "",
+          "textFormat": 0
+        }
+      ],
+      "direction": null
+    }
+  },
+  "_status": "published",
+  "updatedAt": "2025-09-27T20:37:21.876Z",
+  "createdAt": "2025-09-15T05:33:09.254Z",
+  "globalType": "footer"
+}

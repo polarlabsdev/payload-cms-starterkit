@@ -1,0 +1,57 @@
+[
+  {
+    "id": 7,
+    "name": { "en": "Guides" },
+    "description": { "en": null },
+    "slug": "guides",
+    "iconName": "article-fill",
+    "color": "Red",
+    "textColor": "White",
+    "updatedAt": "2025-10-12T00:06:45.002Z",
+    "createdAt": "2025-10-11T23:02:47.859Z"
+  },
+  {
+    "id": 8,
+    "name": { "en": "Engineering" },
+    "description": { "en": null },
+    "slug": "engineering",
+    "iconName": "book-read-fill",
+    "color": "Pink",
+    "textColor": "White",
+    "updatedAt": "2025-10-12T00:06:58.292Z",
+    "createdAt": "2025-10-11T23:03:02.557Z"
+  },
+  {
+    "id": 9,
+    "name": { "en": "Product" },
+    "description": { "en": null },
+    "slug": "product",
+    "iconName": "calendar-event-fill",
+    "color": "Blue",
+    "textColor": "White",
+    "updatedAt": "2025-10-12T00:07:10.429Z",
+    "createdAt": "2025-10-11T23:03:15.859Z"
+  },
+  {
+    "id": 10,
+    "name": { "en": "Case Studies" },
+    "description": { "en": null },
+    "slug": "case-studies",
+    "iconName": "mic-ai-fill",
+    "color": "Teal",
+    "textColor": "White",
+    "updatedAt": "2025-10-12T00:07:32.809Z",
+    "createdAt": "2025-10-11T23:03:40.829Z"
+  },
+  {
+    "id": 11,
+    "name": { "en": "Announcements" },
+    "description": { "en": "Starterkit updates and release notes." },
+    "slug": "announcements",
+    "iconName": "newspaper-fill",
+    "color": "Purple",
+    "textColor": "White",
+    "updatedAt": "2025-10-12T01:57:26.771Z",
+    "createdAt": "2025-10-11T23:03:57.120Z"
+  }
+]

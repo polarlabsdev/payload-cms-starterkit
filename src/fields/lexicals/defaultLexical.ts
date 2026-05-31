@@ -1,5 +1,6 @@
 import { Config } from 'payload';
 import {
+  AlignFeature,
   BlocksFeature,
   BoldFeature,
   FixedToolbarFeature,
@@ -14,7 +15,11 @@ import {
   UnderlineFeature,
   UnorderedListFeature,
 } from '@payloadcms/richtext-lexical';
-import { ButtonBlock } from '@/blocks/Button/config';
+import { ButtonInlineBlock } from '@/blocks/ButtonInline/config';
+import { MediaInlineBlock } from '@/blocks/MediaInline/config';
+import { FloatingMediaBlock } from '@/blocks/FloatingMedia/config';
+import { InlineItemBlock } from '@/blocks/InlineItemBlock/config';
+import { InlineYoutubeEmbedBlock } from '@/blocks/InlineYoutubeEmbed/config';
 
 export const defaultLexical: Config['editor'] = lexicalEditor({
   features: () => {
@@ -23,6 +28,7 @@ export const defaultLexical: Config['editor'] = lexicalEditor({
       ItalicFeature(),
       UnderlineFeature(),
       StrikethroughFeature(),
+      AlignFeature(),
       ParagraphFeature(),
       HeadingFeature({
         enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'],
@@ -30,15 +36,21 @@ export const defaultLexical: Config['editor'] = lexicalEditor({
       UnorderedListFeature(),
       OrderedListFeature(),
       LinkFeature({
-        // Once we support internal links we can remove this and
-        // add the internal link resolver function to RichText
+        // In the future if Payload fixing their type extensibility we could use CustomLink
+        // here. But for now if you don't use their exact fields in the converter typescript has
+        // a heart attack.
         fields: ({ defaultFields }) => {
           return [...defaultFields.filter((field) => field.name !== 'linkType')];
         },
       }),
       BlocksFeature({
-        inlineBlocks: [ButtonBlock],
-        blocks: [],
+        inlineBlocks: [ButtonInlineBlock],
+        blocks: [
+          MediaInlineBlock,
+          FloatingMediaBlock,
+          InlineItemBlock,
+          InlineYoutubeEmbedBlock,
+        ],
       }),
       FixedToolbarFeature(),
       InlineToolbarFeature(),

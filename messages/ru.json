@@ -1,0 +1,40 @@
+{
+  "NotFound": {
+    "notFound": "This page could not be found.",
+    "goHome": "Go home",
+    "didYouMean": "Возможно, вы имели в виду?",
+    "searchHint": "Нажмите {hotkey} для поиска",
+    "noSuggestions": "Попробуйте найти то, что вам нужно",
+    "search": "Поиск"
+  },
+  "AuthError": {
+    "title": "Доступ запрещён",
+    "description": "У вас нет прав для доступа к этой странице или произошла ошибка аутентификации. Это может быть связано с истекшей или недействительной ссылкой для входа, либо с недостаточными правами. Пожалуйста, попробуйте снова, запросите новую ссылку или обратитесь в поддержку, если проблема сохраняется."
+  },
+  "ThemeToggle": {
+    "toggleDark": "Включить тёмную тему",
+    "toggleLight": "Включить светлую тему"
+  },
+  "Search": {
+    "placeholder": "Поиск страниц и историй...",
+    "noResults": "Ничего не найдено.",
+    "heading": "Поиск страниц и историй",
+    "typeMoreChars": "Введите не менее 3 символов для поиска",
+    "toSearch": "для поиска"
+  },
+  "StoriesSidebar": {
+    "selectCategory": "Выберите категорию"
+  },
+  "Navigation": {
+    "searchAriaLabel": "Поиск",
+    "closeMenu": "Закрыть меню",
+    "openMenu": "Открыть меню"
+  },
+  "AnnouncementBar": {
+    "closeAriaLabel": "Закрыть объявление"
+  },
+  "LanguageSelect": {
+    "placeholder": "Выберите язык",
+    "label": "Языки"
+  }
+}

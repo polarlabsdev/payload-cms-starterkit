@@ -1,0 +1,40 @@
+{
+  "NotFound": {
+    "notFound": "This page could not be found.",
+    "goHome": "Go home",
+    "didYouMean": "هل تقصد؟",
+    "searchHint": "اضغط {hotkey} للبحث",
+    "noSuggestions": "حاول البحث عما تحتاجه",
+    "search": "بحث"
+  },
+  "AuthError": {
+    "title": "تم رفض الوصول",
+    "description": "ليس لديك إذن للوصول إلى هذه الصفحة أو فشلت عملية المصادقة الخاصة بك. قد يكون ذلك بسبب انتهاء صلاحية رابط تسجيل الدخول أو عدم صلاحيته، أو بسبب عدم كفاية الأذونات. يرجى المحاولة مرة أخرى أو طلب رابط جديد أو التواصل مع الدعم إذا استمرت المشكلة."
+  },
+  "ThemeToggle": {
+    "toggleDark": "تفعيل الوضع الداكن",
+    "toggleLight": "تفعيل الوضع الفاتح"
+  },
+  "Search": {
+    "placeholder": "البحث في الصفحات والقصص...",
+    "noResults": "لا توجد نتائج.",
+    "heading": "البحث في الصفحات والقصص",
+    "typeMoreChars": "اكتب على الأقل 3 أحرف للبحث",
+    "toSearch": "للبحث"
+  },
+  "StoriesSidebar": {
+    "selectCategory": "اختر فئة"
+  },
+  "Navigation": {
+    "searchAriaLabel": "بحث",
+    "closeMenu": "إغلاق القائمة",
+    "openMenu": "فتح القائمة"
+  },
+  "AnnouncementBar": {
+    "closeAriaLabel": "إغلاق الإعلان"
+  },
+  "LanguageSelect": {
+    "placeholder": "اختر اللغة",
+    "label": "اللغات"
+  }
+}

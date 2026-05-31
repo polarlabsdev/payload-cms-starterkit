@@ -67,11 +67,27 @@ export interface Config {
   };
   blocks: {
     button: ButtonBlock;
+    hero: HeroBlock;
+    'story-cards': StoryCardsBlock;
+    'icon-row': IconRowBlock;
+    'standard-content': StandardContentBlock;
+    'wide-image': WideImageBlock;
+    'image-grid': ImageGridBlock;
+    'simple-rich-text': SimpleRichTextBlock;
+    'youtube-embed': YoutubeEmbedBlock;
+    'info-block': InfoBlock;
   };
   collections: {
     users: User;
     media: Media;
     pages: Page;
+    stories: Story;
+    'story-categories': StoryCategory;
+    videos: Video;
+    exports: Export;
+    imports: Import;
+    search: Search;
+    'payload-kv': PayloadKv;
     'payload-jobs': PayloadJob;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -82,6 +98,13 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
+    stories: StoriesSelect<false> | StoriesSelect<true>;
+    'story-categories': StoryCategoriesSelect<false> | StoryCategoriesSelect<true>;
+    videos: VideosSelect<false> | VideosSelect<true>;
+    exports: ExportsSelect<false> | ExportsSelect<true>;
+    imports: ImportsSelect<false> | ImportsSelect<true>;
+    search: SearchSelect<false> | SearchSelect<true>;
+    'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-jobs': PayloadJobsSelect<false> | PayloadJobsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -90,20 +113,33 @@ export interface Config {
   db: {
     defaultIDType: number;
   };
+  fallbackLocale:
+    | ('false' | 'none' | 'null')
+    | false
+    | null
+    | ('en' | 'fr' | 'es' | 'ru' | 'ar')
+    | ('en' | 'fr' | 'es' | 'ru' | 'ar')[];
   globals: {
     header: Header;
     footer: Footer;
+    'announcement-bar': AnnouncementBar;
+    'stories-page': StoriesPage;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
+    'announcement-bar': AnnouncementBarSelect<false> | AnnouncementBarSelect<true>;
+    'stories-page': StoriesPageSelect<false> | StoriesPageSelect<true>;
   };
-  locale: null;
-  user: User & {
-    collection: 'users';
+  locale: 'en' | 'fr' | 'es' | 'ru' | 'ar';
+  widgets: {
+    collections: CollectionsWidget;
   };
+  user: User;
   jobs: {
     tasks: {
+      createCollectionExport: TaskCreateCollectionExport;
+      createCollectionImport: TaskCreateCollectionImport;
       schedulePublish: TaskSchedulePublish;
       inline: {
         input: unknown;
@@ -137,9 +173,9 @@ export interface UserAuthOperations {
  */
 export interface ButtonBlock {
   label: string;
-  variant?: ('default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link') | null;
-  size?: ('default' | 'lg' | 'sm' | 'xs' | 'icon') | null;
-  shape?: ('default' | 'circle') | null;
+  variant?: ('default' | 'secondary' | 'destructive' | 'outline' | 'ghost' | 'link' | 'brand') | null;
+  size?: ('default' | 'xs' | 'sm' | 'md' | 'lg' | 'icon' | 'icon-lg') | null;
+  shape?: ('default' | 'roundedSmall' | 'roundedMedium' | 'roundedLarge' | 'pill') | null;
   url: string;
   id?: string | null;
   blockName?: string | null;
@@ -147,22 +183,101 @@ export interface ButtonBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users".
+ * via the `definition` "HeroBlock".
  */
-export interface User {
-  id: number;
-  name: string;
-  role?: ('reader' | 'contributor' | 'editor' | 'admin') | null;
-  updatedAt: string;
-  createdAt: string;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  password?: string | null;
+export interface HeroBlock {
+  heroType: 'fullscreen' | 'half' | 'minimal';
+  /**
+   * Choose whether to display an image or video
+   */
+  mediaType?: ('image' | 'video') | null;
+  /**
+   * Choose which side the text content appears on
+   */
+  textOrientation?: ('left' | 'right') | null;
+  /**
+   * Main image for the hero section
+   */
+  bannerImage?: (number | null) | Media;
+  /**
+   * Main video for the hero section (will autoplay, mute, and loop with no controls)
+   */
+  bannerVideo?: (number | null) | Video;
+  title: string;
+  body?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Add up to 2 action buttons
+   */
+  buttons?:
+    | {
+        link?: {
+          linkType?: ('manual' | 'relation') | null;
+          url?: string | null;
+          relationTo?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'stories';
+                value: number | Story;
+              } | null);
+          label?: string | null;
+          buttonType?: ('default' | 'secondary' | 'destructive' | 'outline' | 'ghost' | 'link' | 'brand') | null;
+          buttonColor?:
+            | (
+                | 'White'
+                | 'Black'
+                | 'Yellow'
+                | 'Red'
+                | 'Purple'
+                | 'Blue'
+                | 'Pink'
+                | 'Teal'
+                | 'Dark Purple'
+                | 'Orange'
+                | 'Dark Green'
+                | 'Dark Red'
+              )
+            | null;
+          textColor?:
+            | (
+                | 'White'
+                | 'Black'
+                | 'Yellow'
+                | 'Red'
+                | 'Purple'
+                | 'Blue'
+                | 'Pink'
+                | 'Teal'
+                | 'Dark Purple'
+                | 'Orange'
+                | 'Dark Green'
+                | 'Dark Red'
+              )
+            | null;
+          newTab?: boolean | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'hero';
 }
 /**
  * Media files stored in Supabase S3 storage
@@ -185,7 +300,7 @@ export interface Media {
   focalX?: number | null;
   focalY?: number | null;
   sizes?: {
-    thumbnail?: {
+    xs?: {
       url?: string | null;
       width?: number | null;
       height?: number | null;
@@ -193,7 +308,7 @@ export interface Media {
       filesize?: number | null;
       filename?: string | null;
     };
-    square?: {
+    sm?: {
       url?: string | null;
       width?: number | null;
       height?: number | null;
@@ -201,7 +316,7 @@ export interface Media {
       filesize?: number | null;
       filename?: string | null;
     };
-    small?: {
+    md?: {
       url?: string | null;
       width?: number | null;
       height?: number | null;
@@ -209,7 +324,7 @@ export interface Media {
       filesize?: number | null;
       filename?: string | null;
     };
-    medium?: {
+    lg?: {
       url?: string | null;
       width?: number | null;
       height?: number | null;
@@ -217,7 +332,7 @@ export interface Media {
       filesize?: number | null;
       filename?: string | null;
     };
-    large?: {
+    xl?: {
       url?: string | null;
       width?: number | null;
       height?: number | null;
@@ -225,7 +340,39 @@ export interface Media {
       filesize?: number | null;
       filename?: string | null;
     };
-    xlarge?: {
+    'xs-square'?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    'sm-square'?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    'md-square'?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    'lg-square'?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    'xl-square'?: {
       url?: string | null;
       width?: number | null;
       height?: number | null;
@@ -234,6 +381,25 @@ export interface Media {
       filename?: string | null;
     };
   };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "videos".
+ */
+export interface Video {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -251,7 +417,16 @@ export interface Page {
    * This will pull the content up behind the navigation bar, which is useful for a hero section you want to be exactly full screen height.
    */
   pullBehindNav?: boolean | null;
-  layout: HeroBlock[];
+  layout: (
+    | HeroBlock
+    | StoryCardsBlock
+    | IconRowBlock
+    | StandardContentBlock
+    | WideImageBlock
+    | ImageGridBlock
+    | SimpleRichTextBlock
+    | YoutubeEmbedBlock
+  )[];
   meta?: {
     title?: string | null;
     /**
@@ -259,6 +434,10 @@ export interface Page {
      */
     image?: (number | null) | Media;
     description?: string | null;
+    /**
+     * Prevent search engines from indexing this page. The page will also be excluded from the sitemap.
+     */
+    noIndex?: boolean | null;
   };
   updatedAt: string;
   createdAt: string;
@@ -266,21 +445,200 @@ export interface Page {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "HeroBlock".
+ * via the `definition` "StoryCardsBlock".
  */
-export interface HeroBlock {
-  heroType: 'centered' | 'left-aligned';
-  backgroundImage?: (number | null) | Media;
+export interface StoryCardsBlock {
   /**
-   * If checked, the text will be displayed in dark mode. This is useful for backgrounds that are dark and need white text.
+   * Choose the background color for the stories section
    */
-  textDarkMode?: boolean | null;
+  backgroundColor:
+    | 'Background'
+    | 'Foreground'
+    | 'Card'
+    | 'Card Foreground'
+    | 'Primary'
+    | 'Primary Foreground'
+    | 'Secondary'
+    | 'Secondary Foreground'
+    | 'Muted'
+    | 'Muted Foreground'
+    | 'Accent'
+    | 'Accent Foreground'
+    | 'Destructive'
+    | 'Destructive Foreground'
+    | 'Success'
+    | 'Success Foreground'
+    | 'Warning'
+    | 'Warning Foreground'
+    | 'Border';
+  /**
+   * Choose how to display the stories
+   */
+  variant?: ('featured-cards' | 'story-previews') | null;
+  /**
+   * Toggle to show or hide the section title
+   */
+  showTitle?: boolean | null;
+  /**
+   * The main heading for the stories section
+   */
+  title?: string | null;
+  /**
+   * Add up to 3 story cards
+   */
+  stories: {
+    /**
+     * Select a story from the stories collection
+     */
+    story: number | Story;
+    /**
+     * Choose the color theme for this story card
+     */
+    color?:
+      | (
+          | 'White'
+          | 'Black'
+          | 'Yellow'
+          | 'Red'
+          | 'Purple'
+          | 'Blue'
+          | 'Pink'
+          | 'Teal'
+          | 'Dark Purple'
+          | 'Orange'
+          | 'Dark Green'
+          | 'Dark Red'
+        )
+      | null;
+    /**
+     * Choose the background color for the text content area
+     */
+    textBackground?:
+      | (
+          | 'White'
+          | 'Black'
+          | 'Yellow'
+          | 'Red'
+          | 'Purple'
+          | 'Blue'
+          | 'Pink'
+          | 'Teal'
+          | 'Dark Purple'
+          | 'Orange'
+          | 'Dark Green'
+          | 'Dark Red'
+        )
+      | null;
+    id?: string | null;
+  }[];
+  /**
+   * Toggle to show or hide the bottom action button
+   */
+  showButton?: boolean | null;
+  /**
+   * The main action button at the bottom of the section
+   */
+  bottomButton?: {
+    linkType?: ('manual' | 'relation') | null;
+    url?: string | null;
+    relationTo?:
+      | ({
+          relationTo: 'pages';
+          value: number | Page;
+        } | null)
+      | ({
+          relationTo: 'stories';
+          value: number | Story;
+        } | null);
+    label?: string | null;
+    buttonType?: ('default' | 'secondary' | 'destructive' | 'outline' | 'ghost' | 'link' | 'brand') | null;
+    buttonColor?:
+      | (
+          | 'White'
+          | 'Black'
+          | 'Yellow'
+          | 'Red'
+          | 'Purple'
+          | 'Blue'
+          | 'Pink'
+          | 'Teal'
+          | 'Dark Purple'
+          | 'Orange'
+          | 'Dark Green'
+          | 'Dark Red'
+        )
+      | null;
+    textColor?:
+      | (
+          | 'White'
+          | 'Black'
+          | 'Yellow'
+          | 'Red'
+          | 'Purple'
+          | 'Blue'
+          | 'Pink'
+          | 'Teal'
+          | 'Dark Purple'
+          | 'Orange'
+          | 'Dark Green'
+          | 'Dark Red'
+        )
+      | null;
+    newTab?: boolean | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'story-cards';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "stories".
+ */
+export interface Story {
+  id: number;
   title: string;
-  body?: {
+  /**
+   * This field is the URL you will be able to access this resource at.
+   */
+  slug?: string | null;
+  /**
+   * Check this to make the story link to an external URL instead of the full story page
+   */
+  isExternalLink?: boolean | null;
+  /**
+   * The external URL to link to when the story is clicked
+   */
+  externalUrl?: string | null;
+  publishedAt?: string | null;
+  categories?: (number | StoryCategory)[] | null;
+  /**
+   * Story author - defaults to current user
+   */
+  author: number | User;
+  /**
+   * Mark as featured story for homepage display
+   */
+  featured?: boolean | null;
+  /**
+   * Automatically calculated based on post content
+   */
+  readingTime?: number | null;
+  /**
+   * Shown at the top of the story when you open it to read it.
+   */
+  bannerImage?: (number | null) | Media;
+  /**
+   * Shown in story cards and in social shares.
+   */
+  thumbnail: number | Media;
+  /**
+   * Optional summary for the story (max 180 characters)
+   */
+  summary?: {
     root: {
       type: string;
       children: {
-        type: string;
+        type: any;
         version: number;
         [k: string]: unknown;
       }[];
@@ -291,23 +649,1056 @@ export interface HeroBlock {
     };
     [k: string]: unknown;
   } | null;
-  featuredImage?: (number | null) | Media;
+  body?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   /**
-   * Shows as buttons in the hero
+   * Above the footer layout blocks
    */
-  ctas?:
+  layout?: (StoryCardsBlock | ImageGridBlock)[] | null;
+  meta?: {
+    title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
+    description?: string | null;
+    /**
+     * Prevent search engines from indexing this page. The page will also be excluded from the sitemap.
+     */
+    noIndex?: boolean | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "story-categories".
+ */
+export interface StoryCategory {
+  id: number;
+  name: string;
+  description?: string | null;
+  /**
+   * This field is the URL you will be able to access this resource at.
+   */
+  slug?: string | null;
+  /**
+   * Visit remixicon.com to see the available icons. Click one and copy its name and paste it here. For example: `facebook-fill`.
+   */
+  iconName?: string | null;
+  /**
+   * Brand color for this category
+   */
+  color:
+    | 'White'
+    | 'Black'
+    | 'Yellow'
+    | 'Red'
+    | 'Purple'
+    | 'Blue'
+    | 'Pink'
+    | 'Teal'
+    | 'Dark Purple'
+    | 'Orange'
+    | 'Dark Green'
+    | 'Dark Red';
+  /**
+   * Brand color for the text inside the badge
+   */
+  textColor:
+    | 'White'
+    | 'Black'
+    | 'Yellow'
+    | 'Red'
+    | 'Purple'
+    | 'Blue'
+    | 'Pink'
+    | 'Teal'
+    | 'Dark Purple'
+    | 'Orange'
+    | 'Dark Green'
+    | 'Dark Red';
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users".
+ */
+export interface User {
+  id: number;
+  name: string;
+  role?: ('reader' | 'contributor' | 'editor' | 'admin') | null;
+  /**
+   * User roles - multiple roles can be assigned. Permissions are additive.
+   */
+  roles: ('website-reader' | 'website-editor' | 'website-admin' | 'superadmin')[];
+  updatedAt: string;
+  createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  sessions?:
     | {
-        link: {
-          url: string;
-          label: string;
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
+      }[]
+    | null;
+  password?: string | null;
+  collection: 'users';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ImageGridBlock".
+ */
+export interface ImageGridBlock {
+  /**
+   * Choose the background color for the image grid section
+   */
+  backgroundColor:
+    | 'Background'
+    | 'Foreground'
+    | 'Card'
+    | 'Card Foreground'
+    | 'Primary'
+    | 'Primary Foreground'
+    | 'Secondary'
+    | 'Secondary Foreground'
+    | 'Muted'
+    | 'Muted Foreground'
+    | 'Accent'
+    | 'Accent Foreground'
+    | 'Destructive'
+    | 'Destructive Foreground'
+    | 'Success'
+    | 'Success Foreground'
+    | 'Warning'
+    | 'Warning Foreground'
+    | 'Border';
+  /**
+   * Toggle to show or hide the section title
+   */
+  showTitle?: boolean | null;
+  /**
+   * The main heading for the image grid section
+   */
+  title?: string | null;
+  /**
+   * Choose how many columns the grid should have
+   */
+  columns: '2' | '3' | '4';
+  /**
+   * Optional categories for filtering grid items
+   */
+  category?:
+    | {
+        /**
+         * Name of the category for filtering grid items
+         */
+        name: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Toggle to show the 'All' category regardless of other category selections
+   */
+  showAll?: boolean | null;
+  items: {
+    /**
+     * The image for this grid item
+     */
+    image: number | Media;
+    /**
+     * The main heading for this grid item
+     */
+    header: string;
+    /**
+     * The subheading/description for this grid item
+     */
+    subheader: string;
+    /**
+     * Toggle to add a clickable link to this grid item
+     */
+    showLink?: boolean | null;
+    /**
+     * Select categories defined in the Category List above.
+     */
+    assignedCategories?:
+      | {
+          [k: string]: unknown;
+        }
+      | unknown[]
+      | string
+      | number
+      | boolean
+      | null;
+    link?: {
+      linkType?: ('manual' | 'relation') | null;
+      url?: string | null;
+      relationTo?:
+        | ({
+            relationTo: 'pages';
+            value: number | Page;
+          } | null)
+        | ({
+            relationTo: 'stories';
+            value: number | Story;
+          } | null);
+      label?: string | null;
+      buttonType?: ('default' | 'secondary' | 'destructive' | 'outline' | 'ghost' | 'link' | 'brand') | null;
+      buttonColor?:
+        | (
+            | 'White'
+            | 'Black'
+            | 'Yellow'
+            | 'Red'
+            | 'Purple'
+            | 'Blue'
+            | 'Pink'
+            | 'Teal'
+            | 'Dark Purple'
+            | 'Orange'
+            | 'Dark Green'
+            | 'Dark Red'
+          )
+        | null;
+      textColor?:
+        | (
+            | 'White'
+            | 'Black'
+            | 'Yellow'
+            | 'Red'
+            | 'Purple'
+            | 'Blue'
+            | 'Pink'
+            | 'Teal'
+            | 'Dark Purple'
+            | 'Orange'
+            | 'Dark Green'
+            | 'Dark Red'
+          )
+        | null;
+      newTab?: boolean | null;
+    };
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'image-grid';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IconRowBlock".
+ */
+export interface IconRowBlock {
+  /**
+   * Choose the background color for the icon row section
+   */
+  backgroundColor:
+    | 'Background'
+    | 'Foreground'
+    | 'Card'
+    | 'Card Foreground'
+    | 'Primary'
+    | 'Primary Foreground'
+    | 'Secondary'
+    | 'Secondary Foreground'
+    | 'Muted'
+    | 'Muted Foreground'
+    | 'Accent'
+    | 'Accent Foreground'
+    | 'Destructive'
+    | 'Destructive Foreground'
+    | 'Success'
+    | 'Success Foreground'
+    | 'Warning'
+    | 'Warning Foreground'
+    | 'Border';
+  /**
+   * The main heading for the icon row section (optional)
+   */
+  title?: string | null;
+  /**
+   * Add up to 3 icon items
+   */
+  items: {
+    /**
+     * Enter the Remix Icon name (e.g., "heart-line", "user-line"). See https://remixicon.com/ for available icons
+     */
+    iconName: string;
+    /**
+     * Choose the background color for the icon circle (optional - leave empty for no background)
+     */
+    iconBackgroundColor?:
+      | (
+          | 'White'
+          | 'Black'
+          | 'Yellow'
+          | 'Red'
+          | 'Purple'
+          | 'Blue'
+          | 'Pink'
+          | 'Teal'
+          | 'Dark Purple'
+          | 'Orange'
+          | 'Dark Green'
+          | 'Dark Red'
+        )
+      | null;
+    /**
+     * Choose the color for the icon in light mode
+     */
+    iconColor?:
+      | (
+          | 'White'
+          | 'Black'
+          | 'Yellow'
+          | 'Red'
+          | 'Purple'
+          | 'Blue'
+          | 'Pink'
+          | 'Teal'
+          | 'Dark Purple'
+          | 'Orange'
+          | 'Dark Green'
+          | 'Dark Red'
+        )
+      | null;
+    /**
+     * Choose the color for the icon in dark mode (optional)
+     */
+    iconColorDark?:
+      | (
+          | 'White'
+          | 'Black'
+          | 'Yellow'
+          | 'Red'
+          | 'Purple'
+          | 'Blue'
+          | 'Pink'
+          | 'Teal'
+          | 'Dark Purple'
+          | 'Orange'
+          | 'Dark Green'
+          | 'Dark Red'
+        )
+      | null;
+    /**
+     * Choose the color for the icon
+     */
+    iconColorWithBackground?:
+      | (
+          | 'White'
+          | 'Black'
+          | 'Yellow'
+          | 'Red'
+          | 'Purple'
+          | 'Blue'
+          | 'Pink'
+          | 'Teal'
+          | 'Dark Purple'
+          | 'Orange'
+          | 'Dark Green'
+          | 'Dark Red'
+        )
+      | null;
+    /**
+     * The title for this icon item
+     */
+    title: string;
+    /**
+     * Brief description for this icon item
+     */
+    description: string;
+    /**
+     * Check this to add/remove an action button to this icon item
+     */
+    hasButton?: boolean | null;
+    /**
+     * The action button for this icon item
+     */
+    button?: {
+      linkType?: ('manual' | 'relation') | null;
+      url?: string | null;
+      relationTo?:
+        | ({
+            relationTo: 'pages';
+            value: number | Page;
+          } | null)
+        | ({
+            relationTo: 'stories';
+            value: number | Story;
+          } | null);
+      label?: string | null;
+      buttonType?: ('default' | 'secondary' | 'destructive' | 'outline' | 'ghost' | 'link' | 'brand') | null;
+      buttonColor?:
+        | (
+            | 'White'
+            | 'Black'
+            | 'Yellow'
+            | 'Red'
+            | 'Purple'
+            | 'Blue'
+            | 'Pink'
+            | 'Teal'
+            | 'Dark Purple'
+            | 'Orange'
+            | 'Dark Green'
+            | 'Dark Red'
+          )
+        | null;
+      textColor?:
+        | (
+            | 'White'
+            | 'Black'
+            | 'Yellow'
+            | 'Red'
+            | 'Purple'
+            | 'Blue'
+            | 'Pink'
+            | 'Teal'
+            | 'Dark Purple'
+            | 'Orange'
+            | 'Dark Green'
+            | 'Dark Red'
+          )
+        | null;
+      newTab?: boolean | null;
+    };
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'icon-row';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StandardContentBlock".
+ */
+export interface StandardContentBlock {
+  header: {
+    text: string;
+    /**
+     * Choose the background color for the header text
+     */
+    highlightColor:
+      | 'White'
+      | 'Black'
+      | 'Yellow'
+      | 'Red'
+      | 'Purple'
+      | 'Blue'
+      | 'Pink'
+      | 'Teal'
+      | 'Dark Purple'
+      | 'Orange'
+      | 'Dark Green'
+      | 'Dark Red';
+    /**
+     * Choose the text color for the header
+     */
+    textColor:
+      | 'White'
+      | 'Black'
+      | 'Yellow'
+      | 'Red'
+      | 'Purple'
+      | 'Blue'
+      | 'Pink'
+      | 'Teal'
+      | 'Dark Purple'
+      | 'Orange'
+      | 'Dark Green'
+      | 'Dark Red';
+    /**
+     * Choose the semantic heading level (H1-H6)
+     */
+    level: '1' | '2' | '3' | '4' | '5' | '6';
+  };
+  /**
+   * Main content text
+   */
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  /**
+   * Add up to 2 action buttons
+   */
+  buttons?:
+    | {
+        link?: {
+          linkType?: ('manual' | 'relation') | null;
+          url?: string | null;
+          relationTo?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'stories';
+                value: number | Story;
+              } | null);
+          label?: string | null;
+          buttonType?: ('default' | 'secondary' | 'destructive' | 'outline' | 'ghost' | 'link' | 'brand') | null;
+          buttonColor?:
+            | (
+                | 'White'
+                | 'Black'
+                | 'Yellow'
+                | 'Red'
+                | 'Purple'
+                | 'Blue'
+                | 'Pink'
+                | 'Teal'
+                | 'Dark Purple'
+                | 'Orange'
+                | 'Dark Green'
+                | 'Dark Red'
+              )
+            | null;
+          textColor?:
+            | (
+                | 'White'
+                | 'Black'
+                | 'Yellow'
+                | 'Red'
+                | 'Purple'
+                | 'Blue'
+                | 'Pink'
+                | 'Teal'
+                | 'Dark Purple'
+                | 'Orange'
+                | 'Dark Green'
+                | 'Dark Red'
+              )
+            | null;
           newTab?: boolean | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Main content image (max height 600px, full width with aspect ratio preserved)
+   */
+  image: number | Media;
+  /**
+   * Choose whether the image appears on the left or right on desktop screens. On mobile, the image will always be on top.
+   */
+  imagePosition: 'left' | 'right';
+  /**
+   * Override the theme mode for this block (light/dark/inherit)
+   */
+  themeMode?: ('inherit' | 'light' | 'dark') | null;
+  /**
+   * Optional background image (will be displayed with overlay)
+   */
+  backgroundImage?: (number | null) | Media;
+  /**
+   * Choose the overlay color when using a background image
+   */
+  backgroundOverlay?:
+    | (
+        | 'White'
+        | 'Black'
+        | 'Yellow'
+        | 'Red'
+        | 'Purple'
+        | 'Blue'
+        | 'Pink'
+        | 'Teal'
+        | 'Dark Purple'
+        | 'Orange'
+        | 'Dark Green'
+        | 'Dark Red'
+      )
+    | null;
+  /**
+   * Choose the background color (used when no background image is set)
+   */
+  backgroundColor?:
+    | (
+        | 'Background'
+        | 'Foreground'
+        | 'Card'
+        | 'Card Foreground'
+        | 'Primary'
+        | 'Primary Foreground'
+        | 'Secondary'
+        | 'Secondary Foreground'
+        | 'Muted'
+        | 'Muted Foreground'
+        | 'Accent'
+        | 'Accent Foreground'
+        | 'Destructive'
+        | 'Destructive Foreground'
+        | 'Success'
+        | 'Success Foreground'
+        | 'Warning'
+        | 'Warning Foreground'
+        | 'Border'
+      )
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'standard-content';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "WideImageBlock".
+ */
+export interface WideImageBlock {
+  /**
+   * Main wide image for the block
+   */
+  image: number | Media;
+  header: {
+    text: string;
+    /**
+     * Choose the background color for the header text
+     */
+    highlightColor:
+      | 'White'
+      | 'Black'
+      | 'Yellow'
+      | 'Red'
+      | 'Purple'
+      | 'Blue'
+      | 'Pink'
+      | 'Teal'
+      | 'Dark Purple'
+      | 'Orange'
+      | 'Dark Green'
+      | 'Dark Red';
+    /**
+     * Choose the text color for the header
+     */
+    textColor:
+      | 'White'
+      | 'Black'
+      | 'Yellow'
+      | 'Red'
+      | 'Purple'
+      | 'Blue'
+      | 'Pink'
+      | 'Teal'
+      | 'Dark Purple'
+      | 'Orange'
+      | 'Dark Green'
+      | 'Dark Red';
+    /**
+     * Choose the semantic heading level (H1-H6)
+     */
+    level: '1' | '2' | '3' | '4' | '5' | '6';
+  };
+  /**
+   * Rich text content that appears below the image
+   */
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Choose the background color for the section
+   */
+  backgroundColor?:
+    | (
+        | 'Background'
+        | 'Foreground'
+        | 'Card'
+        | 'Card Foreground'
+        | 'Primary'
+        | 'Primary Foreground'
+        | 'Secondary'
+        | 'Secondary Foreground'
+        | 'Muted'
+        | 'Muted Foreground'
+        | 'Accent'
+        | 'Accent Foreground'
+        | 'Destructive'
+        | 'Destructive Foreground'
+        | 'Success'
+        | 'Success Foreground'
+        | 'Warning'
+        | 'Warning Foreground'
+        | 'Border'
+      )
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'wide-image';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SimpleRichTextBlock".
+ */
+export interface SimpleRichTextBlock {
+  /**
+   * Choose the background color for the section
+   */
+  backgroundColor:
+    | 'Background'
+    | 'Foreground'
+    | 'Card'
+    | 'Card Foreground'
+    | 'Primary'
+    | 'Primary Foreground'
+    | 'Secondary'
+    | 'Secondary Foreground'
+    | 'Muted'
+    | 'Muted Foreground'
+    | 'Accent'
+    | 'Accent Foreground'
+    | 'Destructive'
+    | 'Destructive Foreground'
+    | 'Success'
+    | 'Success Foreground'
+    | 'Warning'
+    | 'Warning Foreground'
+    | 'Border';
+  /**
+   * The main heading for the section. If this is blank, no title will be displayed.
+   */
+  title?: string | null;
+  /**
+   * The rich text content for the section
+   */
+  body: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'simple-rich-text';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "YoutubeEmbedBlock".
+ */
+export interface YoutubeEmbedBlock {
+  /**
+   * Choose the background color for the YouTube embed section
+   */
+  backgroundColor:
+    | 'Background'
+    | 'Foreground'
+    | 'Card'
+    | 'Card Foreground'
+    | 'Primary'
+    | 'Primary Foreground'
+    | 'Secondary'
+    | 'Secondary Foreground'
+    | 'Muted'
+    | 'Muted Foreground'
+    | 'Accent'
+    | 'Accent Foreground'
+    | 'Destructive'
+    | 'Destructive Foreground'
+    | 'Success'
+    | 'Success Foreground'
+    | 'Warning'
+    | 'Warning Foreground'
+    | 'Border';
+  /**
+   * Optional title to display above the YouTube video
+   */
+  title?: string | null;
+  /**
+   * The YouTube video ID (e.g., "dQw4w9WgXcQ" from the URL https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+   */
+  videoId: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'youtube-embed';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "InfoBlock".
+ */
+export interface InfoBlock {
+  /**
+   * Choose the background color for the section
+   */
+  backgroundColor:
+    | 'Background'
+    | 'Foreground'
+    | 'Card'
+    | 'Card Foreground'
+    | 'Primary'
+    | 'Primary Foreground'
+    | 'Secondary'
+    | 'Secondary Foreground'
+    | 'Muted'
+    | 'Muted Foreground'
+    | 'Accent'
+    | 'Accent Foreground'
+    | 'Destructive'
+    | 'Destructive Foreground'
+    | 'Success'
+    | 'Success Foreground'
+    | 'Warning'
+    | 'Warning Foreground'
+    | 'Border';
+  theme: 'default' | 'info' | 'success' | 'error' | 'partial';
+  /**
+   * Enter a Remix Icon name, e.g. "calendar-line" or "mail-line". See remixicon.com for all icons.
+   */
+  icon?: string | null;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  /**
+   * Add 1 or 2 action buttons
+   */
+  actions?:
+    | {
+        actionType: 'link' | 'email';
+        label: string;
+        link?: {
+          linkType?: ('manual' | 'relation') | null;
+          url?: string | null;
+          relationTo?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'stories';
+                value: number | Story;
+              } | null);
+          label?: string | null;
+          buttonType?: ('default' | 'secondary' | 'destructive' | 'outline' | 'ghost' | 'link' | 'brand') | null;
+          buttonColor?:
+            | (
+                | 'White'
+                | 'Black'
+                | 'Yellow'
+                | 'Red'
+                | 'Purple'
+                | 'Blue'
+                | 'Pink'
+                | 'Teal'
+                | 'Dark Purple'
+                | 'Orange'
+                | 'Dark Green'
+                | 'Dark Red'
+              )
+            | null;
+          textColor?:
+            | (
+                | 'White'
+                | 'Black'
+                | 'Yellow'
+                | 'Red'
+                | 'Purple'
+                | 'Blue'
+                | 'Pink'
+                | 'Teal'
+                | 'Dark Purple'
+                | 'Orange'
+                | 'Dark Green'
+                | 'Dark Red'
+              )
+            | null;
+          newTab?: boolean | null;
+        };
+        emailDetails?: {
+          to?: string | null;
+          subject?: string | null;
+          body?: string | null;
         };
         id?: string | null;
       }[]
     | null;
   id?: string | null;
   blockName?: string | null;
-  blockType: 'hero';
+  blockType: 'info-block';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "exports".
+ */
+export interface Export {
+  id: number;
+  name?: string | null;
+  format: 'csv' | 'json';
+  limit?: number | null;
+  page?: number | null;
+  sort?: string | null;
+  sortOrder?: ('asc' | 'desc') | null;
+  locale?: ('all' | 'en' | 'fr' | 'es' | 'ru' | 'ar') | null;
+  drafts?: ('yes' | 'no') | null;
+  selectionToUse?: ('currentSelection' | 'currentFilters' | 'all') | null;
+  fields?: string[] | null;
+  collectionSlug: string;
+  where?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "imports".
+ */
+export interface Import {
+  id: number;
+  collectionSlug: string;
+  importMode?: ('create' | 'update' | 'upsert') | null;
+  matchField?: string | null;
+  status?: ('pending' | 'completed' | 'partial' | 'failed') | null;
+  summary?: {
+    imported?: number | null;
+    updated?: number | null;
+    total?: number | null;
+    issues?: number | null;
+    issueDetails?:
+      | {
+          [k: string]: unknown;
+        }
+      | unknown[]
+      | string
+      | number
+      | boolean
+      | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This is a collection of automatically created search results. These results are used by the global site search and will be updated automatically as documents in the CMS are created or updated.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "search".
+ */
+export interface Search {
+  id: number;
+  title?: string | null;
+  priority?: number | null;
+  doc:
+    | {
+        relationTo: 'pages';
+        value: number | Page;
+      }
+    | {
+        relationTo: 'stories';
+        value: number | Story;
+      };
+  /**
+   * The slug of the referenced page or story (auto-populated)
+   */
+  slug?: string | null;
+  /**
+   * If checked, this content will be excluded from search results
+   */
+  noIndex?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-kv".
+ */
+export interface PayloadKv {
+  id: number;
+  key: string;
+  data:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -361,7 +1752,7 @@ export interface PayloadJob {
     | {
         executedAt: string;
         completedAt: string;
-        taskSlug: 'inline' | 'schedulePublish';
+        taskSlug: 'inline' | 'createCollectionExport' | 'createCollectionImport' | 'schedulePublish';
         taskID: string;
         input?:
           | {
@@ -394,7 +1785,7 @@ export interface PayloadJob {
         id?: string | null;
       }[]
     | null;
-  taskSlug?: ('inline' | 'schedulePublish') | null;
+  taskSlug?: ('inline' | 'createCollectionExport' | 'createCollectionImport' | 'schedulePublish') | null;
   queue?: string | null;
   waitUntil?: string | null;
   processing?: boolean | null;
@@ -421,8 +1812,20 @@ export interface PayloadLockedDocument {
         value: number | Page;
       } | null)
     | ({
-        relationTo: 'payload-jobs';
-        value: number | PayloadJob;
+        relationTo: 'stories';
+        value: number | Story;
+      } | null)
+    | ({
+        relationTo: 'story-categories';
+        value: number | StoryCategory;
+      } | null)
+    | ({
+        relationTo: 'videos';
+        value: number | Video;
+      } | null)
+    | ({
+        relationTo: 'search';
+        value: number | Search;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -473,6 +1876,7 @@ export interface PayloadMigration {
 export interface UsersSelect<T extends boolean = true> {
   name?: T;
   role?: T;
+  roles?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -482,6 +1886,13 @@ export interface UsersSelect<T extends boolean = true> {
   hash?: T;
   loginAttempts?: T;
   lockUntil?: T;
+  sessions?:
+    | T
+    | {
+        id?: T;
+        createdAt?: T;
+        expiresAt?: T;
+      };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -503,7 +1914,7 @@ export interface MediaSelect<T extends boolean = true> {
   sizes?:
     | T
     | {
-        thumbnail?:
+        xs?:
           | T
           | {
               url?: T;
@@ -513,7 +1924,7 @@ export interface MediaSelect<T extends boolean = true> {
               filesize?: T;
               filename?: T;
             };
-        square?:
+        sm?:
           | T
           | {
               url?: T;
@@ -523,7 +1934,7 @@ export interface MediaSelect<T extends boolean = true> {
               filesize?: T;
               filename?: T;
             };
-        small?:
+        md?:
           | T
           | {
               url?: T;
@@ -533,7 +1944,7 @@ export interface MediaSelect<T extends boolean = true> {
               filesize?: T;
               filename?: T;
             };
-        medium?:
+        lg?:
           | T
           | {
               url?: T;
@@ -543,7 +1954,7 @@ export interface MediaSelect<T extends boolean = true> {
               filesize?: T;
               filename?: T;
             };
-        large?:
+        xl?:
           | T
           | {
               url?: T;
@@ -553,7 +1964,47 @@ export interface MediaSelect<T extends boolean = true> {
               filesize?: T;
               filename?: T;
             };
-        xlarge?:
+        'xs-square'?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        'sm-square'?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        'md-square'?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        'lg-square'?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        'xl-square'?:
           | T
           | {
               url?: T;
@@ -578,6 +2029,13 @@ export interface PagesSelect<T extends boolean = true> {
     | T
     | {
         hero?: T | HeroBlockSelect<T>;
+        'story-cards'?: T | StoryCardsBlockSelect<T>;
+        'icon-row'?: T | IconRowBlockSelect<T>;
+        'standard-content'?: T | StandardContentBlockSelect<T>;
+        'wide-image'?: T | WideImageBlockSelect<T>;
+        'image-grid'?: T | ImageGridBlockSelect<T>;
+        'simple-rich-text'?: T | SimpleRichTextBlockSelect<T>;
+        'youtube-embed'?: T | YoutubeEmbedBlockSelect<T>;
       };
   meta?:
     | T
@@ -585,6 +2043,7 @@ export interface PagesSelect<T extends boolean = true> {
         title?: T;
         image?: T;
         description?: T;
+        noIndex?: T;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -596,25 +2055,369 @@ export interface PagesSelect<T extends boolean = true> {
  */
 export interface HeroBlockSelect<T extends boolean = true> {
   heroType?: T;
-  backgroundImage?: T;
-  textDarkMode?: T;
+  mediaType?: T;
+  textOrientation?: T;
+  bannerImage?: T;
+  bannerVideo?: T;
   title?: T;
   body?: T;
-  featuredImage?: T;
-  ctas?:
+  buttons?:
     | T
     | {
         link?:
           | T
           | {
+              linkType?: T;
               url?: T;
+              relationTo?: T;
               label?: T;
+              buttonType?: T;
+              buttonColor?: T;
+              textColor?: T;
               newTab?: T;
             };
         id?: T;
       };
   id?: T;
   blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StoryCardsBlock_select".
+ */
+export interface StoryCardsBlockSelect<T extends boolean = true> {
+  backgroundColor?: T;
+  variant?: T;
+  showTitle?: T;
+  title?: T;
+  stories?:
+    | T
+    | {
+        story?: T;
+        color?: T;
+        textBackground?: T;
+        id?: T;
+      };
+  showButton?: T;
+  bottomButton?:
+    | T
+    | {
+        linkType?: T;
+        url?: T;
+        relationTo?: T;
+        label?: T;
+        buttonType?: T;
+        buttonColor?: T;
+        textColor?: T;
+        newTab?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IconRowBlock_select".
+ */
+export interface IconRowBlockSelect<T extends boolean = true> {
+  backgroundColor?: T;
+  title?: T;
+  items?:
+    | T
+    | {
+        iconName?: T;
+        iconBackgroundColor?: T;
+        iconColor?: T;
+        iconColorDark?: T;
+        iconColorWithBackground?: T;
+        title?: T;
+        description?: T;
+        hasButton?: T;
+        button?:
+          | T
+          | {
+              linkType?: T;
+              url?: T;
+              relationTo?: T;
+              label?: T;
+              buttonType?: T;
+              buttonColor?: T;
+              textColor?: T;
+              newTab?: T;
+            };
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StandardContentBlock_select".
+ */
+export interface StandardContentBlockSelect<T extends boolean = true> {
+  header?:
+    | T
+    | {
+        text?: T;
+        highlightColor?: T;
+        textColor?: T;
+        level?: T;
+      };
+  content?: T;
+  buttons?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              linkType?: T;
+              url?: T;
+              relationTo?: T;
+              label?: T;
+              buttonType?: T;
+              buttonColor?: T;
+              textColor?: T;
+              newTab?: T;
+            };
+        id?: T;
+      };
+  image?: T;
+  imagePosition?: T;
+  themeMode?: T;
+  backgroundImage?: T;
+  backgroundOverlay?: T;
+  backgroundColor?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "WideImageBlock_select".
+ */
+export interface WideImageBlockSelect<T extends boolean = true> {
+  image?: T;
+  header?:
+    | T
+    | {
+        text?: T;
+        highlightColor?: T;
+        textColor?: T;
+        level?: T;
+      };
+  content?: T;
+  backgroundColor?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ImageGridBlock_select".
+ */
+export interface ImageGridBlockSelect<T extends boolean = true> {
+  backgroundColor?: T;
+  showTitle?: T;
+  title?: T;
+  columns?: T;
+  category?:
+    | T
+    | {
+        name?: T;
+        id?: T;
+      };
+  showAll?: T;
+  items?:
+    | T
+    | {
+        image?: T;
+        header?: T;
+        subheader?: T;
+        showLink?: T;
+        assignedCategories?: T;
+        link?:
+          | T
+          | {
+              linkType?: T;
+              url?: T;
+              relationTo?: T;
+              label?: T;
+              buttonType?: T;
+              buttonColor?: T;
+              textColor?: T;
+              newTab?: T;
+            };
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SimpleRichTextBlock_select".
+ */
+export interface SimpleRichTextBlockSelect<T extends boolean = true> {
+  backgroundColor?: T;
+  title?: T;
+  body?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "YoutubeEmbedBlock_select".
+ */
+export interface YoutubeEmbedBlockSelect<T extends boolean = true> {
+  backgroundColor?: T;
+  title?: T;
+  videoId?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "stories_select".
+ */
+export interface StoriesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  isExternalLink?: T;
+  externalUrl?: T;
+  publishedAt?: T;
+  categories?: T;
+  author?: T;
+  featured?: T;
+  readingTime?: T;
+  bannerImage?: T;
+  thumbnail?: T;
+  summary?: T;
+  body?: T;
+  layout?:
+    | T
+    | {
+        'story-cards'?: T | StoryCardsBlockSelect<T>;
+        'image-grid'?: T | ImageGridBlockSelect<T>;
+      };
+  meta?:
+    | T
+    | {
+        title?: T;
+        image?: T;
+        description?: T;
+        noIndex?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "story-categories_select".
+ */
+export interface StoryCategoriesSelect<T extends boolean = true> {
+  name?: T;
+  description?: T;
+  slug?: T;
+  iconName?: T;
+  color?: T;
+  textColor?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "videos_select".
+ */
+export interface VideosSelect<T extends boolean = true> {
+  alt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "exports_select".
+ */
+export interface ExportsSelect<T extends boolean = true> {
+  name?: T;
+  format?: T;
+  limit?: T;
+  page?: T;
+  sort?: T;
+  sortOrder?: T;
+  locale?: T;
+  drafts?: T;
+  selectionToUse?: T;
+  fields?: T;
+  collectionSlug?: T;
+  where?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "imports_select".
+ */
+export interface ImportsSelect<T extends boolean = true> {
+  collectionSlug?: T;
+  importMode?: T;
+  matchField?: T;
+  status?: T;
+  summary?:
+    | T
+    | {
+        imported?: T;
+        updated?: T;
+        total?: T;
+        issues?: T;
+        issueDetails?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "search_select".
+ */
+export interface SearchSelect<T extends boolean = true> {
+  title?: T;
+  priority?: T;
+  doc?: T;
+  slug?: T;
+  noIndex?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-kv_select".
+ */
+export interface PayloadKvSelect<T extends boolean = true> {
+  key?: T;
+  data?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -688,15 +2491,239 @@ export interface Header {
   /**
    * Upload a logo to display in the header
    */
-  logo?: (number | null) | Media;
+  logo: {
+    light: number | Media;
+    dark: number | Media;
+  };
   /**
-   * Add links to the header navigation
+   * Add links or dropdown menus to the header navigation
    */
   navItems?:
     | {
-        link: {
-          url: string;
-          label: string;
+        type?: ('link' | 'dropdown') | null;
+        linkConfig?: {
+          linkType?: ('manual' | 'relation') | null;
+          url?: string | null;
+          relationTo?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'stories';
+                value: number | Story;
+              } | null);
+          label?: string | null;
+          buttonType?: ('default' | 'secondary' | 'destructive' | 'outline' | 'ghost' | 'link' | 'brand') | null;
+          buttonColor?:
+            | (
+                | 'White'
+                | 'Black'
+                | 'Yellow'
+                | 'Red'
+                | 'Purple'
+                | 'Blue'
+                | 'Pink'
+                | 'Teal'
+                | 'Dark Purple'
+                | 'Orange'
+                | 'Dark Green'
+                | 'Dark Red'
+              )
+            | null;
+          textColor?:
+            | (
+                | 'White'
+                | 'Black'
+                | 'Yellow'
+                | 'Red'
+                | 'Purple'
+                | 'Blue'
+                | 'Pink'
+                | 'Teal'
+                | 'Dark Purple'
+                | 'Orange'
+                | 'Dark Green'
+                | 'Dark Red'
+              )
+            | null;
+          newTab?: boolean | null;
+        };
+        dropdownLabel?: string | null;
+        hasDropdownLabelLink?: boolean | null;
+        /**
+         * This link is used when the dropdown label itself should navigate.
+         */
+        dropdownLabelLink?: {
+          linkType?: ('manual' | 'relation') | null;
+          url?: string | null;
+          relationTo?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'stories';
+                value: number | Story;
+              } | null);
+          label?: string | null;
+          buttonType?: ('default' | 'secondary' | 'destructive' | 'outline' | 'ghost' | 'link' | 'brand') | null;
+          buttonColor?:
+            | (
+                | 'White'
+                | 'Black'
+                | 'Yellow'
+                | 'Red'
+                | 'Purple'
+                | 'Blue'
+                | 'Pink'
+                | 'Teal'
+                | 'Dark Purple'
+                | 'Orange'
+                | 'Dark Green'
+                | 'Dark Red'
+              )
+            | null;
+          textColor?:
+            | (
+                | 'White'
+                | 'Black'
+                | 'Yellow'
+                | 'Red'
+                | 'Purple'
+                | 'Blue'
+                | 'Pink'
+                | 'Teal'
+                | 'Dark Purple'
+                | 'Orange'
+                | 'Dark Green'
+                | 'Dark Red'
+              )
+            | null;
+          newTab?: boolean | null;
+        };
+        dropdownLinks?:
+          | {
+              /**
+               * Mark this link as featured (only one per dropdown)
+               */
+              isFeatured?: boolean | null;
+              /**
+               * Optional background image for featured link. If not provided, a gradient will be used.
+               */
+              featuredImage?: (number | null) | Media;
+              /**
+               * Configure each dropdown link
+               */
+              link?: {
+                linkType?: ('manual' | 'relation') | null;
+                url?: string | null;
+                relationTo?:
+                  | ({
+                      relationTo: 'pages';
+                      value: number | Page;
+                    } | null)
+                  | ({
+                      relationTo: 'stories';
+                      value: number | Story;
+                    } | null);
+                label?: string | null;
+                buttonType?: ('default' | 'secondary' | 'destructive' | 'outline' | 'ghost' | 'link' | 'brand') | null;
+                buttonColor?:
+                  | (
+                      | 'White'
+                      | 'Black'
+                      | 'Yellow'
+                      | 'Red'
+                      | 'Purple'
+                      | 'Blue'
+                      | 'Pink'
+                      | 'Teal'
+                      | 'Dark Purple'
+                      | 'Orange'
+                      | 'Dark Green'
+                      | 'Dark Red'
+                    )
+                  | null;
+                textColor?:
+                  | (
+                      | 'White'
+                      | 'Black'
+                      | 'Yellow'
+                      | 'Red'
+                      | 'Purple'
+                      | 'Blue'
+                      | 'Pink'
+                      | 'Teal'
+                      | 'Dark Purple'
+                      | 'Orange'
+                      | 'Dark Green'
+                      | 'Dark Red'
+                    )
+                  | null;
+                newTab?: boolean | null;
+              };
+              /**
+               * Optional description text under the link. Required for featured links. Max 80 characters.
+               */
+              description?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Add call to action links to the header
+   */
+  navButtons?:
+    | {
+        link?: {
+          linkType?: ('manual' | 'relation') | null;
+          url?: string | null;
+          relationTo?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'stories';
+                value: number | Story;
+              } | null);
+          label?: string | null;
+          buttonType?: ('default' | 'secondary' | 'destructive' | 'outline' | 'ghost' | 'link' | 'brand') | null;
+          buttonColor?:
+            | (
+                | 'White'
+                | 'Black'
+                | 'Yellow'
+                | 'Red'
+                | 'Purple'
+                | 'Blue'
+                | 'Pink'
+                | 'Teal'
+                | 'Dark Purple'
+                | 'Orange'
+                | 'Dark Green'
+                | 'Dark Red'
+              )
+            | null;
+          textColor?:
+            | (
+                | 'White'
+                | 'Black'
+                | 'Yellow'
+                | 'Red'
+                | 'Purple'
+                | 'Blue'
+                | 'Pink'
+                | 'Teal'
+                | 'Dark Purple'
+                | 'Orange'
+                | 'Dark Green'
+                | 'Dark Red'
+              )
+            | null;
           newTab?: boolean | null;
         };
         id?: string | null;
@@ -713,13 +2740,195 @@ export interface Header {
 export interface Footer {
   id: number;
   /**
-   * Editable tagline for the footer
+   * Upload a logo to display in the footer
    */
-  tagline?: {
+  logo: {
+    light: number | Media;
+    dark: number | Media;
+  };
+  socialLinks?:
+    | {
+        /**
+         * Visit remixicon.com to see the available icons. Click one and copy its name and paste it here. For example: `facebook-fill`.
+         */
+        iconName: string;
+        link?: {
+          linkType?: ('manual' | 'relation') | null;
+          url?: string | null;
+          relationTo?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'stories';
+                value: number | Story;
+              } | null);
+          label?: string | null;
+          buttonType?: ('default' | 'secondary' | 'destructive' | 'outline' | 'ghost' | 'link' | 'brand') | null;
+          buttonColor?:
+            | (
+                | 'White'
+                | 'Black'
+                | 'Yellow'
+                | 'Red'
+                | 'Purple'
+                | 'Blue'
+                | 'Pink'
+                | 'Teal'
+                | 'Dark Purple'
+                | 'Orange'
+                | 'Dark Green'
+                | 'Dark Red'
+              )
+            | null;
+          textColor?:
+            | (
+                | 'White'
+                | 'Black'
+                | 'Yellow'
+                | 'Red'
+                | 'Purple'
+                | 'Blue'
+                | 'Pink'
+                | 'Teal'
+                | 'Dark Purple'
+                | 'Orange'
+                | 'Dark Green'
+                | 'Dark Red'
+              )
+            | null;
+          newTab?: boolean | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Add call to action links to the footer
+   */
+  navButtons?:
+    | {
+        link?: {
+          linkType?: ('manual' | 'relation') | null;
+          url?: string | null;
+          relationTo?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'stories';
+                value: number | Story;
+              } | null);
+          label?: string | null;
+          buttonType?: ('default' | 'secondary' | 'destructive' | 'outline' | 'ghost' | 'link' | 'brand') | null;
+          buttonColor?:
+            | (
+                | 'White'
+                | 'Black'
+                | 'Yellow'
+                | 'Red'
+                | 'Purple'
+                | 'Blue'
+                | 'Pink'
+                | 'Teal'
+                | 'Dark Purple'
+                | 'Orange'
+                | 'Dark Green'
+                | 'Dark Red'
+              )
+            | null;
+          textColor?:
+            | (
+                | 'White'
+                | 'Black'
+                | 'Yellow'
+                | 'Red'
+                | 'Purple'
+                | 'Blue'
+                | 'Pink'
+                | 'Teal'
+                | 'Dark Purple'
+                | 'Orange'
+                | 'Dark Green'
+                | 'Dark Red'
+              )
+            | null;
+          newTab?: boolean | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Add groups of navigation links to the footer
+   */
+  navGroups?:
+    | {
+        label: string;
+        navItems?:
+          | {
+              link?: {
+                linkType?: ('manual' | 'relation') | null;
+                url?: string | null;
+                relationTo?:
+                  | ({
+                      relationTo: 'pages';
+                      value: number | Page;
+                    } | null)
+                  | ({
+                      relationTo: 'stories';
+                      value: number | Story;
+                    } | null);
+                label?: string | null;
+                buttonType?: ('default' | 'secondary' | 'destructive' | 'outline' | 'ghost' | 'link' | 'brand') | null;
+                buttonColor?:
+                  | (
+                      | 'White'
+                      | 'Black'
+                      | 'Yellow'
+                      | 'Red'
+                      | 'Purple'
+                      | 'Blue'
+                      | 'Pink'
+                      | 'Teal'
+                      | 'Dark Purple'
+                      | 'Orange'
+                      | 'Dark Green'
+                      | 'Dark Red'
+                    )
+                  | null;
+                textColor?:
+                  | (
+                      | 'White'
+                      | 'Black'
+                      | 'Yellow'
+                      | 'Red'
+                      | 'Purple'
+                      | 'Blue'
+                      | 'Pink'
+                      | 'Teal'
+                      | 'Dark Purple'
+                      | 'Orange'
+                      | 'Dark Green'
+                      | 'Dark Red'
+                    )
+                  | null;
+                newTab?: boolean | null;
+              };
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Editable text for the footer bottom
+   */
+  footerText?: {
     root: {
       type: string;
       children: {
-        type: string;
+        type: any;
         version: number;
         [k: string]: unknown;
       }[];
@@ -736,18 +2945,211 @@ export interface Footer {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "announcement-bar".
+ */
+export interface AnnouncementBar {
+  id: number;
+  /**
+   * Enable or disable the announcement bar
+   */
+  enabled?: boolean | null;
+  /**
+   * Keep this short - maximum 125 characters
+   */
+  text?: string | null;
+  /**
+   * Toggle to show or hide the link/button in the bar
+   */
+  showLink?: boolean | null;
+  link?: {
+    linkType?: ('manual' | 'relation') | null;
+    url?: string | null;
+    relationTo?:
+      | ({
+          relationTo: 'pages';
+          value: number | Page;
+        } | null)
+      | ({
+          relationTo: 'stories';
+          value: number | Story;
+        } | null);
+    label?: string | null;
+    buttonType?: ('default' | 'secondary' | 'destructive' | 'outline' | 'ghost' | 'link' | 'brand') | null;
+    buttonColor?:
+      | (
+          | 'White'
+          | 'Black'
+          | 'Yellow'
+          | 'Red'
+          | 'Purple'
+          | 'Blue'
+          | 'Pink'
+          | 'Teal'
+          | 'Dark Purple'
+          | 'Orange'
+          | 'Dark Green'
+          | 'Dark Red'
+        )
+      | null;
+    textColor?:
+      | (
+          | 'White'
+          | 'Black'
+          | 'Yellow'
+          | 'Red'
+          | 'Purple'
+          | 'Blue'
+          | 'Pink'
+          | 'Teal'
+          | 'Dark Purple'
+          | 'Orange'
+          | 'Dark Green'
+          | 'Dark Red'
+        )
+      | null;
+    newTab?: boolean | null;
+  };
+  textColor?:
+    | (
+        | 'White'
+        | 'Black'
+        | 'Yellow'
+        | 'Red'
+        | 'Purple'
+        | 'Blue'
+        | 'Pink'
+        | 'Teal'
+        | 'Dark Purple'
+        | 'Orange'
+        | 'Dark Green'
+        | 'Dark Red'
+      )
+    | null;
+  backgroundColor?:
+    | (
+        | 'White'
+        | 'Black'
+        | 'Yellow'
+        | 'Red'
+        | 'Purple'
+        | 'Blue'
+        | 'Pink'
+        | 'Teal'
+        | 'Dark Purple'
+        | 'Orange'
+        | 'Dark Green'
+        | 'Dark Red'
+      )
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "stories-page".
+ */
+export interface StoriesPage {
+  id: number;
+  /**
+   * The main title displayed on the all stories category
+   */
+  allStoriesLabel?: string | null;
+  /**
+   * This description is shown when "all stories" is selected or when a category has no description
+   */
+  defaultDescription?: string | null;
+  meta?: {
+    title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
+    description?: string | null;
+    /**
+     * Prevent search engines from indexing this page. The page will also be excluded from the sitemap.
+     */
+    noIndex?: boolean | null;
+  };
+  _status?: ('draft' | 'published') | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
-  logo?: T;
+  logo?:
+    | T
+    | {
+        light?: T;
+        dark?: T;
+      };
   navItems?:
+    | T
+    | {
+        type?: T;
+        linkConfig?:
+          | T
+          | {
+              linkType?: T;
+              url?: T;
+              relationTo?: T;
+              label?: T;
+              buttonType?: T;
+              buttonColor?: T;
+              textColor?: T;
+              newTab?: T;
+            };
+        dropdownLabel?: T;
+        hasDropdownLabelLink?: T;
+        dropdownLabelLink?:
+          | T
+          | {
+              linkType?: T;
+              url?: T;
+              relationTo?: T;
+              label?: T;
+              buttonType?: T;
+              buttonColor?: T;
+              textColor?: T;
+              newTab?: T;
+            };
+        dropdownLinks?:
+          | T
+          | {
+              isFeatured?: T;
+              featuredImage?: T;
+              link?:
+                | T
+                | {
+                    linkType?: T;
+                    url?: T;
+                    relationTo?: T;
+                    label?: T;
+                    buttonType?: T;
+                    buttonColor?: T;
+                    textColor?: T;
+                    newTab?: T;
+                  };
+              description?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  navButtons?:
     | T
     | {
         link?:
           | T
           | {
+              linkType?: T;
               url?: T;
+              relationTo?: T;
               label?: T;
+              buttonType?: T;
+              buttonColor?: T;
+              textColor?: T;
               newTab?: T;
             };
         id?: T;
@@ -762,11 +3164,181 @@ export interface HeaderSelect<T extends boolean = true> {
  * via the `definition` "footer_select".
  */
 export interface FooterSelect<T extends boolean = true> {
-  tagline?: T;
+  logo?:
+    | T
+    | {
+        light?: T;
+        dark?: T;
+      };
+  socialLinks?:
+    | T
+    | {
+        iconName?: T;
+        link?:
+          | T
+          | {
+              linkType?: T;
+              url?: T;
+              relationTo?: T;
+              label?: T;
+              buttonType?: T;
+              buttonColor?: T;
+              textColor?: T;
+              newTab?: T;
+            };
+        id?: T;
+      };
+  navButtons?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              linkType?: T;
+              url?: T;
+              relationTo?: T;
+              label?: T;
+              buttonType?: T;
+              buttonColor?: T;
+              textColor?: T;
+              newTab?: T;
+            };
+        id?: T;
+      };
+  navGroups?:
+    | T
+    | {
+        label?: T;
+        navItems?:
+          | T
+          | {
+              link?:
+                | T
+                | {
+                    linkType?: T;
+                    url?: T;
+                    relationTo?: T;
+                    label?: T;
+                    buttonType?: T;
+                    buttonColor?: T;
+                    textColor?: T;
+                    newTab?: T;
+                  };
+              id?: T;
+            };
+        id?: T;
+      };
+  footerText?: T;
   _status?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "announcement-bar_select".
+ */
+export interface AnnouncementBarSelect<T extends boolean = true> {
+  enabled?: T;
+  text?: T;
+  showLink?: T;
+  link?:
+    | T
+    | {
+        linkType?: T;
+        url?: T;
+        relationTo?: T;
+        label?: T;
+        buttonType?: T;
+        buttonColor?: T;
+        textColor?: T;
+        newTab?: T;
+      };
+  textColor?: T;
+  backgroundColor?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "stories-page_select".
+ */
+export interface StoriesPageSelect<T extends boolean = true> {
+  allStoriesLabel?: T;
+  defaultDescription?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        image?: T;
+        description?: T;
+        noIndex?: T;
+      };
+  _status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "collections_widget".
+ */
+export interface CollectionsWidget {
+  data?: {
+    [k: string]: unknown;
+  };
+  width: 'full';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TaskCreateCollectionExport".
+ */
+export interface TaskCreateCollectionExport {
+  input: {
+    id: string;
+    name: string;
+    batchSize?: number | null;
+    collectionSlug: 'users' | 'media' | 'pages' | 'stories' | 'story-categories' | 'videos' | 'exports' | 'imports';
+    drafts?: ('yes' | 'no') | null;
+    exportCollection: string;
+    fields?: string[] | null;
+    format: 'csv' | 'json';
+    limit?: number | null;
+    locale?: string | null;
+    maxLimit?: number | null;
+    page?: number | null;
+    sort?: string | null;
+    userCollection?: string | null;
+    userID?: string | null;
+    where?:
+      | {
+          [k: string]: unknown;
+        }
+      | unknown[]
+      | string
+      | number
+      | boolean
+      | null;
+  };
+  output?: unknown;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TaskCreateCollectionImport".
+ */
+export interface TaskCreateCollectionImport {
+  input: {
+    importId: string;
+    importCollection: string;
+    userID?: string | null;
+    userCollection?: string | null;
+    batchSize?: number | null;
+    debug?: boolean | null;
+    defaultVersionStatus?: ('draft' | 'published') | null;
+    maxLimit?: number | null;
+  };
+  output?: unknown;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -776,14 +3348,228 @@ export interface TaskSchedulePublish {
   input: {
     type?: ('publish' | 'unpublish') | null;
     locale?: string | null;
-    doc?: {
-      relationTo: 'pages';
-      value: number | Page;
-    } | null;
-    global?: ('header' | 'footer') | null;
+    doc?:
+      | ({
+          relationTo: 'pages';
+          value: number | Page;
+        } | null)
+      | ({
+          relationTo: 'stories';
+          value: number | Story;
+        } | null);
+    global?: ('header' | 'footer' | 'stories-page') | null;
     user?: (number | null) | User;
   };
   output?: unknown;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MediaInlineBlock".
+ */
+export interface MediaInlineBlock {
+  /**
+   * Choose whether to display an image or video
+   */
+  mediaType: 'image' | 'video';
+  /**
+   * Select an image to display inline in the rich text content
+   */
+  media?: (number | null) | Media;
+  /**
+   * Select a video to display inline in the rich text content
+   */
+  video?: (number | null) | Video;
+  /**
+   * Optional caption to display below the media
+   */
+  caption?: string | null;
+  /**
+   * Maximum height of the media using valid CSS values (e.g., 400px, 80vh). "px" is pixels and "vh" means height of the window as a percentage (for example 80vh means 80% of the window height).
+   */
+  maxHeight?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'mediaInline';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FloatingMediaBlock".
+ */
+export interface FloatingMediaBlock {
+  /**
+   * Choose whether to display an image or video
+   */
+  mediaType: 'image' | 'video';
+  /**
+   * Select an image to display floating left or right with text flowing around it
+   */
+  media?: (number | null) | Media;
+  /**
+   * Select a video to display floating left or right with text flowing around it
+   */
+  video?: (number | null) | Video;
+  /**
+   * Choose whether the media should float to the left or right
+   */
+  position: 'left' | 'right';
+  /**
+   * Optional caption to display below the media
+   */
+  caption?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'floatingMedia';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "InlineItemBlock".
+ */
+export interface InlineItemBlock {
+  /**
+   * The title text for the item
+   */
+  title: string;
+  /**
+   * Optional description text for the item
+   */
+  description?: string | null;
+  /**
+   * Remix icon name (e.g., file-text-fill, download-line)
+   */
+  iconName: string;
+  /**
+   * Choose the visual style for the item
+   */
+  itemVariant?: ('default' | 'outline' | 'muted') | null;
+  /**
+   * Toggle to show or hide the link button
+   */
+  showLink?: boolean | null;
+  link?: {
+    linkType?: ('manual' | 'relation') | null;
+    url?: string | null;
+    relationTo?:
+      | ({
+          relationTo: 'pages';
+          value: number | Page;
+        } | null)
+      | ({
+          relationTo: 'stories';
+          value: number | Story;
+        } | null);
+    label?: string | null;
+    buttonType?: ('default' | 'secondary' | 'destructive' | 'outline' | 'ghost' | 'link' | 'brand') | null;
+    buttonColor?:
+      | (
+          | 'White'
+          | 'Black'
+          | 'Yellow'
+          | 'Red'
+          | 'Purple'
+          | 'Blue'
+          | 'Pink'
+          | 'Teal'
+          | 'Dark Purple'
+          | 'Orange'
+          | 'Dark Green'
+          | 'Dark Red'
+        )
+      | null;
+    textColor?:
+      | (
+          | 'White'
+          | 'Black'
+          | 'Yellow'
+          | 'Red'
+          | 'Purple'
+          | 'Blue'
+          | 'Pink'
+          | 'Teal'
+          | 'Dark Purple'
+          | 'Orange'
+          | 'Dark Green'
+          | 'Dark Red'
+        )
+      | null;
+    newTab?: boolean | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'inlineItem';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "InlineYoutubeEmbedBlock".
+ */
+export interface InlineYoutubeEmbedBlock {
+  /**
+   * The YouTube video ID (e.g., "dQw4w9WgXcQ" from the URL https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+   */
+  videoId: string;
+  /**
+   * Optional caption to display below the YouTube video
+   */
+  caption?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'inlineYoutubeEmbed';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ButtonInlineBlock".
+ */
+export interface ButtonInlineBlock {
+  link?: {
+    linkType?: ('manual' | 'relation') | null;
+    url?: string | null;
+    relationTo?:
+      | ({
+          relationTo: 'pages';
+          value: number | Page;
+        } | null)
+      | ({
+          relationTo: 'stories';
+          value: number | Story;
+        } | null);
+    label?: string | null;
+    buttonType?: ('default' | 'secondary' | 'destructive' | 'outline' | 'ghost' | 'link' | 'brand') | null;
+    buttonColor?:
+      | (
+          | 'White'
+          | 'Black'
+          | 'Yellow'
+          | 'Red'
+          | 'Purple'
+          | 'Blue'
+          | 'Pink'
+          | 'Teal'
+          | 'Dark Purple'
+          | 'Orange'
+          | 'Dark Green'
+          | 'Dark Red'
+        )
+      | null;
+    textColor?:
+      | (
+          | 'White'
+          | 'Black'
+          | 'Yellow'
+          | 'Red'
+          | 'Purple'
+          | 'Blue'
+          | 'Pink'
+          | 'Teal'
+          | 'Dark Purple'
+          | 'Orange'
+          | 'Dark Green'
+          | 'Dark Red'
+        )
+      | null;
+    newTab?: boolean | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'buttonInline';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

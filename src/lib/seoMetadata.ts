@@ -1,8 +1,8 @@
-import { Media, Page } from '@/payload-types';
+import { Media, Page, Story } from '@/payload-types';
 import { Metadata } from 'next';
 import { getServerSideURL } from './utils';
 
-type SeoDoc = Partial<Page> | null;
+type SeoDoc = Partial<Page> | Partial<Story> | null;
 
 export const generateMeta = async (args: { doc: SeoDoc }): Promise<Metadata> => {
   const { doc } = args;
@@ -11,7 +11,7 @@ export const generateMeta = async (args: { doc: SeoDoc }): Promise<Metadata> => 
   const image = doc?.meta?.image as Media;
   const imageUrl = image ? `${getServerSideURL()}${image.url}` : '';
 
-  return {
+  const metadata: Metadata = {
     title: title,
     description: doc?.meta?.description,
     openGraph: {
@@ -26,4 +26,14 @@ export const generateMeta = async (args: { doc: SeoDoc }): Promise<Metadata> => 
       title: title,
     },
   };
+
+  // Add noindex robots directive if noIndex is true
+  if (doc?.meta?.noIndex) {
+    metadata.robots = {
+      index: false,
+      follow: false,
+    };
+  }
+
+  return metadata;
 };

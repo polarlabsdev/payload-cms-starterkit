@@ -163,6 +163,18 @@ We intend to deploy this project using:
 
 Configuration and documentation for this deployment strategy are still under development.
 
+## Stack-Specific Decisions
+
+These are implementation choices made for the default stack in this repository. If you change providers or architecture, verify whether they are still needed.
+
+- **Seed fixtures are fictional by default**
+  - Files in `seed/fixtures/` are starter placeholders for development/testing and should be replaced for production projects.
+- **Supabase media thumbnails in admin ([`src/collections/Media/config.ts`](src/collections/Media/config.ts))**
+  - The `upload.adminThumbnail` callback builds a direct public Supabase Storage URL from the stored filename.
+  - This avoids requests going through Payload's `/api/media/file/*` proxy path, which is incompatible with the current S3 plugin setup when `disablePayloadAccessControl` behavior is in play.
+  - If you move to local storage or another object storage adapter, you may want to revisit this behavior.
+
+
 ## Available Scripts
 
 *   `npm run dev`: Starts the development server (Next.js + Payload).

@@ -1,0 +1,40 @@
+{
+  "NotFound": {
+    "notFound": "This page could not be found.",
+    "goHome": "Go home",
+    "didYouMean": "Did you mean?",
+    "searchHint": "Press {hotkey} to search",
+    "noSuggestions": "Try searching for what you need",
+    "search": "Search"
+  },
+  "AuthError": {
+    "title": "Access Denied",
+    "description": "You do not have permission to access this page or your authentication has failed. This may be due to an expired or invalid sign-in link, or insufficient permissions. Please try again, request a new link, or contact support if the problem persists."
+  },
+  "ThemeToggle": {
+    "toggleDark": "Toggle dark mode",
+    "toggleLight": "Toggle light mode"
+  },
+  "Search": {
+    "placeholder": "Search pages and stories...",
+    "noResults": "No results found.",
+    "heading": "Search pages and stories",
+    "typeMoreChars": "Type at least 3 characters to search",
+    "toSearch": "to search"
+  },
+  "StoriesSidebar": {
+    "selectCategory": "Select a category"
+  },
+  "Navigation": {
+    "searchAriaLabel": "Search",
+    "closeMenu": "Close menu",
+    "openMenu": "Open menu"
+  },
+  "AnnouncementBar": {
+    "closeAriaLabel": "Close announcement"
+  },
+  "LanguageSelect": {
+    "placeholder": "Select a Language",
+    "label": "Languages"
+  }
+}

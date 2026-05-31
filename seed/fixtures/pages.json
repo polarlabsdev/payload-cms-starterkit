@@ -1,0 +1,519 @@
+[
+  {
+    "id": 1,
+    "title": {
+      "en": "Payload CMS Starterkit",
+      "fr": "Payload CMS Starterkit"
+    },
+    "slug": "home",
+    "publishedAt": "2026-05-27T10:00:00.000Z",
+    "layout": [
+      {
+        "id": "home-hero-001",
+        "heroType": "minimal",
+        "title": {
+          "en": "Build faster with a production-ready foundation"
+        },
+        "body": {
+          "en": {
+            "root": {
+              "type": "root",
+              "format": "",
+              "indent": 0,
+              "version": 1,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "format": "",
+                  "indent": 0,
+                  "version": 1,
+                  "children": [
+                    {
+                      "mode": "normal",
+                      "text": "This starterkit provides reusable content blocks, seeded sample content, and a clean baseline for Payload CMS projects.",
+                      "type": "text",
+                      "style": "",
+                      "detail": 0,
+                      "format": 0,
+                      "version": 1
+                    }
+                  ],
+                  "direction": null,
+                  "textStyle": "",
+                  "textFormat": 0
+                }
+              ],
+              "direction": null
+            }
+          }
+        },
+        "buttons": [
+          {
+            "id": "home-hero-btn-1",
+            "link": {
+              "linkType": "manual",
+              "url": "/about",
+              "label": {
+                "en": "Learn More"
+              },
+              "buttonType": "secondary",
+              "buttonColor": "Teal",
+              "textColor": "White",
+              "newTab": false
+            }
+          },
+          {
+            "id": "home-hero-btn-2",
+            "link": {
+              "linkType": "manual",
+              "url": "/stories",
+              "label": {
+                "en": "Read Stories"
+              },
+              "buttonType": "default",
+              "buttonColor": "Teal",
+              "textColor": "White",
+              "newTab": false
+            }
+          }
+        ],
+        "blockType": "hero"
+      },
+      {
+        "id": "home-richtext-001",
+        "backgroundColor": "Background",
+        "title": {
+          "en": "Included in this foundation"
+        },
+        "body": {
+          "en": {
+            "root": {
+              "type": "root",
+              "format": "",
+              "indent": 0,
+              "version": 1,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "format": "",
+                  "indent": 0,
+                  "version": 1,
+                  "children": [
+                    {
+                      "mode": "normal",
+                      "text": "Out of the box you get configurable page blocks, story content patterns, a seeded navigation structure, and production-focused defaults.",
+                      "type": "text",
+                      "style": "",
+                      "detail": 0,
+                      "format": 0,
+                      "version": 1
+                    }
+                  ],
+                  "direction": null,
+                  "textStyle": "",
+                  "textFormat": 0
+                }
+              ],
+              "direction": null
+            }
+          }
+        },
+        "blockType": "simple-rich-text"
+      },
+      {
+        "id": "home-storycards-001",
+        "backgroundColor": "Card",
+        "variant": "story-previews",
+        "showTitle": true,
+        "title": {
+          "en": "Latest Stories"
+        },
+        "stories": [
+          {
+            "id": "home-storycard-item-1",
+            "story": 1,
+            "color": "Teal",
+            "textBackground": "Dark Purple"
+          },
+          {
+            "id": "home-storycard-item-2",
+            "story": 2,
+            "color": "Teal",
+            "textBackground": "Dark Purple"
+          },
+          {
+            "id": "home-storycard-item-3",
+            "story": 3,
+            "color": "Teal",
+            "textBackground": "Dark Purple"
+          }
+        ],
+        "showButton": true,
+        "bottomButton": {
+          "linkType": "manual",
+          "url": "/stories",
+          "label": {
+            "en": "View All Stories"
+          },
+          "buttonType": "secondary",
+          "buttonColor": "Teal",
+          "textColor": "White",
+          "newTab": false
+        },
+        "blockType": "story-cards"
+      }
+    ],
+    "meta": {
+      "title": "Payload CMS Starterkit",
+      "image": 3,
+      "description": "A generic starterkit for Payload CMS web applications."
+    },
+    "_status": "published",
+    "updatedAt": "2026-05-27T10:00:00.000Z",
+    "createdAt": "2026-05-27T10:00:00.000Z"
+  },
+  {
+    "id": 2,
+    "title": {
+      "en": "About"
+    },
+    "slug": "about",
+    "publishedAt": "2026-05-27T10:05:00.000Z",
+    "layout": [
+      {
+        "id": "about-richtext-001",
+        "backgroundColor": "Background",
+        "title": {
+          "en": "About this starterkit"
+        },
+        "body": {
+          "en": {
+            "root": {
+              "type": "root",
+              "format": "",
+              "indent": 0,
+              "version": 1,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "format": "",
+                  "indent": 0,
+                  "version": 1,
+                  "children": [
+                    {
+                      "mode": "normal",
+                      "text": "This repository is intended as a reusable baseline. It favors clear structure, editable blocks, and practical defaults so teams can start shipping quickly.",
+                      "type": "text",
+                      "style": "",
+                      "detail": 0,
+                      "format": 0,
+                      "version": 1
+                    }
+                  ],
+                  "direction": null,
+                  "textStyle": "",
+                  "textFormat": 0
+                }
+              ],
+              "direction": null
+            }
+          }
+        },
+        "blockType": "simple-rich-text"
+      }
+    ],
+    "meta": {
+      "title": "About",
+      "image": 4,
+      "description": "Information about the starterkit's goals and structure."
+    },
+    "_status": "published",
+    "updatedAt": "2026-05-27T10:05:00.000Z",
+    "createdAt": "2026-05-27T10:05:00.000Z"
+  },
+  {
+    "id": 3,
+    "title": {
+      "en": "Contact"
+    },
+    "slug": "contact",
+    "publishedAt": "2026-05-27T10:10:00.000Z",
+    "layout": [
+      {
+        "id": "contact-richtext-001",
+        "backgroundColor": "Background",
+        "title": {
+          "en": "Get in touch"
+        },
+        "body": {
+          "en": {
+            "root": {
+              "type": "root",
+              "format": "",
+              "indent": 0,
+              "version": 1,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "format": "",
+                  "indent": 0,
+                  "version": 1,
+                  "children": [
+                    {
+                      "mode": "normal",
+                      "text": "Use this page as a placeholder for project-specific contact details, forms, and support links.",
+                      "type": "text",
+                      "style": "",
+                      "detail": 0,
+                      "format": 0,
+                      "version": 1
+                    }
+                  ],
+                  "direction": null,
+                  "textStyle": "",
+                  "textFormat": 0
+                }
+              ],
+              "direction": null
+            }
+          }
+        },
+        "blockType": "simple-rich-text"
+      }
+    ],
+    "meta": {
+      "title": "Contact",
+      "image": 5,
+      "description": "Starter contact page placeholder."
+    },
+    "_status": "published",
+    "updatedAt": "2026-05-27T10:10:00.000Z",
+    "createdAt": "2026-05-27T10:10:00.000Z"
+  },
+  {
+    "id": 4,
+    "title": {
+      "en": "Privacy Policy"
+    },
+    "slug": "privacy",
+    "publishedAt": "2026-05-27T10:12:00.000Z",
+    "layout": [
+      {
+        "id": "privacy-richtext-001",
+        "backgroundColor": "Background",
+        "title": {
+          "en": "Privacy Policy"
+        },
+        "body": {
+          "en": {
+            "root": {
+              "type": "root",
+              "format": "",
+              "indent": 0,
+              "version": 1,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "format": "",
+                  "indent": 0,
+                  "version": 1,
+                  "children": [
+                    {
+                      "mode": "normal",
+                      "text": "This is a starter template privacy page. Replace this content with your organization-specific privacy disclosures before launch.",
+                      "type": "text",
+                      "style": "",
+                      "detail": 0,
+                      "format": 0,
+                      "version": 1
+                    }
+                  ],
+                  "direction": null,
+                  "textStyle": "",
+                  "textFormat": 0
+                }
+              ],
+              "direction": null
+            }
+          }
+        },
+        "blockType": "simple-rich-text"
+      }
+    ],
+    "meta": {
+      "title": "Privacy Policy",
+      "image": 4,
+      "description": "Starter privacy policy template page."
+    },
+    "_status": "published",
+    "updatedAt": "2026-05-27T10:12:00.000Z",
+    "createdAt": "2026-05-27T10:12:00.000Z"
+  },
+  {
+    "id": 5,
+    "title": {
+      "en": "Terms"
+    },
+    "slug": "terms",
+    "publishedAt": "2026-05-27T10:13:00.000Z",
+    "layout": [
+      {
+        "id": "terms-richtext-001",
+        "backgroundColor": "Background",
+        "title": {
+          "en": "Terms of Use"
+        },
+        "body": {
+          "en": {
+            "root": {
+              "type": "root",
+              "format": "",
+              "indent": 0,
+              "version": 1,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "format": "",
+                  "indent": 0,
+                  "version": 1,
+                  "children": [
+                    {
+                      "mode": "normal",
+                      "text": "This is a starter template terms page. Replace this content with legal terms that apply to your deployed product.",
+                      "type": "text",
+                      "style": "",
+                      "detail": 0,
+                      "format": 0,
+                      "version": 1
+                    }
+                  ],
+                  "direction": null,
+                  "textStyle": "",
+                  "textFormat": 0
+                }
+              ],
+              "direction": null
+            }
+          }
+        },
+        "blockType": "simple-rich-text"
+      }
+    ],
+    "meta": {
+      "title": "Terms",
+      "image": 5,
+      "description": "Starter terms-of-use template page."
+    },
+    "_status": "published",
+    "updatedAt": "2026-05-27T10:13:00.000Z",
+    "createdAt": "2026-05-27T10:13:00.000Z"
+  },
+  {
+    "id": 101,
+    "title": {
+      "en": "E2E Page Published"
+    },
+    "slug": "e2e-page-published",
+    "publishedAt": "2026-05-27T10:15:00.000Z",
+    "layout": [
+      {
+        "id": "e2e-page-published-block-001",
+        "backgroundColor": "Background",
+        "title": {
+          "en": "Published page fixture"
+        },
+        "body": {
+          "en": {
+            "root": {
+              "type": "root",
+              "format": "",
+              "indent": 0,
+              "version": 1,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "format": "",
+                  "indent": 0,
+                  "version": 1,
+                  "children": [
+                    {
+                      "mode": "normal",
+                      "text": "This page exists for access-control e2e coverage.",
+                      "type": "text",
+                      "style": "",
+                      "detail": 0,
+                      "format": 0,
+                      "version": 1
+                    }
+                  ],
+                  "direction": null,
+                  "textStyle": "",
+                  "textFormat": 0
+                }
+              ],
+              "direction": null
+            }
+          }
+        },
+        "blockType": "simple-rich-text"
+      }
+    ],
+    "_status": "published",
+    "updatedAt": "2026-05-27T10:15:00.000Z",
+    "createdAt": "2026-05-27T10:15:00.000Z"
+  },
+  {
+    "id": 102,
+    "title": {
+      "en": "E2E Page Draft"
+    },
+    "slug": "e2e-page-draft",
+    "publishedAt": null,
+    "layout": [
+      {
+        "id": "e2e-page-draft-block-001",
+        "backgroundColor": "Background",
+        "title": {
+          "en": "Draft page fixture"
+        },
+        "body": {
+          "en": {
+            "root": {
+              "type": "root",
+              "format": "",
+              "indent": 0,
+              "version": 1,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "format": "",
+                  "indent": 0,
+                  "version": 1,
+                  "children": [
+                    {
+                      "mode": "normal",
+                      "text": "This draft page exists for access-control e2e coverage.",
+                      "type": "text",
+                      "style": "",
+                      "detail": 0,
+                      "format": 0,
+                      "version": 1
+                    }
+                  ],
+                  "direction": null,
+                  "textStyle": "",
+                  "textFormat": 0
+                }
+              ],
+              "direction": null
+            }
+          }
+        },
+        "blockType": "simple-rich-text"
+      }
+    ],
+    "_status": "draft",
+    "updatedAt": "2026-05-27T10:20:00.000Z",
+    "createdAt": "2026-05-27T10:20:00.000Z"
+  }
+]

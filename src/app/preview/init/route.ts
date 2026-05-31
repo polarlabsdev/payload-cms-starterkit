@@ -5,12 +5,13 @@ import { draftMode } from 'next/headers';
 import { redirect } from 'next/navigation';
 
 import configPromise from '@payload-config';
-import { NextRouteFunc } from '@/lib/sharedTypes';
+import { NextRouteHandler } from '@/lib/sharedTypes';
+import { NextResponse } from 'next/server';
 
 // https://payloadcms.com/docs/admin/preview#step-2-create-the-preview-route
 // Only made a few changes to the original code on this page, like using correct HTTP status codes
 // and adding some logging
-export const GET: NextRouteFunc = async (req) => {
+export const GET: NextRouteHandler = async (req) => {
   const payload = await getPayload({ config: configPromise });
 
   payload.logger.info('Received a preview request');
@@ -22,23 +23,27 @@ export const GET: NextRouteFunc = async (req) => {
   const slug = searchParams.get('slug');
   const previewSecret = searchParams.get('previewSecret');
 
-  payload.logger.debug('Parsed search params', { path, collection, slug });
+  payload.logger.debug({ path, collection, slug }, 'Parsed search params');
 
   if (previewSecret !== process.env.PREVIEW_SECRET) {
     payload.logger.warn('Invalid preview secret provided');
-    return new Response('You are not allowed to preview this page', {
-      status: 403,
-    });
+    return NextResponse.json(
+      { message: 'You are not allowed to preview this page' },
+      { status: 403 },
+    );
   }
 
   if (!path || !collection || !slug) {
-    payload.logger.warn('Insufficient search params', { path, collection, slug });
-    return new Response('Insufficient search params', { status: 400 });
+    payload.logger.warn({ path, collection, slug }, 'Insufficient search params');
+    return NextResponse.json({ message: 'Insufficient search params' }, { status: 400 });
   }
 
   if (!path.startsWith('/')) {
-    payload.logger.warn('Invalid path provided for preview', { path });
-    return new Response('This endpoint can only be used for relative previews', { status: 400 });
+    payload.logger.warn({ path }, 'Invalid path provided for preview');
+    return NextResponse.json(
+      { message: 'This endpoint can only be used for relative previews' },
+      { status: 400 },
+    );
   }
 
   let user;
@@ -50,10 +55,11 @@ export const GET: NextRouteFunc = async (req) => {
     });
     payload.logger.info('User authenticated successfully');
   } catch (error) {
-    payload.logger.error({ err: error }, 'Error verifying token for live preview');
-    return new Response('You are not allowed to preview this page', {
-      status: 401,
-    });
+    payload.logger.error(`Error verifying token for live preview: ${error}`);
+    return NextResponse.json(
+      { message: 'You are not allowed to preview this page' },
+      { status: 401 },
+    );
   }
 
   const draft = await draftMode();
@@ -61,14 +67,15 @@ export const GET: NextRouteFunc = async (req) => {
   if (!user) {
     payload.logger.warn('User authentication failed');
     draft.disable();
-    return new Response('You are not allowed to preview this page', {
-      status: 401,
-    });
+    return NextResponse.json(
+      { message: 'You are not allowed to preview this page' },
+      { status: 401 },
+    );
   }
 
   payload.logger.info('Enabling draft mode for preview');
   draft.enable();
 
-  payload.logger.info('Redirecting to preview path', { path });
+  payload.logger.info({ path }, 'Redirecting to preview path');
   redirect(path);
 };

@@ -1,10 +1,12 @@
 import slugify from 'slugify';
 import type { FieldHook, TextField } from 'payload';
+import type { PermissionString } from '@/accessControl/roles';
 
 type SourceField = string;
 type SlugFieldGenerator = (
   sourceField: SourceField,
-  options?: {
+  options: {
+    editPermission: PermissionString;
     inSidebar?: boolean;
     adminUpdatesOnly?: boolean;
   },
@@ -40,12 +42,13 @@ const formatSlugHook: SlugFieldFormatter = (sourceField) => {
 
 export const genSlugField: SlugFieldGenerator = (
   sourceField,
-  { inSidebar = true, adminUpdatesOnly = true } = {},
+  { editPermission, inSidebar = true, adminUpdatesOnly = true },
 ) => {
   const slugField: TextField = {
     name: 'slug',
     type: 'text',
     index: true,
+    unique: true,
     label: 'Slug',
     hooks: {
       beforeValidate: [formatSlugHook(sourceField)],
@@ -58,6 +61,7 @@ export const genSlugField: SlugFieldGenerator = (
           path: '@/fields/slugField/component.server#SlugComponent',
           serverProps: {
             adminUpdatesOnly,
+            editPermission,
           },
         },
       },

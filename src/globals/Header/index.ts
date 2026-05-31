@@ -1,3 +1,3 @@
-export { HeaderComponent as Header } from './Header';
-export { Navigation } from './Navigation';
-export { ArrayRowLabel } from './ArrayRowLabel';
+export { HeaderComponent as Header } from './components/Header';
+export { Navigation } from './components/Navigation';
+export { ArrayRowLabel } from '../../components/admin/LinkArrayRowLabel';

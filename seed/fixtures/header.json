@@ -1,0 +1,128 @@
+{
+  "logo": {
+    "light": 1,
+    "dark": 2
+  },
+  "navItems": [
+    {
+      "type": "link",
+      "linkConfig": {
+        "linkType": "manual",
+        "url": "/",
+        "label": "Home",
+        "newTab": false
+      }
+    },
+    {
+      "type": "dropdown",
+      "dropdownLabel": "Starterkit",
+      "hasDropdownLabelLink": true,
+      "dropdownLabelLink": {
+        "linkType": "manual",
+        "url": "/about",
+        "label": "About this Starterkit",
+        "newTab": false
+      },
+      "dropdownLinks": [
+        {
+          "isFeatured": true,
+          "featuredImage": 18,
+          "link": {
+            "linkType": "manual",
+            "url": "/about",
+            "label": "Why this Starterkit",
+            "newTab": false
+          },
+          "description": "Understand the foundations included out of the box."
+        },
+        {
+          "isFeatured": false,
+          "link": {
+            "linkType": "manual",
+            "url": "/about#features",
+            "label": "Core Features",
+            "newTab": false
+          }
+        },
+        {
+          "isFeatured": false,
+          "link": {
+            "linkType": "manual",
+            "url": "/about#how-to-use",
+            "label": "How to Use",
+            "newTab": false
+          }
+        }
+      ]
+    },
+    {
+      "type": "dropdown",
+      "dropdownLabel": "Stories",
+      "hasDropdownLabelLink": true,
+      "dropdownLabelLink": {
+        "linkType": "manual",
+        "url": "/stories",
+        "label": "All Stories",
+        "newTab": false
+      },
+      "dropdownLinks": [
+        {
+          "isFeatured": false,
+          "link": {
+            "linkType": "manual",
+            "url": "/stories?category=guides",
+            "label": "Guides",
+            "newTab": false
+          }
+        },
+        {
+          "isFeatured": false,
+          "link": {
+            "linkType": "manual",
+            "url": "/stories?category=engineering",
+            "label": "Engineering",
+            "newTab": false
+          }
+        },
+        {
+          "isFeatured": false,
+          "link": {
+            "linkType": "manual",
+            "url": "/stories?category=product",
+            "label": "Product",
+            "newTab": false
+          }
+        }
+      ]
+    },
+    {
+      "type": "link",
+      "linkConfig": {
+        "linkType": "manual",
+        "url": "/contact",
+        "label": "Contact",
+        "newTab": false
+      }
+    }
+  ],
+  "navButtons": [
+    {
+      "link": {
+        "linkType": "manual",
+        "url": "/about",
+        "label": "Get Started",
+        "buttonType": "secondary",
+        "newTab": false
+      }
+    },
+    {
+      "link": {
+        "linkType": "manual",
+        "url": "/stories",
+        "label": "Explore Stories",
+        "buttonType": "default",
+        "newTab": false
+      }
+    }
+  ]
+}

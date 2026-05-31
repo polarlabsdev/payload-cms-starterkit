@@ -1,57 +1,78 @@
 import React from 'react';
-import { notFound, redirect } from 'next/navigation';
-import { findCollectionSafe } from '@/lib/payloadSafeApi';
+import { TypedLocale } from 'payload';
+import { NextPageProps } from '@/lib/sharedTypes';
+import { notFound } from 'next/navigation';
+import { type Metadata } from 'next';
 import { StoryDetail } from '@/components/stories';
-import { Story } from '@/payload-types';
-import { NextMetadataFunc, NextPageProps } from '@/lib/sharedTypes';
-import { generateMeta } from '@/lib/seoMetadata';
+import { findCollectionSafe } from '@/lib/payloadSafeApi';
 
-const getStoryBySlug = async (slug: string): Promise<Story | null> => {
+type LocaleString = 'all' | TypedLocale;
+
+const StoryDetailPage: React.FC<NextPageProps<{ locale: LocaleString; slug: string }>> = async ({
+  params,
+}) => {
+  const { locale, slug } = await params;
+
   const result = await findCollectionSafe({
     collection: 'stories',
-    where: {
-      and: [
-        {
-          slug: {
-            equals: slug,
-          },
-        },
-        {
-          _status: {
-            equals: 'published',
-          },
-        },
-      ],
-    },
+    where: { slug: { equals: slug } },
+    locale: locale,
     limit: 1,
-    depth: 3,
-    pagination: false,
+    depth: 3, // Include related categories, author, and media
   });
 
-  return (result?.docs?.[0] as Story) || null;
-};
-
-const StoryPage: React.FC<NextPageProps<{ slug: string }>> = async ({ params }) => {
-  const { slug } = await params;
-  const story = await getStoryBySlug(slug);
-
-  if (!story) {
-    notFound();
+  if (!result || result.docs.length === 0) {
+    return notFound();
   }
 
-  if (story.isExternalLink && story.externalUrl) {
-    redirect(story.externalUrl);
-  }
-
+  const story = result.docs[0];
   return <StoryDetail story={story} />;
 };
 
-const generateMetadata: NextMetadataFunc<{ slug: string }> = async ({ params }) => {
-  const { slug } = await params;
-  const story = await getStoryBySlug(slug);
+export const generateMetadata = async ({
+  params,
+}: NextPageProps<{ locale: LocaleString; slug: string }>): Promise<Metadata> => {
+  const { locale, slug } = await params;
 
-  return generateMeta({ doc: story });
+  const result = await findCollectionSafe({
+    collection: 'stories',
+    where: { slug: { equals: slug } },
+    locale: locale,
+    limit: 1,
+  });
+
+  if (!result || result.docs.length === 0) {
+    return {
+      title: 'Story Not Found',
+      description: 'The requested story could not be found.',
+    };
+  }
+
+  const story = result.docs[0];
+
+  const title = story.meta?.title || `${story.title} | Rainbow Railroad`;
+  const description = story.meta?.description || 'Read our inspiring story';
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: 'article',
+      ...(story.meta?.image && {
+        images: [
+          {
+            url: typeof story.meta.image === 'object' ? story.meta.image.url || '' : '',
+          },
+        ],
+      }),
+    },
+    robots: {
+      index: !story.meta?.noIndex,
+      follow: !story.meta?.noIndex,
+    },
+  };
 };
 
-export default StoryPage;
-export { generateMetadata };
+export default StoryDetailPage;

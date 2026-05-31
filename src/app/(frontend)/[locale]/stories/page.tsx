@@ -1,66 +1,127 @@
 import React from 'react';
-import { findCollectionSafe, findGlobalSafe } from '@/lib/payloadSafeApi';
-import { StoriesGrid } from '@/components/stories';
-import { Story, StoryCategory } from '@/payload-types';
+import { TypedLocale, Where } from 'payload';
+import { Story } from '@/payload-types';
 import { NextPageProps } from '@/lib/sharedTypes';
+import { StoriesGallery } from '@/components/stories';
+import { Metadata } from 'next';
+import { findCollectionSafe, findGlobalSafe } from '@/lib/payloadSafeApi';
 
-const StoriesPage: React.FC<NextPageProps<Record<string, never>>> = async ({ searchParams }) => {
-  const { category } = await searchParams;
-  const selectedCategorySlug = typeof category === 'string' ? category : undefined;
+type LocaleString = 'all' | TypedLocale;
 
-  const [storiesResult, storiesPageConfig, categoriesResult] = await Promise.all([
-    findCollectionSafe({
+const STORIES_PER_PAGE = 12;
+const MAX_FEATURED_STORIES = 5;
+
+const StoriesPage: React.FC<
+  NextPageProps<{ locale: LocaleString; category?: string; page?: string }>
+> = async ({ params, searchParams }) => {
+  const { locale } = await params;
+  const { category, page = '1' } = await searchParams;
+
+  const pageParam = Array.isArray(page) ? page[0] : page;
+  const currentPage = parseInt(pageParam) || 1;
+
+  // Get the stories page configuration
+  const storiesPageConfig = await findGlobalSafe({
+    slug: 'stories-page',
+    locale: locale,
+  });
+
+  // Get all story categories for the sidebar
+  const categoriesResult = await findCollectionSafe({
+    collection: 'story-categories',
+    locale: locale,
+    pagination: false,
+    sort: ['name'],
+  });
+
+  // Build query for stories
+  const categoryParam = Array.isArray(category) ? category[0] : category;
+
+  // Find the selected category object by slug
+  const selectedCategory =
+    categoryParam && categoryParam !== 'all' && categoriesResult
+      ? categoriesResult.docs.find((cat) => cat.slug === categoryParam)
+      : null;
+
+  let categoryFilter: Where = {};
+
+  if (selectedCategory) {
+    categoryFilter = { categories: { in: [selectedCategory.id] } };
+  }
+
+  // Get featured stories (only on first page and no category filter)
+  let featuredStories: Story[] = [];
+  if (currentPage === 1) {
+    const featuredResult = await findCollectionSafe({
       collection: 'stories',
-      where: {
-        _status: {
-          equals: 'published',
-        },
-      },
-      sort: '-publishedAt',
+      where: { ...categoryFilter, featured: { equals: true } },
+      locale: locale,
+      limit: MAX_FEATURED_STORIES,
+      sort: ['-publishedAt'],
       depth: 2,
-      pagination: false,
-    }),
-    findGlobalSafe({ slug: 'stories-page', depth: 1 }),
-    findCollectionSafe({
-      collection: 'story-categories',
-      sort: 'name',
-      pagination: false,
-    }),
-  ]);
+    });
+    if (featuredResult) {
+      featuredStories = featuredResult.docs;
+    }
+  }
 
-  const stories = (storiesResult?.docs || []) as Story[];
-  const categories = (categoriesResult?.docs || []) as StoryCategory[];
-  const selectedCategory = categories.find((item) => item.slug === selectedCategorySlug);
-
-  const filteredStories =
-    selectedCategorySlug && selectedCategory
-      ? stories.filter((story) =>
-          (Array.isArray(story.categories) ? story.categories : []).some((categoryItem) => {
-            if (typeof categoryItem === 'object' && categoryItem?.slug) {
-              return categoryItem.slug === selectedCategory.slug;
-            }
-            return false;
-          }),
-        )
-      : stories;
+  const storiesResult = await findCollectionSafe({
+    collection: 'stories',
+    where: { ...categoryFilter, featured: { not_equals: true } },
+    locale: locale,
+    limit: STORIES_PER_PAGE,
+    page: currentPage,
+    sort: ['-publishedAt'],
+    depth: 2,
+  });
 
   return (
-    <div className="min-h-screen bg-background py-12 md:py-14">
-      <div className="container">
-        <div className="mb-10 md:mb-12">
-          <h1 className="font-header text-3xl font-extrabold tracking-tight md:text-4xl">
-            {selectedCategory?.name || storiesPageConfig?.allStoriesLabel || 'All Stories'}
-          </h1>
-          <p className="mt-3 max-w-3xl text-sm text-foreground/90 md:text-base">
-            {selectedCategory?.description ||
-              storiesPageConfig?.defaultDescription ||
-              'Browse the latest stories from this starterkit.'}
-          </p>
-        </div>
-        <StoriesGrid stories={filteredStories} />
-      </div>
-    </div>
+    <StoriesGallery
+      stories={storiesResult?.docs || []}
+      featuredStories={featuredStories}
+      categories={categoriesResult?.docs || []}
+      currentPage={currentPage}
+      totalPages={storiesResult ? Math.ceil(storiesResult.totalDocs / STORIES_PER_PAGE) : 0}
+      selectedCategory={selectedCategory}
+      config={storiesPageConfig}
+    />
   );
+};
+
+export const generateMetadata = async ({
+  params,
+}: NextPageProps<{ locale: LocaleString }>): Promise<Metadata> => {
+  const { locale } = await params;
+
+  const storiesPageConfig = await findGlobalSafe({
+    slug: 'stories-page',
+    locale: locale,
+  });
+
+  const title = storiesPageConfig?.meta?.title || 'Stories | Rainbow Railroad';
+  const description =
+    storiesPageConfig?.meta?.description ||
+    'Discover inspiring stories from our community - real stories of hope, courage, and resilience from LGBTQI+ individuals around the world.';
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: 'website',
+      ...(storiesPageConfig?.meta?.image && {
+        images: [
+          {
+            url:
+              typeof storiesPageConfig.meta.image === 'object'
+                ? storiesPageConfig.meta.image.url || ''
+                : '',
+          },
+        ],
+      }),
+    },
+  };
 };
 
 export default StoriesPage;

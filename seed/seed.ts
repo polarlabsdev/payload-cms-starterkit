@@ -129,6 +129,13 @@ const main = async (): Promise<void> => {
       state,
     );
 
+    await seedGlobal(
+      'announcement-bar',
+      path.join(FIXTURES_PATH, GLOBAL_FIXTURES['announcement-bar']),
+      payload,
+      state,
+    );
+
     console.log('🎉 DATABASE SEEDING COMPLETED SUCCESSFULLY!');
     console.log(
       'The last thing to do is go to the Media page in the Admin panel and click the "Regenerate All Media Sizes" button.',

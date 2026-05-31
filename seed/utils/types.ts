@@ -43,4 +43,5 @@ export const GLOBAL_FIXTURES = {
   header: 'header.json',
   footer: 'footer.json',
   'stories-page': 'storiesPage.json',
+  'announcement-bar': 'announcementBar.json',
 } as const;

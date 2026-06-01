@@ -20,7 +20,14 @@ export const Users: CollectionConfig = {
     update: canEditUsersOrSelf('system:users:update'),
     admin: hasPermission('system:adminPanel:read') as ({ req }: { req: PayloadRequest }) => boolean,
   },
-  auth: true,
+  auth: {
+    // In CI, the server runs in production mode over plain HTTP. Payload sets
+    // Secure: true in production, which prevents Playwright's APIRequestContext
+    // from sending cookies over http://localhost:3000. Disable Secure when CI=true.
+    cookies: {
+      secure: process.env.NODE_ENV === 'production' && !process.env.CI,
+    },
+  },
   fields: [
     {
       name: 'name',

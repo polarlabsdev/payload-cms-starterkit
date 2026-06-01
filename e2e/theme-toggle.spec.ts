@@ -3,15 +3,15 @@ import { test, expect } from '@playwright/test';
 test.describe('Theme toggle', () => {
   test('toggle button is visible on all pages', async ({ page }) => {
     await page.goto('/');
-    // The toggle lives in a fixed bottom-right div
-    const toggleBtn = page.locator('.bottom-4.right-4 button');
+    // The toggle lives in a fixed bottom-end div (RTL-friendly logical class)
+    const toggleBtn = page.locator('[data-testid="theme-toggle-container"] button');
     await expect(toggleBtn).toBeVisible({ timeout: 5_000 });
   });
 
   test('clicking the toggle switches the data-theme attribute', async ({ page }) => {
     await page.goto('/');
     const html = page.locator('html');
-    const toggleBtn = page.locator('.bottom-4.right-4 button');
+    const toggleBtn = page.locator('[data-testid="theme-toggle-container"] button');
 
     const initialTheme = await html.getAttribute('data-theme');
     await toggleBtn.click();
@@ -23,7 +23,7 @@ test.describe('Theme toggle', () => {
   test('theme persists after page reload', async ({ page }) => {
     await page.goto('/');
     const html = page.locator('html');
-    const toggleBtn = page.locator('.bottom-4.right-4 button');
+    const toggleBtn = page.locator('[data-testid="theme-toggle-container"] button');
 
     await toggleBtn.click();
     const themeAfterToggle = await html.getAttribute('data-theme');

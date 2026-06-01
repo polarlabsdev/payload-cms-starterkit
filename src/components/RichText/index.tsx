@@ -35,7 +35,7 @@ type NodeTypes =
   | SerializedBlockNode<MediaInlineBlock>
   | SerializedBlockNode<FloatingMediaBlock>
   | SerializedBlockNode<InlineItemBlock>
-  | SerializedBlockNode<InlineYoutubeEmbedBlock>
+  | SerializedBlockNode<InlineYoutubeEmbedBlock>;
 
 type RichTextProps = {
   data: SerializedEditorState;

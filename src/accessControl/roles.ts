@@ -33,7 +33,7 @@ type Action = 'create' | 'read' | 'update' | 'delete';
 
 export type PermissionString =
   | `system:${SystemResource}:${Action}`
-  | `website:${WebsiteResource}:${Action}`
+  | `website:${WebsiteResource}:${Action}`;
 
 /**
  * Helper function to generate permission strings for a given domain and resource

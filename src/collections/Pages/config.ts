@@ -8,6 +8,7 @@ import { WideImageBlock } from '@/blocks/WideImageBlock/config';
 import { ImageGridBlock } from '@/blocks/ImageGridBlock/config';
 import { SimpleRichTextBlock } from '@/blocks/SimpleRichTextBlock/config';
 import { YoutubeEmbedBlock } from '@/blocks/YoutubeEmbed/config';
+import { InfoBlock } from '@/blocks/InfoBlock/config';
 import { generateSeoFields } from '@/fields/seo';
 import { genSlugField } from '@/fields/slugField';
 import { populatePublishedAt } from '@/hooks/payload/populatePublishedAt';
@@ -108,6 +109,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 ImageGridBlock,
                 SimpleRichTextBlock,
                 YoutubeEmbedBlock,
+                InfoBlock,
               ],
               required: true,
               admin: {},

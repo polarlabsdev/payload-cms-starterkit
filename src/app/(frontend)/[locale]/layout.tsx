@@ -15,6 +15,8 @@ import { Theme } from '@/providers/ThemeProvider/types';
 import { Footer } from '@/globals/Footer';
 import { CollectionProvider } from '@/providers/CollectionProvider';
 import { DirectionProvider } from '@/components/ui/direction';
+import { LivePreviewListener } from '@/components/admin/LivePreviewListener';
+import { draftMode } from 'next/headers';
 
 type LayoutProps = {
   children: ReactNode;
@@ -29,6 +31,7 @@ const fontSans = FontSans({
 const Layout: React.FC<LayoutProps> = async ({ children, params }) => {
   const defaultTheme = process.env.DEFAULT_THEME as Theme;
   const { locale } = await params;
+  const { isEnabled: isDraftMode } = await draftMode();
 
   if (!hasLocale(routing.locales, locale)) {
     notFound();
@@ -44,9 +47,10 @@ const Layout: React.FC<LayoutProps> = async ({ children, params }) => {
             <ThemeProvider defaultTheme={defaultTheme}>
               <TooltipProvider>
                 <CollectionProvider>
+                  {isDraftMode && <LivePreviewListener />}
                   <Header />
                   <main>
-                    <div className="fixed bottom-4 right-4">
+                    <div className="fixed bottom-4 end-4 z-50" data-testid="theme-toggle-container">
                       <ThemeToggle />
                     </div>
                     {children}

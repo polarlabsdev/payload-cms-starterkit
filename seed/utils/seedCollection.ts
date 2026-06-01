@@ -82,10 +82,7 @@ export const seedCollection = async (
     let newDoc;
 
     // Special handling for upload collections that have file upload fields
-    if (
-      collectionSlug === 'media' ||
-      collectionSlug === 'videos'
-    ) {
+    if (collectionSlug === 'media' || collectionSlug === 'videos') {
       console.log(`  🎭 Using direct database insert for ${collectionSlug} item...`);
       // For upload collections, we need to insert directly into the database
       // to bypass file upload validation since we're seeding existing file metadata

@@ -1,6 +1,6 @@
-import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres'
+import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres';
 
-export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
+export async function up({ db, payload: _payload, req: _req }: MigrateUpArgs): Promise<void> {
   await db.execute(sql`
    CREATE TYPE "public"."_locales" AS ENUM('en', 'fr', 'es', 'ru', 'ar');
   CREATE TYPE "public"."enum_users_roles" AS ENUM('website-reader', 'website-editor', 'website-admin', 'superadmin');
@@ -2445,10 +2445,10 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX "_stories_page_v_published_locale_idx" ON "_stories_page_v" USING btree ("published_locale");
   CREATE INDEX "_stories_page_v_latest_idx" ON "_stories_page_v" USING btree ("latest");
   CREATE INDEX "_stories_page_v_version_meta_version_meta_image_idx" ON "_stories_page_v_locales" USING btree ("version_meta_image_id","_locale");
-  CREATE UNIQUE INDEX "_stories_page_v_locales_locale_parent_id_unique" ON "_stories_page_v_locales" USING btree ("_locale","_parent_id");`)
+  CREATE UNIQUE INDEX "_stories_page_v_locales_locale_parent_id_unique" ON "_stories_page_v_locales" USING btree ("_locale","_parent_id");`);
 }
 
-export async function down({ db, payload, req }: MigrateDownArgs): Promise<void> {
+export async function down({ db, payload: _payload, req: _req }: MigrateDownArgs): Promise<void> {
   await db.execute(sql`
    DROP TABLE "users_roles" CASCADE;
   DROP TABLE "users_sessions" CASCADE;
@@ -2803,5 +2803,5 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TYPE "public"."enum_announcement_bar_background_color";
   DROP TYPE "public"."enum_stories_page_status";
   DROP TYPE "public"."enum__stories_page_v_version_status";
-  DROP TYPE "public"."enum__stories_page_v_published_locale";`)
+  DROP TYPE "public"."enum__stories_page_v_published_locale";`);
 }

@@ -44,7 +44,7 @@ const main = async (): Promise<void> => {
 
   // Debug environment variables
   console.log('🔧 Environment check:');
-  console.log('  - POSTGRES_URL:', process.env.POSTGRES_URL);
+  console.log('  - DATABASE_URI:', process.env.DATABASE_URI);
   console.log('  - PAYLOAD_SECRET:', process.env.PAYLOAD_SECRET);
 
   // Calculate total processed records

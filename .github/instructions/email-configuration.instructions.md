@@ -50,4 +50,3 @@ await payload.sendEmail({
   html: html,
 });
 ```
-

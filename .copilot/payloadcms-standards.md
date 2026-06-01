@@ -48,7 +48,7 @@ import config from '../../payload.config';
 
 const ProductsPage = async () => {
   const payload = await getPayload({ config });
-  
+
   const products = await payload.find({
     collection: 'products',
     where: { active: { equals: true } },
@@ -66,10 +66,7 @@ Hook example:
 // collections/Orders.ts (hook definition)
 import { CollectionAfterChangeHook } from 'payload/types';
 
-const afterChangeHook: CollectionAfterChangeHook = async ({ 
-  req: { payload }, 
-  doc 
-}) => {
+const afterChangeHook: CollectionAfterChangeHook = async ({ req: { payload }, doc }) => {
   // Update inventory after order
   await payload.update({
     collection: 'inventory',
@@ -122,7 +119,7 @@ const Products: CollectionConfig = {
       name: 'active',
       type: 'checkbox',
       defaultValue: false,
-    }
+    },
   ],
 };
 
@@ -182,7 +179,7 @@ const Pages: CollectionConfig = {
           fields: [
             { name: 'title', type: 'text', required: true },
             { name: 'content', type: 'richText' },
-          ]
+          ],
         },
         {
           label: 'SEO',
@@ -193,13 +190,13 @@ const Pages: CollectionConfig = {
               fields: [
                 { name: 'metaTitle', type: 'text' },
                 { name: 'metaDescription', type: 'textarea' },
-              ]
-            }
-          ]
-        }
-      ]
-    }
-  ]
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
 };
 ```
 
@@ -226,7 +223,7 @@ const BlogPosts: CollectionConfig = {
       relationTo: 'users',
       required: true,
     },
-    
+
     // One-to-many relationship
     {
       name: 'categories',
@@ -234,7 +231,7 @@ const BlogPosts: CollectionConfig = {
       relationTo: 'categories',
       hasMany: true,
     },
-    
+
     // Polymorphic relationship
     {
       name: 'relatedContent',
@@ -242,7 +239,7 @@ const BlogPosts: CollectionConfig = {
       relationTo: ['blog-posts', 'products'],
       hasMany: true,
     },
-    
+
     // Filtered relationship
     {
       name: 'recommendedProducts',
@@ -251,15 +248,15 @@ const BlogPosts: CollectionConfig = {
       hasMany: true,
       filterOptions: ({ siblingData }) => {
         if (!siblingData.categories?.length) return true;
-        
+
         return {
           categories: {
-            in: siblingData.categories
-          }
+            in: siblingData.categories,
+          },
         };
       },
-    }
-  ]
+    },
+  ],
 };
 ```
 
@@ -289,15 +286,15 @@ export const revalidate = 3600; // Revalidate every hour
 
 const BlogPostPage = async ({ params }: { params: { slug: string } }) => {
   const payload = await getPayloadInstance();
-  
+
   const posts = await payload.find({
     collection: 'blog-posts',
     where: { slug: { equals: params.slug } },
     depth: 1,
   });
-  
+
   if (!posts.docs[0]) return notFound();
-  
+
   return (
     <article>
       <h1>{posts.docs[0].title}</h1>
@@ -316,7 +313,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
   const { collection, slug, tag } = await request.json();
-  
+
   if (tag) {
     revalidateTag(tag);
     return NextResponse.json({ revalidated: true, tag });
@@ -325,7 +322,7 @@ export async function POST(request: NextRequest) {
     revalidatePath(path);
     return NextResponse.json({ revalidated: true, path });
   }
-  
+
   return NextResponse.json({ message: 'Invalid request' }, { status: 400 });
 }
 ```
@@ -362,11 +359,11 @@ const checkRelatedOrders = async ({ req: { payload }, id }) => {
     where: { 'items.product': { equals: id } },
     limit: 1,
   });
-  
+
   if (orders.totalDocs > 0) {
     throw new Error('Cannot delete product with orders');
   }
-  
+
   return true;
 };
 
@@ -395,20 +392,20 @@ import { APIError } from 'payload/errors';
 
 export const processOrder: Endpoint = async (req, res) => {
   const { payload } = req;
-  
+
   try {
     // Validate request
     if (!req.body.items?.length) {
       throw new APIError('No items in order', 400);
     }
-    
+
     // Create order with transaction
     const order = await payload.create({
       collection: 'orders',
       data: req.body,
       disableTransaction: false, // Ensure atomicity
     });
-    
+
     return res.status(200).json({ success: true, order });
   } catch (error) {
     // Handle known errors
@@ -418,7 +415,7 @@ export const processOrder: Endpoint = async (req, res) => {
         message: error.message,
       });
     }
-    
+
     // Generic error
     return res.status(500).json({
       success: false,
@@ -447,7 +444,7 @@ import { useField } from 'payload/components/forms';
 
 const StockLevelIndicator: React.FC = () => {
   const { value } = useField<number>({ path: 'inventory.stockLevel' });
-  
+
   return (
     <div className={`stock-indicator ${value === 0 ? 'out-of-stock' : 'in-stock'}`}>
       <span>{value}</span>

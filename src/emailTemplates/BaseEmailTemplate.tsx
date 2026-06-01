@@ -105,22 +105,22 @@ export const BaseEmailTemplate: React.FC<BaseEmailTemplateProps> = ({
             {ctaButton && <Hr style={hr} className="email-hr" />}
 
             {footer && (
-							<Text style={footerStyle} className="email-footer">
-								{footer.supportEmail ? (
-									<>
-										{footer.text.replace('{email}', '')}
-										<Link
-											href={`mailto:${footer.supportEmail}`}
-											style={footerLink}
-											className="email-link"
-										>
-											{footer.supportEmail}
-										</Link>
-									</>
-								) : (
-									footer.text
-								)}
-							</Text>
+              <Text style={footerStyle} className="email-footer">
+                {footer.supportEmail ? (
+                  <>
+                    {footer.text.replace('{email}', '')}
+                    <Link
+                      href={`mailto:${footer.supportEmail}`}
+                      style={footerLink}
+                      className="email-link"
+                    >
+                      {footer.supportEmail}
+                    </Link>
+                  </>
+                ) : (
+                  footer.text
+                )}
+              </Text>
             )}
           </Section>
         </Container>

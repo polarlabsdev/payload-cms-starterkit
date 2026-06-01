@@ -27,6 +27,7 @@ Follow these steps to seed a fresh database for development:
    ```
 
    This command will:
+
    - Run `payload migrate:fresh` to reset the database schema
    - Delete the `seedState.json` file to start fresh
 

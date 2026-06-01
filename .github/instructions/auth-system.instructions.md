@@ -24,6 +24,7 @@ This project uses a **multi-role, permission-based access control system** with 
 **Cookie**: Standard PayloadCMS authentication cookie
 
 **Use Cases**:
+
 - CMS administrators managing content
 - Website editors creating/editing pages and stories
 - Readers with read-only access to website content
@@ -41,6 +42,7 @@ Permissions follow the pattern: `domain:resource:action`
 - **action**: The operation being performed - `create`, `read`, `update`, or `delete`
 
 **Examples:**
+
 - `website:pages:create` - Create pages on the website
 - `system:users:update` - Update user records
 - `website:stories:read` - Read stories
@@ -54,14 +56,15 @@ Permissions follow the pattern: `domain:resource:action`
 
 **Available Roles:**
 
-| Role | Description |
-|------|-------------|
-| `superadmin` | Full system access, bypasses all permission checks |
-| `website-admin` | Full control over website content |
-| `website-editor` | Can create and edit website content |
-| `website-reader` | Read-only access to website content |
+| Role             | Description                                        |
+| ---------------- | -------------------------------------------------- |
+| `superadmin`     | Full system access, bypasses all permission checks |
+| `website-admin`  | Full control over website content                  |
+| `website-editor` | Can create and edit website content                |
+| `website-reader` | Read-only access to website content                |
 
 Each role object contains:
+
 - `name`: Human-readable display name
 - `description`: Purpose and scope of the role
 - `permissions`: Array of permission strings
@@ -156,6 +159,7 @@ if (isSuperUser(user.roles)) {
 **PayloadCMS Local API defaults to `overrideAccess: true`** — meaning it **bypasses all access control by default**. This is opposite to the REST/GraphQL APIs.
 
 **Why This Matters:**
+
 - Server-side operations (hooks, migrations, seeds) need full access — default makes sense
 - Frontend operations (Server Components, API routes) need to respect access control — default is dangerous
 
@@ -176,7 +180,7 @@ const result = await findCollectionSafe({
   limit: 1,
 });
 
-// Returns null if access denied, full result object if allowed 
+// Returns null if access denied, full result object if allowed
 if (!result) {
   return notFound(); // Handle permission error
 }
@@ -191,13 +195,14 @@ const headerData = await findGlobalSafe({
   slug: 'header',
 });
 
-// Returns null if access denied 
+// Returns null if access denied
 if (!headerData) {
   return null;
 }
 ```
 
 **What These Utilities Do:**
+
 1. Set `overrideAccess: false` to enforce access control rules
 2. Retrieve authenticated user from request headers via `payload.auth()`
 3. Pass user to Local API operations
@@ -207,11 +212,13 @@ if (!headerData) {
 ### When to Use Safe vs Direct API
 
 **Use Safe Utilities (`findCollectionSafe`, `findGlobalSafe`):**
+
 - ✅ Frontend Server Components
 - ✅ API route handlers that need access control
 - ✅ Any data fetching where permissions should be respected
 
 **Use Direct Local API:**
+
 - ✅ Hooks (already within Payload's context)
 - ✅ Access control functions (you're defining the rules)
 - ✅ Migrations and seeds (need full access)
@@ -256,6 +263,7 @@ export const YourCollection: CollectionConfig = {
 ```
 
 4. **Run Migration:**
+
 ```bash
 npm run payload migrate
 ```
@@ -277,6 +285,7 @@ The `superadmin` role has special protections:
 **Implementation:** `src/hooks/payload/protectSuperadminRole.ts` (field hook on Users collection)
 
 **Rules:**
+
 - First user created can be assigned superadmin (initial setup)
 - Only admins (legacy or superadmin) can assign/remove superadmin role
 - Prevents privilege escalation attacks
@@ -325,6 +334,7 @@ access: {
 ## Error Handling
 
 Permission errors are handled gracefully:
+
 - **Collections/Pages:** Return 404 (via `notFound()`)
 - **Globals:** Return `null` and render fallback/skeleton UI
 - **Blocks:** Return `null` to hide the block

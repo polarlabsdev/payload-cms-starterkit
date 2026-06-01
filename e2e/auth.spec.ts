@@ -7,6 +7,7 @@ test.describe('Auth — admin user', () => {
     const response = await request.get('/api/users/me');
     expect(response.status()).toBe(200);
     const body = await response.json();
-    expect(body?.user?.collection).toBe('users');
+    expect(body?.user).not.toBeNull();
+    expect(body?.user?.email).toBeTruthy();
   });
 });

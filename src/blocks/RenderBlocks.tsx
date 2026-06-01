@@ -9,6 +9,7 @@ import { WideImage } from './WideImageBlock';
 import { ImageGridBlock as ImageGrid } from './ImageGridBlock';
 import { SimpleRichText } from './SimpleRichTextBlock';
 import { YoutubeEmbed } from './YoutubeEmbed';
+import { InfoBlockComponent } from './InfoBlock/InfoBlock';
 import { convertTitleToSlug } from '@/lib/utils';
 
 const blockComponents = {
@@ -20,6 +21,7 @@ const blockComponents = {
   'image-grid': ImageGrid,
   'simple-rich-text': SimpleRichText,
   'youtube-embed': YoutubeEmbed,
+  'info-block': InfoBlockComponent,
 };
 
 export const RenderBlocks: React.FC<{

@@ -426,6 +426,7 @@ export interface Page {
     | ImageGridBlock
     | SimpleRichTextBlock
     | YoutubeEmbedBlock
+    | InfoBlock
   )[];
   meta?: {
     title?: string | null;
@@ -2036,6 +2037,7 @@ export interface PagesSelect<T extends boolean = true> {
         'image-grid'?: T | ImageGridBlockSelect<T>;
         'simple-rich-text'?: T | SimpleRichTextBlockSelect<T>;
         'youtube-embed'?: T | YoutubeEmbedBlockSelect<T>;
+        'info-block'?: T | InfoBlockSelect<T>;
       };
   meta?:
     | T
@@ -2268,6 +2270,44 @@ export interface YoutubeEmbedBlockSelect<T extends boolean = true> {
   backgroundColor?: T;
   title?: T;
   videoId?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "InfoBlock_select".
+ */
+export interface InfoBlockSelect<T extends boolean = true> {
+  backgroundColor?: T;
+  theme?: T;
+  icon?: T;
+  content?: T;
+  actions?:
+    | T
+    | {
+        actionType?: T;
+        label?: T;
+        link?:
+          | T
+          | {
+              linkType?: T;
+              url?: T;
+              relationTo?: T;
+              label?: T;
+              buttonType?: T;
+              buttonColor?: T;
+              textColor?: T;
+              newTab?: T;
+            };
+        emailDetails?:
+          | T
+          | {
+              to?: T;
+              subject?: T;
+              body?: T;
+            };
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }

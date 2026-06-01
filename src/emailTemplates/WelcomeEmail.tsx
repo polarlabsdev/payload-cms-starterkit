@@ -17,12 +17,12 @@ const translations: Record<EmailLocale, Translations> = {
   en: {
     preview: 'Welcome to our platform',
     heading: 'Welcome!',
-    body: 'Thank you for joining us. We\'re excited to have you on board. If you have any questions, feel free to reach out to our support team.',
+    body: "Thank you for joining us. We're excited to have you on board. If you have any questions, feel free to reach out to our support team.",
   },
   fr: {
     preview: 'Bienvenue sur notre plateforme',
     heading: 'Bienvenue!',
-    body: 'Merci de nous avoir rejoints. Nous sommes ravis de vous avoir à bord. Si vous avez des questions, n\'hésitez pas à contacter notre équipe d\'assistance.',
+    body: "Merci de nous avoir rejoints. Nous sommes ravis de vous avoir à bord. Si vous avez des questions, n'hésitez pas à contacter notre équipe d'assistance.",
   },
   es: {
     preview: 'Bienvenido a nuestra plataforma',

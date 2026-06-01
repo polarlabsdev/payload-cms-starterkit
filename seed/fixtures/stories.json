@@ -438,5 +438,56 @@
     "_status": "draft",
     "updatedAt": "2026-05-27T10:50:00.000Z",
     "createdAt": "2026-05-27T10:50:00.000Z"
+  },
+  {
+    "id": 203,
+    "title": {
+      "en": "E2E External Link Story"
+    },
+    "slug": "e2e-story-external",
+    "isExternalLink": true,
+    "externalUrl": "https://example.com/e2e-external-article",
+    "publishedAt": "2026-05-27T11:00:00.000Z",
+    "categories": [11],
+    "author": 1,
+    "featured": false,
+    "thumbnail": 3,
+    "summary": {
+      "en": {
+        "root": {
+          "type": "root",
+          "format": "",
+          "indent": 0,
+          "version": 1,
+          "children": [
+            {
+              "type": "paragraph",
+              "format": "",
+              "indent": 0,
+              "version": 1,
+              "children": [
+                {
+                  "mode": "normal",
+                  "text": "E2E external link story fixture.",
+                  "type": "text",
+                  "style": "",
+                  "detail": 0,
+                  "format": 0,
+                  "version": 1
+                }
+              ],
+              "direction": null,
+              "textStyle": "",
+              "textFormat": 0
+            }
+          ],
+          "direction": null
+        }
+      }
+    },
+    "layout": [],
+    "_status": "published",
+    "updatedAt": "2026-05-27T11:00:00.000Z",
+    "createdAt": "2026-05-27T11:00:00.000Z"
   }
 ]

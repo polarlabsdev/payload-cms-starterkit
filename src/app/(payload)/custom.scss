@@ -7,7 +7,7 @@
 */
 /* PayloadCMS gives any Inline Block element in the lexical editor the class .inline-block which is a tailwind utility class */
 .inline-block-container .inline-block {
-	display: flex;
+  display: flex;
 }
 
 /* 
@@ -20,57 +20,57 @@
 	See https://github.com/tailwindlabs/tailwindcss/issues/7575
 */
 :root {
-	--background: 210 40% 98%;
-	--foreground: 222 47% 11%;
-	--card: 0 0% 100%;
-	--card-foreground: 222 47% 11%;
-	--popover: 0 0% 100%;
-	--popover-foreground: 222 47% 11%;
-	--primary: 198 93% 48%;
-	--primary-foreground: 0 0% 100%;
-	--secondary: 210 40% 96%;
-	--secondary-foreground: 222 47% 11%;
-	--muted: 210 40% 96%;
-	--muted-foreground: 215 16% 40%;
-	--accent: 198 85% 92%;
-	--accent-foreground: 222 47% 11%;
-	--destructive: 0 84.2% 60.2%;
-	--destructive-foreground: 210 40% 98%;
-	--border: 214 32% 88%;
-	--input: 214 32% 88%;
-	--ring: 198 93% 48%;
-	--chart-1: 198 93% 48%;
-	--chart-2: 221 83% 53%;
-	--chart-3: 262 83% 58%;
-	--chart-4: 160 84% 39%;
-	--chart-5: 32 95% 44%;
-	--radius: 0.625rem;
+  --background: 210 40% 98%;
+  --foreground: 222 47% 11%;
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 11%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222 47% 11%;
+  --primary: 198 93% 48%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 210 40% 96%;
+  --secondary-foreground: 222 47% 11%;
+  --muted: 210 40% 96%;
+  --muted-foreground: 215 16% 40%;
+  --accent: 198 85% 92%;
+  --accent-foreground: 222 47% 11%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 214 32% 88%;
+  --input: 214 32% 88%;
+  --ring: 198 93% 48%;
+  --chart-1: 198 93% 48%;
+  --chart-2: 221 83% 53%;
+  --chart-3: 262 83% 58%;
+  --chart-4: 160 84% 39%;
+  --chart-5: 32 95% 44%;
+  --radius: 0.625rem;
 }
 
 .dark,
 [data-theme='dark'] {
-	--background: 222 47% 8%;
-	--foreground: 210 40% 98%;
-	--card: 222 47% 10%;
-	--card-foreground: 210 40% 98%;
-	--popover: 222 47% 10%;
-	--popover-foreground: 210 40% 98%;
-	--primary: 198 93% 58%;
-	--primary-foreground: 222 47% 11%;
-	--secondary: 217 28% 18%;
-	--secondary-foreground: 210 40% 98%;
-	--muted: 217 28% 18%;
-	--muted-foreground: 215 20% 68%;
-	--accent: 217 28% 18%;
-	--accent-foreground: 210 40% 98%;
-	--destructive: 0 62.8% 30.6%;
-	--destructive-foreground: 210 40% 98%;
-	--border: 217 20% 24%;
-	--input: 217 20% 24%;
-	--ring: 198 93% 58%;
-	--chart-1: 198 93% 58%;
-	--chart-2: 221 83% 63%;
-	--chart-3: 262 83% 68%;
-	--chart-4: 160 84% 49%;
-	--chart-5: 32 95% 54%;
+  --background: 222 47% 8%;
+  --foreground: 210 40% 98%;
+  --card: 222 47% 10%;
+  --card-foreground: 210 40% 98%;
+  --popover: 222 47% 10%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 198 93% 58%;
+  --primary-foreground: 222 47% 11%;
+  --secondary: 217 28% 18%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 217 28% 18%;
+  --muted-foreground: 215 20% 68%;
+  --accent: 217 28% 18%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 217 20% 24%;
+  --input: 217 20% 24%;
+  --ring: 198 93% 58%;
+  --chart-1: 198 93% 58%;
+  --chart-2: 221 83% 63%;
+  --chart-3: 262 83% 68%;
+  --chart-4: 160 84% 49%;
+  --chart-5: 32 95% 54%;
 }

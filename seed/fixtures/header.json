@@ -52,6 +52,15 @@
             "label": "How to Use",
             "newTab": false
           }
+        },
+        {
+          "isFeatured": false,
+          "link": {
+            "linkType": "manual",
+            "url": "/blocks-showcase",
+            "label": "Blocks Showcase",
+            "newTab": false
+          }
         }
       ]
     },

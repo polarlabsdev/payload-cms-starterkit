@@ -65,7 +65,7 @@ export const Navigation: React.FC<NavigationProps> = ({ header }) => {
 
       {/* Navigation Bar */}
       <header className={HEADER_CLASSNAME}>
-        <div className="container flex h-full items-center justify-between">
+        <div className="container grid h-full grid-cols-[1fr_auto_1fr] items-center">
           {logo && (
             <Link href="/" className="flex items-center">
               <div className="relative h-10 w-auto">
@@ -80,7 +80,7 @@ export const Navigation: React.FC<NavigationProps> = ({ header }) => {
             </Link>
           )}
 
-          <nav className="hidden items-center space-x-7 lg:flex [&_a]:!text-sm 2xl:[&_a]:!text-base">
+          <nav className="hidden items-center justify-center space-x-7 lg:flex [&_a]:!text-sm 2xl:[&_a]:!text-base">
             <NavigationMenu>
               <NavigationMenuList>
                 {navItems?.map((item: NonNullable<Header['navItems']>[number], i: number) =>
@@ -96,7 +96,7 @@ export const Navigation: React.FC<NavigationProps> = ({ header }) => {
             </NavigationMenu>
           </nav>
 
-          <div className="hidden items-center space-x-2 lg:flex">
+          <div className="hidden items-center justify-end space-x-2 lg:flex">
             <Button
               onClick={() => setSearchOpen(true)}
               variant="ghost"
@@ -112,7 +112,7 @@ export const Navigation: React.FC<NavigationProps> = ({ header }) => {
           </div>
 
           {/* Mobile menu button */}
-          <div className="flex items-center gap-1 lg:hidden">
+          <div className="col-start-3 flex items-center justify-end gap-1 lg:hidden">
             <Button
               onClick={() => setSearchOpen(true)}
               variant="ghost"
@@ -137,7 +137,7 @@ export const Navigation: React.FC<NavigationProps> = ({ header }) => {
         {/* Mobile navigation - moved inside header and anchored to bottom */}
         <div
           className={cn(
-            'absolute end-0 start-0 top-full z-40 w-screen transition-all duration-300 ease-in-out',
+            'absolute end-0 start-0 top-full z-40 transition-all duration-300 ease-in-out',
             isOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0',
           )}
         >

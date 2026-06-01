@@ -10,7 +10,10 @@
     "layout": [
       {
         "id": "home-hero-001",
-        "heroType": "minimal",
+        "heroType": "fullscreen",
+        "mediaType": "image",
+        "textOrientation": "left",
+        "bannerImage": 7,
         "title": {
           "en": "Build faster with a production-ready foundation"
         },
@@ -80,12 +83,14 @@
         "blockType": "hero"
       },
       {
-        "id": "home-richtext-001",
-        "backgroundColor": "Background",
-        "title": {
-          "en": "Included in this foundation"
+        "id": "home-standard-001",
+        "header": {
+          "text": "A foundation you can build on",
+          "highlightColor": "Teal",
+          "textColor": "White",
+          "level": "2"
         },
-        "body": {
+        "content": {
           "en": {
             "root": {
               "type": "root",
@@ -101,7 +106,7 @@
                   "children": [
                     {
                       "mode": "normal",
-                      "text": "Out of the box you get configurable page blocks, story content patterns, a seeded navigation structure, and production-focused defaults.",
+                      "text": "Out of the box you get configurable page blocks, story content patterns, a seeded navigation structure, and production-focused defaults. Every piece is designed to be replaced or extended as your project grows.",
                       "type": "text",
                       "style": "",
                       "detail": 0,
@@ -118,11 +123,80 @@
             }
           }
         },
-        "blockType": "simple-rich-text"
+        "buttons": [
+          {
+            "id": "home-standard-btn-1",
+            "link": {
+              "linkType": "manual",
+              "url": "/blocks-showcase",
+              "label": {
+                "en": "See all blocks"
+              },
+              "buttonType": "brand",
+              "buttonColor": "Teal",
+              "textColor": "White",
+              "newTab": false
+            }
+          }
+        ],
+        "image": 3,
+        "imagePosition": "right",
+        "themeMode": "inherit",
+        "backgroundColor": "Background",
+        "blockType": "standard-content"
+      },
+      {
+        "id": "home-iconrow-001",
+        "backgroundColor": "Card",
+        "title": {
+          "en": "What's included"
+        },
+        "items": [
+          {
+            "id": "home-iconrow-item-1",
+            "iconName": "layout-grid-line",
+            "iconBackgroundColor": "Teal",
+            "iconColorWithBackground": "White",
+            "title": {
+              "en": "Content Blocks"
+            },
+            "description": {
+              "en": "Hero, standard content, icon rows, image grids, story cards, and more — all configurable from the admin panel."
+            },
+            "hasButton": false
+          },
+          {
+            "id": "home-iconrow-item-2",
+            "iconName": "shield-check-line",
+            "iconBackgroundColor": "Purple",
+            "iconColorWithBackground": "White",
+            "title": {
+              "en": "Auth & Roles"
+            },
+            "description": {
+              "en": "Four role levels — super admin, website admin, editor, and reader — with fine-grained access control baked in."
+            },
+            "hasButton": false
+          },
+          {
+            "id": "home-iconrow-item-3",
+            "iconName": "translate-2",
+            "iconBackgroundColor": "Blue",
+            "iconColorWithBackground": "White",
+            "title": {
+              "en": "i18n Ready"
+            },
+            "description": {
+              "en": "Multi-locale support with next-intl. English, French, Spanish, Arabic, and Russian included by default."
+            },
+            "hasButton": false
+          }
+        ],
+        "blockType": "icon-row"
       },
       {
         "id": "home-storycards-001",
-        "backgroundColor": "Card",
+        "backgroundColor": "Background",
         "variant": "story-previews",
         "showTitle": true,
         "title": {
@@ -161,6 +235,51 @@
           "newTab": false
         },
         "blockType": "story-cards"
+      },
+      {
+        "id": "home-wideimage-001",
+        "image": 8,
+        "header": {
+          "text": "Open source and ready to deploy",
+          "highlightColor": "Yellow",
+          "textColor": "White",
+          "level": "2"
+        },
+        "content": {
+          "en": {
+            "root": {
+              "type": "root",
+              "format": "",
+              "indent": 0,
+              "version": 1,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "format": "",
+                  "indent": 0,
+                  "version": 1,
+                  "children": [
+                    {
+                      "mode": "normal",
+                      "text": "Fork the repo, configure your environment, and ship — the hard parts are already handled.",
+                      "type": "text",
+                      "style": "",
+                      "detail": 0,
+                      "format": 0,
+                      "version": 1
+                    }
+                  ],
+                  "direction": null,
+                  "textStyle": "",
+                  "textFormat": 0
+                }
+              ],
+              "direction": null
+            }
+          }
+        },
+        "backgroundColor": "Background",
+        "blockType": "wide-image"
       }
     ],
     "meta": {
@@ -181,8 +300,11 @@
     "publishedAt": "2026-05-27T10:05:00.000Z",
     "layout": [
       {
-        "id": "about-richtext-001",
-        "backgroundColor": "Background",
+        "id": "about-hero-001",
+        "heroType": "half",
+        "mediaType": "image",
+        "textOrientation": "left",
+        "bannerImage": 6,
         "title": {
           "en": "About this starterkit"
         },
@@ -203,6 +325,198 @@
                     {
                       "mode": "normal",
                       "text": "This repository is intended as a reusable baseline. It favors clear structure, editable blocks, and practical defaults so teams can start shipping quickly.",
+                      "type": "text",
+                      "style": "",
+                      "detail": 0,
+                      "format": 0,
+                      "version": 1
+                    }
+                  ],
+                  "direction": null,
+                  "textStyle": "",
+                  "textFormat": 0
+                }
+              ],
+              "direction": null
+            }
+          }
+        },
+        "buttons": [],
+        "blockType": "hero"
+      },
+      {
+        "id": "about-standard-001",
+        "header": {
+          "text": "Built for real projects",
+          "highlightColor": "Purple",
+          "textColor": "White",
+          "level": "2"
+        },
+        "content": {
+          "en": {
+            "root": {
+              "type": "root",
+              "format": "",
+              "indent": 0,
+              "version": 1,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "format": "",
+                  "indent": 0,
+                  "version": 1,
+                  "children": [
+                    {
+                      "mode": "normal",
+                      "text": "The starterkit is maintained as an opinionated base. It makes specific choices — Next.js App Router, Payload v3, shadcn/ui, Tailwind CSS — so you spend less time on setup and more time on your product.",
+                      "type": "text",
+                      "style": "",
+                      "detail": 0,
+                      "format": 0,
+                      "version": 1
+                    }
+                  ],
+                  "direction": null,
+                  "textStyle": "",
+                  "textFormat": 0
+                }
+              ],
+              "direction": null
+            }
+          }
+        },
+        "buttons": [],
+        "image": 4,
+        "imagePosition": "left",
+        "themeMode": "inherit",
+        "backgroundColor": "Background",
+        "blockType": "standard-content"
+      },
+      {
+        "id": "about-iconrow-001",
+        "backgroundColor": "Secondary",
+        "title": {
+          "en": "Core principles"
+        },
+        "items": [
+          {
+            "id": "about-iconrow-item-1",
+            "iconName": "code-s-slash-line",
+            "iconColor": "Purple",
+            "title": {
+              "en": "Type-safe"
+            },
+            "description": {
+              "en": "Generated TypeScript types from your Payload schema. Never guess a field name again."
+            },
+            "hasButton": false
+          },
+          {
+            "id": "about-iconrow-item-2",
+            "iconName": "speed-line",
+            "iconColor": "Teal",
+            "title": {
+              "en": "Performance-first"
+            },
+            "description": {
+              "en": "Server components, static generation, and Next.js Image optimization configured out of the box."
+            },
+            "hasButton": false
+          },
+          {
+            "id": "about-iconrow-item-3",
+            "iconName": "puzzle-line",
+            "iconColor": "Blue",
+            "title": {
+              "en": "Composable"
+            },
+            "description": {
+              "en": "Every block and collection is independently replaceable. Use what fits, delete what doesn't."
+            },
+            "hasButton": false
+          }
+        ],
+        "blockType": "icon-row"
+      },
+      {
+        "id": "about-imagegrid-001",
+        "backgroundColor": "Background",
+        "showTitle": true,
+        "title": {
+          "en": "The team behind it"
+        },
+        "columns": "3",
+        "items": [
+          {
+            "id": "about-imagegrid-item-1",
+            "image": 3,
+            "header": {
+              "en": "Polar Labs"
+            },
+            "subheader": {
+              "en": "Maintainer"
+            },
+            "showLink": false
+          },
+          {
+            "id": "about-imagegrid-item-2",
+            "image": 5,
+            "header": {
+              "en": "Contributors"
+            },
+            "subheader": {
+              "en": "Open source"
+            },
+            "showLink": false
+          },
+          {
+            "id": "about-imagegrid-item-3",
+            "image": 6,
+            "header": {
+              "en": "Community"
+            },
+            "subheader": {
+              "en": "Payload Discord"
+            },
+            "showLink": true,
+            "link": {
+              "linkType": "manual",
+              "url": "https://discord.com/invite/payload",
+              "label": {
+                "en": "Join Discord"
+              },
+              "buttonType": "secondary",
+              "buttonColor": "Teal",
+              "textColor": "White",
+              "newTab": true
+            }
+          }
+        ],
+        "blockType": "image-grid"
+      },
+      {
+        "id": "about-richtext-001",
+        "backgroundColor": "Background",
+        "title": {
+          "en": "How to use this repo"
+        },
+        "body": {
+          "en": {
+            "root": {
+              "type": "root",
+              "format": "",
+              "indent": 0,
+              "version": 1,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "format": "",
+                  "indent": 0,
+                  "version": 1,
+                  "children": [
+                    {
+                      "mode": "normal",
+                      "text": "Clone the repository, copy .env.example to .env, run the database seed, then start the development server. The admin panel is at /admin. Default seed credentials are printed during the seed run.",
                       "type": "text",
                       "style": "",
                       "detail": 0,
@@ -240,8 +554,8 @@
     "publishedAt": "2026-05-27T10:10:00.000Z",
     "layout": [
       {
-        "id": "contact-richtext-001",
-        "backgroundColor": "Background",
+        "id": "contact-hero-001",
+        "heroType": "minimal",
         "title": {
           "en": "Get in touch"
         },
@@ -278,7 +592,145 @@
             }
           }
         },
-        "blockType": "simple-rich-text"
+        "buttons": [],
+        "blockType": "hero"
+      },
+      {
+        "id": "contact-infoblock-001",
+        "backgroundColor": "Background",
+        "theme": "info",
+        "icon": "mail-line",
+        "content": {
+          "en": {
+            "root": {
+              "type": "root",
+              "format": "",
+              "indent": 0,
+              "version": 1,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "format": "",
+                  "indent": 0,
+                  "version": 1,
+                  "children": [
+                    {
+                      "mode": "normal",
+                      "text": "Send us an email and we'll get back to you within one business day.",
+                      "type": "text",
+                      "style": "",
+                      "detail": 0,
+                      "format": 0,
+                      "version": 1
+                    }
+                  ],
+                  "direction": null,
+                  "textStyle": "",
+                  "textFormat": 0
+                }
+              ],
+              "direction": null
+            }
+          }
+        },
+        "actions": [
+          {
+            "id": "contact-infoblock-action-1",
+            "actionType": "email",
+            "label": {
+              "en": "Email us"
+            },
+            "emailDetails": {
+              "to": "hello@example.com",
+              "subject": {
+                "en": "Hello from the website"
+              },
+              "body": {
+                "en": "Hi, I'd like to get in touch."
+              }
+            }
+          }
+        ],
+        "blockType": "info-block"
+      },
+      {
+        "id": "contact-iconrow-001",
+        "backgroundColor": "Card",
+        "title": {
+          "en": "Other ways to reach us"
+        },
+        "items": [
+          {
+            "id": "contact-iconrow-item-1",
+            "iconName": "github-line",
+            "iconColor": "Black",
+            "title": {
+              "en": "GitHub"
+            },
+            "description": {
+              "en": "Open issues, submit PRs, or browse the source code on GitHub."
+            },
+            "hasButton": true,
+            "button": {
+              "linkType": "manual",
+              "url": "https://github.com",
+              "label": {
+                "en": "View on GitHub"
+              },
+              "buttonType": "secondary",
+              "buttonColor": "Teal",
+              "textColor": "White",
+              "newTab": true
+            }
+          },
+          {
+            "id": "contact-iconrow-item-2",
+            "iconName": "discord-line",
+            "iconColor": "Purple",
+            "title": {
+              "en": "Discord"
+            },
+            "description": {
+              "en": "Join the Payload community Discord for questions and discussion."
+            },
+            "hasButton": true,
+            "button": {
+              "linkType": "manual",
+              "url": "https://discord.com/invite/payload",
+              "label": {
+                "en": "Join Discord"
+              },
+              "buttonType": "secondary",
+              "buttonColor": "Purple",
+              "textColor": "White",
+              "newTab": true
+            }
+          },
+          {
+            "id": "contact-iconrow-item-3",
+            "iconName": "book-open-line",
+            "iconColor": "Blue",
+            "title": {
+              "en": "Documentation"
+            },
+            "description": {
+              "en": "Full Payload CMS documentation is available at payloadcms.com."
+            },
+            "hasButton": true,
+            "button": {
+              "linkType": "manual",
+              "url": "https://payloadcms.com/docs",
+              "label": {
+                "en": "Read docs"
+              },
+              "buttonType": "secondary",
+              "buttonColor": "Blue",
+              "textColor": "White",
+              "newTab": true
+            }
+          }
+        ],
+        "blockType": "icon-row"
       }
     ],
     "meta": {
@@ -409,6 +861,515 @@
     "createdAt": "2026-05-27T10:13:00.000Z"
   },
   {
+    "id": 6,
+    "title": {
+      "en": "Blocks Showcase"
+    },
+    "slug": "blocks-showcase",
+    "publishedAt": "2026-05-27T10:14:00.000Z",
+    "layout": [
+      {
+        "id": "showcase-hero-001",
+        "heroType": "minimal",
+        "title": {
+          "en": "Blocks Showcase"
+        },
+        "body": {
+          "en": {
+            "root": {
+              "type": "root",
+              "format": "",
+              "indent": 0,
+              "version": 1,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "format": "",
+                  "indent": 0,
+                  "version": 1,
+                  "children": [
+                    {
+                      "mode": "normal",
+                      "text": "Every content block available in this starterkit, demonstrated on one page.",
+                      "type": "text",
+                      "style": "",
+                      "detail": 0,
+                      "format": 0,
+                      "version": 1
+                    }
+                  ],
+                  "direction": null,
+                  "textStyle": "",
+                  "textFormat": 0
+                }
+              ],
+              "direction": null
+            }
+          }
+        },
+        "buttons": [],
+        "blockType": "hero"
+      },
+      {
+        "id": "showcase-richtext-001",
+        "backgroundColor": "Background",
+        "title": {
+          "en": "Simple Rich Text Block"
+        },
+        "body": {
+          "en": {
+            "root": {
+              "type": "root",
+              "format": "",
+              "indent": 0,
+              "version": 1,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "format": "",
+                  "indent": 0,
+                  "version": 1,
+                  "children": [
+                    {
+                      "mode": "normal",
+                      "text": "This is the simple-rich-text block. It supports a title, background color, and a full Lexical rich text body. Use it for editorial prose, long-form copy, or explanatory sections.",
+                      "type": "text",
+                      "style": "",
+                      "detail": 0,
+                      "format": 0,
+                      "version": 1
+                    }
+                  ],
+                  "direction": null,
+                  "textStyle": "",
+                  "textFormat": 0
+                }
+              ],
+              "direction": null
+            }
+          }
+        },
+        "blockType": "simple-rich-text"
+      },
+      {
+        "id": "showcase-standard-001",
+        "header": {
+          "text": "Standard Content Block",
+          "highlightColor": "Purple",
+          "textColor": "White",
+          "level": "2"
+        },
+        "content": {
+          "en": {
+            "root": {
+              "type": "root",
+              "format": "",
+              "indent": 0,
+              "version": 1,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "format": "",
+                  "indent": 0,
+                  "version": 1,
+                  "children": [
+                    {
+                      "mode": "normal",
+                      "text": "The standard-content block places an image beside rich text. The image can float left or right. The header field supports per-word highlight colors and custom heading levels.",
+                      "type": "text",
+                      "style": "",
+                      "detail": 0,
+                      "format": 0,
+                      "version": 1
+                    }
+                  ],
+                  "direction": null,
+                  "textStyle": "",
+                  "textFormat": 0
+                }
+              ],
+              "direction": null
+            }
+          }
+        },
+        "buttons": [
+          {
+            "id": "showcase-standard-btn-1",
+            "link": {
+              "linkType": "manual",
+              "url": "/about",
+              "label": {
+                "en": "Example button"
+              },
+              "buttonType": "brand",
+              "buttonColor": "Teal",
+              "textColor": "White",
+              "newTab": false
+            }
+          }
+        ],
+        "image": 5,
+        "imagePosition": "right",
+        "themeMode": "inherit",
+        "backgroundColor": "Background",
+        "blockType": "standard-content"
+      },
+      {
+        "id": "showcase-iconrow-001",
+        "backgroundColor": "Card",
+        "title": {
+          "en": "Icon Row Block"
+        },
+        "items": [
+          {
+            "id": "showcase-iconrow-item-1",
+            "iconName": "star-line",
+            "iconBackgroundColor": "Yellow",
+            "iconColorWithBackground": "Black",
+            "title": {
+              "en": "First item"
+            },
+            "description": {
+              "en": "Each icon-row item has an icon name (Remix Icons), background color, title, description, and an optional link button."
+            },
+            "hasButton": true,
+            "button": {
+              "linkType": "manual",
+              "url": "/",
+              "label": {
+                "en": "Learn more"
+              },
+              "buttonType": "secondary",
+              "buttonColor": "Teal",
+              "textColor": "White",
+              "newTab": false
+            }
+          },
+          {
+            "id": "showcase-iconrow-item-2",
+            "iconName": "heart-line",
+            "iconBackgroundColor": "Pink",
+            "iconColorWithBackground": "White",
+            "title": {
+              "en": "Second item"
+            },
+            "description": {
+              "en": "Up to three items per row. This block is ideal for feature lists, value propositions, and benefit summaries."
+            },
+            "hasButton": false
+          },
+          {
+            "id": "showcase-iconrow-item-3",
+            "iconName": "rocket-line",
+            "iconBackgroundColor": "Blue",
+            "iconColorWithBackground": "White",
+            "title": {
+              "en": "Third item"
+            },
+            "description": {
+              "en": "Icons come from the Remix Icon library. Pass the icon name without the 'ri-' prefix."
+            },
+            "hasButton": false
+          }
+        ],
+        "blockType": "icon-row"
+      },
+      {
+        "id": "showcase-imagegrid-001",
+        "backgroundColor": "Background",
+        "showTitle": true,
+        "title": {
+          "en": "Image Grid Block"
+        },
+        "columns": "3",
+        "items": [
+          {
+            "id": "showcase-imagegrid-item-1",
+            "image": 3,
+            "header": {
+              "en": "Portrait"
+            },
+            "subheader": {
+              "en": "Media ID 3"
+            },
+            "showLink": false
+          },
+          {
+            "id": "showcase-imagegrid-item-2",
+            "image": 4,
+            "header": {
+              "en": "Portrait 2"
+            },
+            "subheader": {
+              "en": "Media ID 4"
+            },
+            "showLink": false
+          },
+          {
+            "id": "showcase-imagegrid-item-3",
+            "image": 5,
+            "header": {
+              "en": "Portrait 3"
+            },
+            "subheader": {
+              "en": "Media ID 5"
+            },
+            "showLink": true,
+            "link": {
+              "linkType": "manual",
+              "url": "/",
+              "label": {
+                "en": "View more"
+              },
+              "buttonType": "secondary",
+              "buttonColor": "Teal",
+              "textColor": "White",
+              "newTab": false
+            }
+          }
+        ],
+        "blockType": "image-grid"
+      },
+      {
+        "id": "showcase-wideimage-001",
+        "image": 7,
+        "header": {
+          "text": "Wide Image Block",
+          "highlightColor": "Teal",
+          "textColor": "White",
+          "level": "2"
+        },
+        "content": {
+          "en": {
+            "root": {
+              "type": "root",
+              "format": "",
+              "indent": 0,
+              "version": 1,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "format": "",
+                  "indent": 0,
+                  "version": 1,
+                  "children": [
+                    {
+                      "mode": "normal",
+                      "text": "The wide-image block fills the full container width with an image. The header and optional body copy are overlaid or placed adjacent depending on the layout.",
+                      "type": "text",
+                      "style": "",
+                      "detail": 0,
+                      "format": 0,
+                      "version": 1
+                    }
+                  ],
+                  "direction": null,
+                  "textStyle": "",
+                  "textFormat": 0
+                }
+              ],
+              "direction": null
+            }
+          }
+        },
+        "backgroundColor": "Background",
+        "blockType": "wide-image"
+      },
+      {
+        "id": "showcase-storycards-001",
+        "backgroundColor": "Card",
+        "variant": "featured-cards",
+        "showTitle": true,
+        "title": {
+          "en": "Story Cards Block — Featured"
+        },
+        "stories": [
+          {
+            "id": "showcase-storycard-item-1",
+            "story": 1,
+            "color": "Purple",
+            "textBackground": "Dark Purple"
+          },
+          {
+            "id": "showcase-storycard-item-2",
+            "story": 2,
+            "color": "Teal",
+            "textBackground": "Dark Purple"
+          },
+          {
+            "id": "showcase-storycard-item-3",
+            "story": 3,
+            "color": "Blue",
+            "textBackground": "Dark Purple"
+          }
+        ],
+        "showButton": true,
+        "bottomButton": {
+          "linkType": "manual",
+          "url": "/stories",
+          "label": {
+            "en": "All Stories"
+          },
+          "buttonType": "secondary",
+          "buttonColor": "Teal",
+          "textColor": "White",
+          "newTab": false
+        },
+        "blockType": "story-cards"
+      },
+      {
+        "id": "showcase-storycards-002",
+        "backgroundColor": "Background",
+        "variant": "story-previews",
+        "showTitle": true,
+        "title": {
+          "en": "Story Cards Block — Previews"
+        },
+        "stories": [
+          {
+            "id": "showcase-storycard-item-4",
+            "story": 1,
+            "color": "Teal",
+            "textBackground": "Dark Purple"
+          },
+          {
+            "id": "showcase-storycard-item-5",
+            "story": 2,
+            "color": "Teal",
+            "textBackground": "Dark Purple"
+          }
+        ],
+        "showButton": false,
+        "blockType": "story-cards"
+      },
+      {
+        "id": "showcase-infoblock-001",
+        "backgroundColor": "Background",
+        "theme": "info",
+        "icon": "information-line",
+        "content": {
+          "en": {
+            "root": {
+              "type": "root",
+              "format": "",
+              "indent": 0,
+              "version": 1,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "format": "",
+                  "indent": 0,
+                  "version": 1,
+                  "children": [
+                    {
+                      "mode": "normal",
+                      "text": "Info Block — theme: info. Use this for informational callouts. Supports link and email action types.",
+                      "type": "text",
+                      "style": "",
+                      "detail": 0,
+                      "format": 0,
+                      "version": 1
+                    }
+                  ],
+                  "direction": null,
+                  "textStyle": "",
+                  "textFormat": 0
+                }
+              ],
+              "direction": null
+            }
+          }
+        },
+        "actions": [
+          {
+            "id": "showcase-infoblock-action-1",
+            "actionType": "link",
+            "label": {
+              "en": "Take action"
+            },
+            "link": {
+              "linkType": "manual",
+              "url": "/about",
+              "newTab": false
+            }
+          }
+        ],
+        "blockType": "info-block"
+      },
+      {
+        "id": "showcase-infoblock-002",
+        "backgroundColor": "Background",
+        "theme": "success",
+        "icon": "checkbox-circle-line",
+        "content": {
+          "en": {
+            "root": {
+              "type": "root",
+              "format": "",
+              "indent": 0,
+              "version": 1,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "format": "",
+                  "indent": 0,
+                  "version": 1,
+                  "children": [
+                    {
+                      "mode": "normal",
+                      "text": "Info Block — theme: success. Use this for positive confirmations and completion states.",
+                      "type": "text",
+                      "style": "",
+                      "detail": 0,
+                      "format": 0,
+                      "version": 1
+                    }
+                  ],
+                  "direction": null,
+                  "textStyle": "",
+                  "textFormat": 0
+                }
+              ],
+              "direction": null
+            }
+          }
+        },
+        "actions": [
+          {
+            "id": "showcase-infoblock-action-2",
+            "actionType": "link",
+            "label": {
+              "en": "Continue"
+            },
+            "link": {
+              "linkType": "manual",
+              "url": "/",
+              "newTab": false
+            }
+          }
+        ],
+        "blockType": "info-block"
+      },
+      {
+        "id": "showcase-youtube-001",
+        "backgroundColor": "Card",
+        "title": {
+          "en": "YouTube Embed Block"
+        },
+        "videoId": "dQw4w9WgXcQ",
+        "blockType": "youtube-embed"
+      }
+    ],
+    "meta": {
+      "title": "Blocks Showcase",
+      "image": 7,
+      "description": "Every content block in the starterkit demonstrated on one page."
+    },
+    "_status": "published",
+    "updatedAt": "2026-05-27T10:14:00.000Z",
+    "createdAt": "2026-05-27T10:14:00.000Z"
+  },
+  {
     "id": 101,
     "title": {
       "en": "E2E Page Published"
@@ -515,5 +1476,384 @@
     "_status": "draft",
     "updatedAt": "2026-05-27T10:20:00.000Z",
     "createdAt": "2026-05-27T10:20:00.000Z"
+  },
+  {
+    "id": 103,
+    "title": {
+      "en": "E2E Blocks Page"
+    },
+    "slug": "e2e-blocks-page",
+    "publishedAt": "2026-05-27T10:21:00.000Z",
+    "layout": [
+      {
+        "id": "e2e-blocks-hero-001",
+        "heroType": "minimal",
+        "title": {
+          "en": "E2E Blocks Test Page"
+        },
+        "body": {
+          "en": {
+            "root": {
+              "type": "root",
+              "format": "",
+              "indent": 0,
+              "version": 1,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "format": "",
+                  "indent": 0,
+                  "version": 1,
+                  "children": [
+                    {
+                      "mode": "normal",
+                      "text": "This page is seeded for automated block rendering tests.",
+                      "type": "text",
+                      "style": "",
+                      "detail": 0,
+                      "format": 0,
+                      "version": 1
+                    }
+                  ],
+                  "direction": null,
+                  "textStyle": "",
+                  "textFormat": 0
+                }
+              ],
+              "direction": null
+            }
+          }
+        },
+        "buttons": [],
+        "blockType": "hero"
+      },
+      {
+        "id": "e2e-blocks-richtext-001",
+        "backgroundColor": "Background",
+        "title": {
+          "en": "E2E Rich Text Heading"
+        },
+        "body": {
+          "en": {
+            "root": {
+              "type": "root",
+              "format": "",
+              "indent": 0,
+              "version": 1,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "format": "",
+                  "indent": 0,
+                  "version": 1,
+                  "children": [
+                    {
+                      "mode": "normal",
+                      "text": "E2E rich text body content.",
+                      "type": "text",
+                      "style": "",
+                      "detail": 0,
+                      "format": 0,
+                      "version": 1
+                    }
+                  ],
+                  "direction": null,
+                  "textStyle": "",
+                  "textFormat": 0
+                }
+              ],
+              "direction": null
+            }
+          }
+        },
+        "blockType": "simple-rich-text"
+      },
+      {
+        "id": "e2e-blocks-standard-001",
+        "header": {
+          "text": "E2E Standard Content",
+          "highlightColor": "Teal",
+          "textColor": "White",
+          "level": "2"
+        },
+        "content": {
+          "en": {
+            "root": {
+              "type": "root",
+              "format": "",
+              "indent": 0,
+              "version": 1,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "format": "",
+                  "indent": 0,
+                  "version": 1,
+                  "children": [
+                    {
+                      "mode": "normal",
+                      "text": "E2E standard content body.",
+                      "type": "text",
+                      "style": "",
+                      "detail": 0,
+                      "format": 0,
+                      "version": 1
+                    }
+                  ],
+                  "direction": null,
+                  "textStyle": "",
+                  "textFormat": 0
+                }
+              ],
+              "direction": null
+            }
+          }
+        },
+        "buttons": [],
+        "image": 3,
+        "imagePosition": "right",
+        "themeMode": "inherit",
+        "backgroundColor": "Background",
+        "blockType": "standard-content"
+      },
+      {
+        "id": "e2e-blocks-iconrow-001",
+        "backgroundColor": "Card",
+        "title": {
+          "en": "E2E Icon Row"
+        },
+        "items": [
+          {
+            "id": "e2e-blocks-iconrow-item-1",
+            "iconName": "check-line",
+            "iconColor": "Teal",
+            "title": {
+              "en": "E2E Icon Item One"
+            },
+            "description": {
+              "en": "First icon row item for e2e testing."
+            },
+            "hasButton": false
+          },
+          {
+            "id": "e2e-blocks-iconrow-item-2",
+            "iconName": "close-line",
+            "iconColor": "Red",
+            "title": {
+              "en": "E2E Icon Item Two"
+            },
+            "description": {
+              "en": "Second icon row item for e2e testing."
+            },
+            "hasButton": false
+          },
+          {
+            "id": "e2e-blocks-iconrow-item-3",
+            "iconName": "arrow-right-line",
+            "iconColor": "Blue",
+            "title": {
+              "en": "E2E Icon Item Three"
+            },
+            "description": {
+              "en": "Third icon row item for e2e testing."
+            },
+            "hasButton": false
+          }
+        ],
+        "blockType": "icon-row"
+      },
+      {
+        "id": "e2e-blocks-infoblock-001",
+        "backgroundColor": "Background",
+        "theme": "info",
+        "icon": "information-line",
+        "content": {
+          "en": {
+            "root": {
+              "type": "root",
+              "format": "",
+              "indent": 0,
+              "version": 1,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "format": "",
+                  "indent": 0,
+                  "version": 1,
+                  "children": [
+                    {
+                      "mode": "normal",
+                      "text": "E2E info block content.",
+                      "type": "text",
+                      "style": "",
+                      "detail": 0,
+                      "format": 0,
+                      "version": 1
+                    }
+                  ],
+                  "direction": null,
+                  "textStyle": "",
+                  "textFormat": 0
+                }
+              ],
+              "direction": null
+            }
+          }
+        },
+        "actions": [
+          {
+            "id": "e2e-blocks-infoblock-action-1",
+            "actionType": "link",
+            "label": {
+              "en": "E2E Info Action"
+            },
+            "link": {
+              "linkType": "manual",
+              "url": "/about",
+              "newTab": false
+            }
+          }
+        ],
+        "blockType": "info-block"
+      },
+      {
+        "id": "e2e-blocks-storycards-001",
+        "backgroundColor": "Background",
+        "variant": "story-previews",
+        "showTitle": true,
+        "title": {
+          "en": "E2E Story Cards"
+        },
+        "stories": [
+          {
+            "id": "e2e-blocks-storycard-item-1",
+            "story": 1,
+            "color": "Teal",
+            "textBackground": "Dark Purple"
+          },
+          {
+            "id": "e2e-blocks-storycard-item-2",
+            "story": 2,
+            "color": "Purple",
+            "textBackground": "Dark Purple"
+          }
+        ],
+        "showButton": true,
+        "bottomButton": {
+          "linkType": "manual",
+          "url": "/stories",
+          "label": {
+            "en": "E2E Stories Button"
+          },
+          "buttonType": "secondary",
+          "buttonColor": "Teal",
+          "textColor": "White",
+          "newTab": false
+        },
+        "blockType": "story-cards"
+      },
+      {
+        "id": "e2e-blocks-wideimage-001",
+        "image": 8,
+        "header": {
+          "text": "E2E Wide Image",
+          "highlightColor": "Yellow",
+          "textColor": "White",
+          "level": "2"
+        },
+        "content": {
+          "en": {
+            "root": {
+              "type": "root",
+              "format": "",
+              "indent": 0,
+              "version": 1,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "format": "",
+                  "indent": 0,
+                  "version": 1,
+                  "children": [
+                    {
+                      "mode": "normal",
+                      "text": "E2E wide image content.",
+                      "type": "text",
+                      "style": "",
+                      "detail": 0,
+                      "format": 0,
+                      "version": 1
+                    }
+                  ],
+                  "direction": null,
+                  "textStyle": "",
+                  "textFormat": 0
+                }
+              ],
+              "direction": null
+            }
+          }
+        },
+        "backgroundColor": "Background",
+        "blockType": "wide-image"
+      },
+      {
+        "id": "e2e-blocks-youtube-001",
+        "backgroundColor": "Card",
+        "title": {
+          "en": "E2E YouTube Embed"
+        },
+        "videoId": "dQw4w9WgXcQ",
+        "blockType": "youtube-embed"
+      },
+      {
+        "id": "e2e-blocks-imagegrid-001",
+        "backgroundColor": "Background",
+        "showTitle": true,
+        "title": {
+          "en": "E2E Image Grid"
+        },
+        "columns": "3",
+        "items": [
+          {
+            "id": "e2e-imagegrid-item-1",
+            "image": 3,
+            "header": {
+              "en": "E2E Grid Item One"
+            },
+            "subheader": {
+              "en": "Subheader one"
+            },
+            "showLink": false
+          },
+          {
+            "id": "e2e-imagegrid-item-2",
+            "image": 4,
+            "header": {
+              "en": "E2E Grid Item Two"
+            },
+            "subheader": {
+              "en": "Subheader two"
+            },
+            "showLink": false
+          },
+          {
+            "id": "e2e-imagegrid-item-3",
+            "image": 5,
+            "header": {
+              "en": "E2E Grid Item Three"
+            },
+            "subheader": {
+              "en": "Subheader three"
+            },
+            "showLink": false
+          }
+        ],
+        "blockType": "image-grid"
+      }
+    ],
+    "_status": "published",
+    "updatedAt": "2026-05-27T10:21:00.000Z",
+    "createdAt": "2026-05-27T10:21:00.000Z"
   }
 ]

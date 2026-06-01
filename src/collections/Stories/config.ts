@@ -209,10 +209,7 @@ export const Stories: CollectionConfig = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [
-                StoryCardsBlock,
-                ImageGridBlock,
-              ],
+              blocks: [StoryCardsBlock, ImageGridBlock],
               admin: {
                 description: 'Above the footer layout blocks',
               },

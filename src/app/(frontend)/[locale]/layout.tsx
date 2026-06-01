@@ -50,7 +50,7 @@ const Layout: React.FC<LayoutProps> = async ({ children, params }) => {
                   {isDraftMode && <LivePreviewListener />}
                   <Header />
                   <main>
-                    <div className="fixed bottom-4 end-4 z-50">
+                    <div className="fixed bottom-4 end-4 z-50" data-testid="theme-toggle-container">
                       <ThemeToggle />
                     </div>
                     {children}
